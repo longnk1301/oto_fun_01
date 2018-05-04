@@ -29,13 +29,13 @@
                         <ul>
                             <!-- NEWS -->
                             <li class="bg-red">
-                                 <a href="#">{!!trans('index.news')!!}</a>
+                                 <a href="{{url('news')}}">{!!trans('index.news')!!}</a>
                             </li>
                             <!-- END NEWS -->
 
                             <!-- SHOP NEWS -->
                             <li class="bg-orange">
-                                <a href="#" >{!!trans('index.shop_new')!!}</a>
+                                <a href="{{url('car')}}" >{!!trans('index.shop_new')!!}</a>
                             </li>
                             <!-- END SHOP NEWS -->
 

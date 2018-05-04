@@ -13,10 +13,8 @@ class TestController extends Controller
             'name' => $request->name,
             'password' => $request->password,
         ];
-        // dd($data);
-        if(Auth::attempt($data)){
-            // return view('home');
-            return redirect()->route('home');
+        if (Auth::attempt($data)) {
+            return redirect()->route('user.admin.home');
         } else {
             return view('auth.login');
         }
