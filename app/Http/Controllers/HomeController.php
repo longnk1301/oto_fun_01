@@ -6,16 +6,21 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    function index () {
-    	return view('welcome');
+// trang chu
+    public function homepage()
+    {
+        return view('welcome');
     }
-
-    function login () {
-    	return view('user.login');
+// trang da dang nhap thanh cong
+    public function index()
+    {
+        return view('home');
     }
+//Thay doi ngon ngu
+    public function changeLanguage($language)
+    {
+    \Session::put('website_language', $language);
 
-    function register () {
-    	return view('user.register');
+    return redirect()->back();
     }
-
 }

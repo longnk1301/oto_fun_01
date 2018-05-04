@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
+         {!! Html::style('css/style.css') !!}
         <title>FunCars</title>
         </style>
     </head>
@@ -21,25 +21,27 @@
                 <!-- Start Menu -->
                 <div class="header-right">
                     <div class="float-right">
-                         <a href="{{route('login')}}" >Login</a>
+                        <a href="{!! route('user.change-language', ['en']) !!}">{!!trans('index.en')!!} | </a>
+                        <a href="{!! route('user.change-language', ['vi']) !!}">{!!trans('index.vn')!!} | </a>
+                        <a href="{{route('login')}}" >{!! trans('auth.login') !!}</a>
                     </div>
                     <div class="menu">
                         <ul>
                             <!-- NEWS -->
                             <li class="bg-red">
-                                 <a href="#">News</a>
+                                 <a href="#">{!!trans('index.news')!!}</a>
                             </li>
                             <!-- END NEWS -->
 
                             <!-- SHOP NEWS -->
                             <li class="bg-orange">
-                                <a href="#" >Shop New</a>
+                                <a href="#" >{!!trans('index.shop_new')!!}</a>
                             </li>
                             <!-- END SHOP NEWS -->
 
                             <!-- SHOP USED -->
                             <li class="bg-blue">
-                                 <a href="#" >Shop Used</a>
+                                 <a href="#" >{!!trans('index.shop_used')!!}</a>
                             </li>
                              
                             <!-- END SHOP USED -->
@@ -423,23 +425,23 @@
                     <div class="row cf ">
                         <div class="col">
                             <dl>
-                                <dt class="title">Products</dt>
+                                <dt class="title">{!! trans('index.products') !!}</dt>
                                 <dd>
-                                    <a href="#">Used Cars for Sale</a>
+                                    <a href="#">{!! trans('index.used_cars_for_sale') !!}</a>
                                 </dd>
                                 <dd>
-                                    <a href="#">Leaser a Car</a>
+                                    <a href="#">{!! trans('index.leaser_a_car') !!}</a>
                                 </dd>
                             </dl>
                         </div>
                         <div class="col">
                             <dl>
-                                <dt class="title">Abouts Us</dt>
+                                <dt class="title">{!! trans('index.abouts_us') !!}</dt>
                                 <dd>
-                                    <a href="#">Who We Are</a>
+                                    <a href="#">{!! trans('index.who_we_are') !!}</a>
                                 </dd>
                                 <dd>
-                                    <a href="#">Contact Us</a>
+                                    <a href="#">{!! trans('index.contact_us') !!}</a>
                                 </dd>
                             </dl>
                         </div>

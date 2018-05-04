@@ -1,19 +1,18 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'name' => 'UserName',
+    'email' => 'Email',
+    'phone' => 'Phone',
+    'address' => 'Address',
+    'password' => 'Password',
+    're_password' => 'Reset Password',
+    'password_confirm' => 'Password Confirm',
+    'remember' => 'Remember Me',
+    'login' => 'Login',
+    'logout' => 'Logout',
+    'register' => 'Register',
+    'forgot' => 'Forgot Your Password?',
+    'send' => ' Send Password Reset Link',
 
 ];
