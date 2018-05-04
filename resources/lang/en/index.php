@@ -2,7 +2,7 @@
 
 return [
     'en' => 'English',
-    'vn' => 'VietNamese',
+    'vn' => 'Vietnamese',
     'news' => 'News',
     'shop_new' => 'Shop New',
     'shop_used' => 'Shop Used',
