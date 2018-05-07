@@ -1,10 +1,15 @@
 /node_modules
 /public/hot
 /public/storage
+/public/js
+/public/images
+/public/dist
 /storage/*.key
 /vendor
 /.idea
 /.vagrant
+/resources/assets/bower
+/public/bower
 Homestead.json
 Homestead.yaml
 npm-debug.log

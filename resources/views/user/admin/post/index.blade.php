@@ -8,7 +8,7 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
+                        <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="User Image" />
                     </div>
                     <div class="pull-left info">
                         <p>{{ Auth::user()->name }}</p>
@@ -20,7 +20,7 @@
                 <div class="input-group">
                     {!! Form::text('q', '' , ['class' => 'form-control', 'placeholder' => trans('auth.search')]) !!}
                         <span class="input-group-btn">
-                            {!! Form::submit( "<i class='fa fa-search'></i>", ['class' => 'btn btn-flat', 'id' => 'search-btn']) !!}
+                            {!! Form::submit( '', ['class' => 'btn btn-flat', 'id' => 'search-btn']) !!}
                         </span>
                 </div>
                 {!! Form::close() !!}
@@ -70,13 +70,41 @@
             <!-- Main row -->
                 <div class="row">
             <!-- Left col -->
-                    <section class="col-lg-7 connectedSortable">
-
+                    <section class="col-lg-12 connectedSortable">
+                           <table class="table table-bordered table-hover">
+                               <caption>{!! trans('dbp') !!}</caption>
+                               <thead>
+                                   <tr>
+                                       <th>{!! trans('auth.id') !!}</th>
+                                       <th>{!! trans('auth.cate_id') !!}</th>
+                                       <th>{!! trans('auth.title') !!}</th>
+                                       <th>{!! trans('auth.image') !!}</th>
+                                       <th>{!! trans('auth.summary') !!}</th>
+                                       <th>{!! trans('auth.post') !!}</th>
+                                       <th>{!! trans('auth.tags') !!}</th>
+                                       <th>{!! trans('auth.created_by') !!}</th>
+                                       <th>{!! trans('auth.status') !!}</th>
+                                       <th>{!! trans('auth.slug') !!}</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                @foreach ($post_data as $post_dt)
+                                    <tr>
+                                        <td>{{ $post_dt->id }}</td>
+                                        <td>{{ $post_dt->cate_id }}</td>
+                                        <td>{{ $post_dt->title }}</td>
+                                        <td>{{ $post_dt->image }}</td>
+                                        <td>{{ $post_dt->summary }}</td>
+                                        <td>{{ $post_dt->post_date }}</td>
+                                        <td>{{ $post_dt->tags }}</td>
+                                        <td>{{ $post_dt->created_by }}</td>
+                                        <td>{{ $post_dt->status }}</td>
+                                        <td>{{ $post_dt->slug }}</td>
+                                    </tr>
+                                @endforeach
+                               </tbody>
+                           </table>
                     </section><!-- /.Left col -->
-
-                    <section class="col-lg-5 connectedSortable">
-
-                    </section><!-- right col -->
                 </div><!-- /.row (main row) -->
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->

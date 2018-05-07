@@ -12,4 +12,6 @@ return [
     'abouts_us' => 'Thông tin về chúng tôi',
     'who_we_are' => 'Chúng tôi là ai?',
     'contact_us' => 'Liên hệ với chúng tôi',
+    'ad' => 'Quản trị',
+    'readmore' => 'Đọc thêm',
 ];

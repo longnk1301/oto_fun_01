@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Category
+use App\Post;
 
 class PostTableSeeder extends Seeder
 {
     public function run()
     {
-         factory(Category::class, 50)->create();
+         factory(Post::class, 50)->create();
     }
 }
