@@ -10,14 +10,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
-    $title = $faker->realText(50,1);
+    $title = $faker->realText(50, 1);
     $slug = str_slug($title . '-' . microtime(), '-');
 
     return [
-         'cate_id' => rand(1,5),
+         'cate_id' => rand(1, 10),
          'title' => $title,
-         'summary' => $faker->realText(100,1),
-         'content' => $faker->realText(300,3),
+         'summary' => $faker->realText(200, 1),
+         'content' => $faker->realText(500, 3),
          'views_id' => -1,
          'tags' => -1,
          'created_by' => -1,
@@ -28,7 +28,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 $factory->define(App\Car::class, function (Faker\Generator $faker) {
     return [
          'car_name' => $faker->text(10),
-         'summary' => $faker->realText(60,1),
+         'summary' => $faker->realText(60, 1),
          'car_type' => $faker->text(10),
          'car_company' => $faker->text(8),
          'car_color' => $faker->text(10),
@@ -39,9 +39,12 @@ $factory->define(App\Car::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Category::class, function (Faker\Generator $faker) {
+    $cate_name = $faker->realText(40, 1);
+    $slug = str_slug($cate_name . '-' . microtime(), '-');
     return [
-         'cate_name' => $faker->text(10),
-         'summary' => $faker->realText(60,1),
+         'cate_name' => $cate_name,
+         'summary' => $faker->realText(60, 1),
          'tags' => -1,
+         'slug' => $slug,
     ];
 });

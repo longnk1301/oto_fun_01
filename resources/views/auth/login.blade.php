@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="content-wrapper">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -26,7 +26,7 @@
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             {!! Form::label('password', trans('auth.password'), ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::password('password', '' , ['class' => 'form-control'], ['id' => 'password']) !!}
+                                {!! Form::password('password', '' , ['class' => 'form-control', 'id' => 'password']) !!}
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

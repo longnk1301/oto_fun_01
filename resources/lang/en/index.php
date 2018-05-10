@@ -12,5 +12,7 @@ return [
     'abouts_us' => 'About Us',
     'who_we_are' => 'Who we are',
     'contact_us' => 'Contact Us',
+    'ad' => 'Admin',
+    'readmore' => 'Read More...',
 
 ];
