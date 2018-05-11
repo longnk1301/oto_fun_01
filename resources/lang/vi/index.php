@@ -14,4 +14,10 @@ return [
     'contact_us' => 'Liên hệ với chúng tôi',
     'ad' => 'Quản trị',
     'readmore' => 'Đọc thêm',
+    'used_car_for_sale' => 'Xe cũ dùng để bán',
+    'go' => 'Tìm kiếm',
+    'search_by' => 'Tìm kiếm loại xe hoặc cấu trúc xe',
+    'key' => 'Từ khóa: ',
+    'has' => 'có',
+    'rs' => 'kết quả ',
 ];

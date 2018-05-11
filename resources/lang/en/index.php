@@ -14,5 +14,10 @@ return [
     'contact_us' => 'Contact Us',
     'ad' => 'Admin',
     'readmore' => 'Read More...',
-
+    'used_car_for_sale' => 'Used Cars for Sale',
+    'go' => 'Go',
+    'search_by' => 'Search by Make or Model',
+    'key' => 'Keyword:',
+    'has' => 'Has',
+    'rs' => 'results',
 ];

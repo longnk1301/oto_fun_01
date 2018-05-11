@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="container post cf">
+<div class="container post clearfix">
     <h1>{{ $cate->name }}</h1>
     <div class="row">
         @foreach ($posts as $p)
