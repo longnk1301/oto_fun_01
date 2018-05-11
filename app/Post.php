@@ -10,5 +10,6 @@ class Post extends Model
     {
         $cate = Category::find($this->cate_id);
         return $cate;
+
     }
 }

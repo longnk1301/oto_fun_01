@@ -9,6 +9,7 @@ use App\Category;
 
 class HomeController extends Controller
 {
+
     // trang chu
     public function homepage()
     {
@@ -21,40 +22,74 @@ class HomeController extends Controller
         return view('user.admin.home');
     }
 
-    //trang post-data
-    public function post_data()
+    //trang post-data admin
+    public function getPostData()
     {
         $post_data = Post::all();
         return view('user.admin.post.index', compact('post_data'));
     }
 
-    //trang car-data
-    public function car_data()
+    //trang car-data admin
+    public function getCarData()
     {
         $car_data = Car::all();
         return view('user.admin.car.index', compact('car_data'));
     }
 
-    //trang san pham
+    //trang san pham mới, lấy loại xe để check từng loại
     public function newcar()
     {
-        $newcar = Car::all();
-        return view('car.new_car', compact('newcar'));
+        $new_car = Car::distinct()->get(['car_type']);  
+        return view('car.new_car', compact('new_car'));
     }
 
+    //lấy dữ liệu chuyển sang json
+    public function getCar(Request $request)
+    {
+        $getcar = Car::where('car_type', $request->car_type)->get();
+        return response()->json($getcar);
+    }
+
+    //trang san phẩm cũ
     public function usedcar()
     {
         $usedcar = Car::all();
         return view('car.used_car', compact('usedcar'));
     }
 
-    // trang bai viet
+    // trang tin tức
     public function news()
     {
         $posts = Post::paginate(config('app.paginate'));
+        foreach ($posts as $p) {
+            $p['category_id'] = $p->getCate();
+        }
         return view('post.news', compact('posts'));
     }
 
+    //trỏ tới form search
+    public function view_used_car_for_sale()
+    {
+        return view('search.used_car_for_sale');
+    }
+
+    //Tìm kiếm bài viết
+    public function search(Request $request)
+    {
+
+        if (!$request->keyword) {
+            return redirect(route('homepage'));
+        }
+        $keyword = $request->keyword;
+        $posts = Post::where('title', 'like', "%$keyword%")->paginate();
+        $posts->withPath("?keyword=$keyword");
+        foreach ($posts as $p) {
+            $p['category_id'] = $p->getCate();
+        }
+        return view('search.search_result', compact('keyword', 'posts'));
+    }
+
+    //lấy slug chuyên mục
     public function categories($cateSlug)
     {
         $cate = Category::where('slug', $cateSlug)->first();
@@ -62,7 +97,7 @@ class HomeController extends Controller
         return view('post.cate_detail', compact('posts', 'cate'));
     }
 
-    //bai viet
+    //bài viết
     public function detail($slug)
     {
         $post = Post::where('slug', $slug)->first();

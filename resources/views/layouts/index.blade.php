@@ -68,7 +68,7 @@
                         <dl>
                             <dt class="title">{!! trans('index.products') !!}</dt>
                             <dd>
-                                <a href="#">{!! trans('index.used_cars_for_sale') !!}</a>
+                                <a href="{{ route('used.car.for.sale') }}">{!! trans('index.used_cars_for_sale') !!}</a>
                             </dd>
                             <dd>
                                 <a href="#">{!! trans('index.leaser_a_car') !!}</a>

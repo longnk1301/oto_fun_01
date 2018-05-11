@@ -378,19 +378,6 @@ a {
     .search .image-product h1 {
         font-size: 30px;
     }
-.new-placeholder {
-    text-align: center;
-    color: #333;
-    line-height: 1.2;
-    padding: 0 !important;
-    width: 100%;
-    float: left;
-    display: block;
-    margin-top: 50px;
-}
-.tabcontent {
-    display: none;
-    }
 .breadcrumbs {
     display: block;
     padding: 50px 0 0 6%;
@@ -400,10 +387,6 @@ a {
     font-size: 27px;
     padding: 40px 0 0;
 }
-.tabcontent a.active {
-    color: red;
-}
-
 /* ------------------------------------post ---------------------- */
 .post-single ul li{
     list-style: none;

@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="container post cf">
+<div class="container post clearfix">
     <div class="row">
         <p>{{ $post->title }}</p>
         <p>{{ $post->created_by }}</p>
