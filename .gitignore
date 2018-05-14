@@ -5,6 +5,7 @@
 /public/images
 /public/dist
 /storage/*.key
+/storage/debugbar/
 /vendor
 /.idea
 /.vagrant

@@ -1,13 +1,14 @@
 <?php
 
 return [
-    'name' => 'Tên đăng nhập',
-    'email' => 'Email',
-    'phone' => 'Điện thoại',
-    'address' => 'Địa chỉ',
-    'password' => 'Mật khẩu',
-    're_password' => 'Đặt lại mật khẩu',
-    'password_confirm' => 'Nhập lại mật khẩu',
+    'name' => 'Tên đăng nhập:',
+    'fullname' => 'Họ và tên:',
+    'email' => 'Email:',
+    'phone' => 'Điện thoại:',
+    'address' => 'Địa chỉ:',
+    'password' => 'Mật khẩu:',
+    're_password' => 'Đặt lại mật khẩu:',
+    'password_confirm' => 'Nhập lại mật khẩu:',
     'remember' => 'Ghi nhớ',
     'login' => 'Đăng nhập',
     'logout' => 'Đăng xuất',
@@ -38,4 +39,8 @@ return [
     'tog' => 'Chuyển hướng',
     'member' => 'Thành viên kể từ tháng 1 năm 2018',
     'used_image' => 'Ảnh đại diện',
+    'identification' => 'CMND/CCCD:',
+    'zipcode' => 'Mã bưu chính:',
+    'note' => 'Chú ý:',
+    'ok' => 'Gửi',
 ];

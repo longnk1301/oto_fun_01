@@ -316,12 +316,12 @@
 
 
                 <!-- START PARTNERS -->
-                <section class="row bg-white">
+                <section class="bg-white clearfix">
                     {{-- ROW --}}
-                    <div class="">
-                        <span class="trusted" >
-                            <h2 style="text-align: center; font-size: 45px;">Trusted to Deliver the TruePrice</h2>
-                            <p style="text-align: justify;">
+                    <div class="container">
+                        <span class="trusted">
+                            <h2>Trusted to Deliver the TruePrice</h2>
+                            <p>
                                 Since the very beginning, TrueCar has partnered with some of the largest membership organizations in the country, including USAA, Sam's Club, and American Express, giving members who use TrueCar a superior car-buying experience.
                             </p>
                         </span>

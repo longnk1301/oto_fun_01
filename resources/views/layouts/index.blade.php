@@ -30,19 +30,19 @@
                     <div class="menu">
                         <ul>
                             <!-- NEWS -->
-                            <li class="bg-info text-white">
+                            <li class="bg-sea text-white">
                                  <a href="{{ url('news')}}">{!!trans('index.news') !!}</a>
                             </li>
                             <!-- END NEWS -->
 
                             <!-- SHOP NEWS -->
-                            <li class="bg-danger text-white">
+                            <li class="bg-orange text-white">
                                 <a href="{{ route('newcar')}}" >{!!trans('index.shop_new') !!}</a>
                             </li>
                             <!-- END SHOP NEWS -->
 
                             <!-- SHOP USED -->
-                            <li class="bg-success text-white">
+                            <li class="bg-blue text-white">
                                  <a href="{{ route('usedcar')}}" >{!! trans('index.shop_used') !!}</a>
                             </li>
                             <!-- END SHOP USED -->
