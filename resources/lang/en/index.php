@@ -20,4 +20,8 @@ return [
     'key' => 'Keyword:',
     'has' => 'Has',
     'rs' => 'results',
+    'vo' => 'Vehicle Overview',
+    'order' => 'Order',
+    'info' => 'Infomation',
+    'check' => 'Check Availability on this vehicle and unlock these features.',
 ];

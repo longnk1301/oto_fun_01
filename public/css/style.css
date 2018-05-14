@@ -19,6 +19,30 @@ a {
 .bg-gray {
     background: #F5F5F5;
 }
+.bg-orange {
+    border: 1px solid #ff9200;
+    background-color:#ff9200;
+}
+.bg-orange:hover {
+    border-color: #f5ae1f;
+    background-color: #f5ae1f;
+}
+.bg-blue {
+    border: 1px solid #5ac1e7;
+    background-color: #5ac1e7;
+}
+.bg-blue:hover {
+    border-color: #71d8f4;
+    background-color: #71d8f4;
+}
+.bg-sea {
+    border: 1px solid #9bcd9b;
+    background-color: #9bcd9b;
+}
+.bg-sea:hover {
+    border-color: #b4eeb4;
+    background-color: #b4eeb4;
+}
 .home {
     padding-top: 0;
 }
@@ -77,12 +101,6 @@ a {
                 line-height: 40px;
                 padding: 10px 18px;
             }
-                .header-right .menu li:hover {
-                    background: green;
-                }
-                .header-right .menu li a:hover {
-                    color: white;
-                }
             .float-right {
                 float: right;
                 display: inline-block;
@@ -234,6 +252,11 @@ a {
         }
 .trusted p {
     margin: 10px 0;
+    text-align: center;
+}
+.trusted h2 {
+    text-align: center;
+    font-size: 45px;
 }
 .partner {
     margin-left: 1.25rem;
@@ -305,6 +328,7 @@ a {
 
 .post {
     margin-top: 100px;
+    min-height: 480px;
 }
 .search-filter-list li ul li ul li{
     width: 100px;
@@ -389,5 +413,45 @@ a {
 }
 /* ------------------------------------post ---------------------- */
 .post-single ul li{
+    list-style: none;
+}
+/* ------------------------------ details car ---------------------- */
+.card {
+    border: 1px dashed rgb(201,201,201);
+    width: 100%;
+}
+.card-content {
+    align-items: center;
+    text-align: center;
+}
+.details_product img {
+    width: 500px;
+}
+/* --------------------------used car for sale------------------------ */
+
+.item-list {
+    position: absolute !important;
+    background-color: #fff !important;
+    width: calc(100% + 60px) !important;
+    margin-left: -30px !important;
+    z-index: 1 !important;
+    box-shadow: 0 3px 2px rgba(102,102,102,0.5) !important;
+    padding-bottom: 10px !important;
+    display: none;
+}
+.search-list .find-car a:hover.item-list {
+    display: block;
+}
+.search-list-tab {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    float: left !important;
+    position: relative !important;
+    padding-left: 27px !important;
+    margin-right: 5px !important;
+    white-space: nowrap !important;
+    column-count: 7 !important;
+}
+.search-list-tab li {
     list-style: none;
 }

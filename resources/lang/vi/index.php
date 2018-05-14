@@ -20,4 +20,8 @@ return [
     'key' => 'Từ khóa: ',
     'has' => 'có',
     'rs' => 'kết quả ',
+    'vo' => 'Tổng quan về xe cộ',
+    'order' => 'Đặt hàng',
+    'info' => 'Thông tin',
+    'check' => 'Kiểm tra tính khả dụng trên xe này và mở khóa các tính năng này.',
 ];

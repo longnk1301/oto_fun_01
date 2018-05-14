@@ -1,13 +1,14 @@
 <?php
 
 return [
-    'name' => 'UserName',
-    'email' => 'Email',
-    'phone' => 'Phone',
-    'address' => 'Address',
-    'password' => 'Password',
-    're_password' => 'Reset Password',
-    'password_confirm' => 'Password Confirm',
+    'name' => 'UserName:',
+    'fullname' => 'Full Name:',
+    'email' => 'Email:',
+    'phone' => 'Phone:',
+    'address' => 'Address:',
+    'password' => 'Password:',
+    're_password' => 'Reset Password:',
+    'password_confirm' => 'Password Confirm:',
     'remember' => 'Remember Me',
     'login' => 'Login',
     'logout' => 'Logout',
@@ -38,4 +39,8 @@ return [
     'tog' => 'Toggle navigation',
     'member' => 'Member since Feb. 2018',
     'used_image' => 'Used Image',
+    'identification' => 'Identification:',
+    'zipcode' => 'Zip Code:',
+    'note' => 'Note:',
+    'ok' => 'Send',
 ];

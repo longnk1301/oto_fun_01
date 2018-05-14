@@ -24,14 +24,18 @@ Route::group(['middleware' => 'locale'], function()
     //sản phẩm mới
     Route::get('/newcar', 'HomeController@newcar')->name('newcar');
 
-    //route lấy chứa dữ liệu json
+    //route lấy chứa dữ liệu new car
     Route::get('/getcar', 'HomeController@getCar')->name('getcar');
+
+    //route chứa dữ liệu used car
+    Route::get('/getusedcar', 'HomeController@getUsedCar')->name('getusedcar');
 
     //route sản phẩm cũ
     Route::get('/usedcar', 'HomeController@usedcar')->name('usedcar');
 
     //route chi tiết sản phẩm
-    Route::get('car-details', 'Homecontroller@car_detail')->name('car.detail');
+
+    Route::get('/details-car/{id}', 'HomeController@detail_car')->name('detail.car');
 
     //route tin tức
     Route::get('/news', 'HomeController@news')->name('news');
