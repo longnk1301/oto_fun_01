@@ -62,8 +62,8 @@ a {
     right: 0;
     z-index: 9;
     padding: 0;
-    border-bottom:  1px solid rgba(255,255,255,0.1);
-    box-shadow: 0px 4px 2px 0px rgba(0,0,0,0.15);
+    border-bottom:  1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.15);
 }
     #header .logo {
         padding: 10px 0;
@@ -119,7 +119,7 @@ a {
 
 .box1 {
     height: 100vh;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 0;
 }
     .entry-content {
@@ -371,7 +371,7 @@ a {
 .search ul li a figcaption {
     font-size: 14px;
     font-weight: 400;
-    color: 343434px;
+    color: #343434;
     display: block;
     text-align: center;
 }
@@ -412,12 +412,48 @@ a {
     padding: 40px 0 0;
 }
 /* ------------------------------------post ---------------------- */
+.post-single {
+    box-shadow: 0 3px 2px rgba(102, 102, 102, 0.5);
+    padding: 20px 10px;
+    margin: 30px 20px;
+}
+.post-single .cate_name {
+    font-size: 16px;
+}
+.post-single .post-title a {
+    font-size: 20px;
+}
+.post-single .post-img img {
+    text-align: center;
+    width: 100%;
+}
+.post-single .author {
+    margin: 10px 0;
+}
+
 .post-single ul li{
     list-style: none;
 }
+.mg {
+    margin: 20px 0;
+}
+
+/* ----------------------------------------details post--------------------------------------- */
+.img-details-post img {
+    width: 500px;
+    margin: 30px;
+}
+.summary {
+    font-style: italic;
+}
+.content {
+    font-size: 14px;
+    margin: 30px;
+}
+
 /* ------------------------------ details car ---------------------- */
 .card {
-    border: 1px dashed rgb(201,201,201);
+    border: 1px dashed rgb(201, 201, 201);
     width: 100%;
 }
 .card-content {
@@ -427,31 +463,116 @@ a {
 .details_product img {
     width: 500px;
 }
-/* --------------------------used car for sale------------------------ */
-
-.item-list {
-    position: absolute !important;
-    background-color: #fff !important;
-    width: calc(100% + 60px) !important;
-    margin-left: -30px !important;
-    z-index: 1 !important;
-    box-shadow: 0 3px 2px rgba(102,102,102,0.5) !important;
-    padding-bottom: 10px !important;
-    display: none;
+.details_product > p {
+    font-size: 22px;
 }
-.search-list .find-car a:hover.item-list {
+.feature {
+    padding: 30px 0 40px 0;
+}
+.feature p {
+    text-align: justify;
+    font-size: 13px;
+    margin-left: 20px;
+}
+.seller_note p {
+    text-align: justify;
+    font-size: 13px;
+    margin-left: 20px;
+    padding-bottom: 50px;
+}
+.vehicle {
+    margin: 20px 0;
+    padding: 10px 10px;
+}
+.vehicle h3 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.vehicle p {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+.vehicle h5{
+    text-align: center;
+}
+.vehicle-item {
+    padding: 30px 10px;
+}
+/* --------------------------used car for sale------------------------ */
+.menu-item {
+    margin: 5px 0px;
+}
+.menu-item ul {
+    position: relative;
+    list-style: none;
+    float: left;
+    line-height: 1.4;
+    padding-left: 27px;
+    margin-right: 5px;
+    column-count: 7;
+    padding-top: 20px;
+    white-space: nowrap;
+    font-size: 16px;
+}
+.menu-item ul li {
+    display: list-item !important;
+    line-height: 1.6;
+}
+.menu-item ul li h4 {
+    font-weight: bold;
+}
+.menu-item ul li ul li {
+    display: inline-block;
+}
+.menu-item ul ul {
+    background-color: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    display: none;
+    box-shadow: 0 3px 2px rgba(102, 102, 102, 0.5);
+}
+.menu-item ul li:hover > ul {
     display: block;
 }
-.search-list-tab {
-    font-size: 14px !important;
-    line-height: 1.4 !important;
-    float: left !important;
-    position: relative !important;
-    padding-left: 27px !important;
-    margin-right: 5px !important;
-    white-space: nowrap !important;
-    column-count: 7 !important;
+.search-box {
+    margin: 20px 0;
 }
-.search-list-tab li {
-    list-style: none;
+.search-list {
+    width: 100%;
+}
+
+/* -------------------------------------search products---------------------- */
+.advertisement img {
+    position: fixed;
+    top: 237px;
+    right: 20px;
+    width: 400px;
+    height: 300px;
+}
+
+.products {
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 2px rgba(102, 102, 102, 0.5);
+    padding: 5px 5px;
+    margin: 30px 5px;
+}
+.products img {
+    width: 240px;
+    margin-top: 30px;
+}
+
+/*--------------------------------------promo----------------------------------*/
+.promo {
+    list-style-type: none;
+    padding: 0;
+}
+.promo .inner {
+    background-image: url('../images/products/background.jpeg');
+    height: 370px;
+    padding: 15px;
+    padding: 20px 20px;
+    margin: 20px 0;
 }

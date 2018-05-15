@@ -166,6 +166,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        \Torann\LaravelRepository\RepositoryServiceProvider::class,
 
         /*
          * Package Service Providers...

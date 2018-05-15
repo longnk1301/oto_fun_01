@@ -2,6 +2,20 @@
 
 @section('content')
 <div class="container post clearfix">
+    <div class="row mg">
+        {!! Form::open(['method' => 'get', 'url' => route('client.search.post')]) !!}
+                <div class="col-md-8">
+                    <div class="suggest">
+                        {!! Form::text('keyword', '', ['class' => 'form-control', 'placeholder' => trans('index.search_post')]) !!}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        {!! Form::submit( trans('index.go'), ['class'=> 'btn btn-info']) !!}
+                    </div>
+                </div>
+        {!! Form::close() !!}
+    </div>
     <h1>{{ $cate->name }}</h1>
     <div class="row">
         @foreach ($posts as $p)

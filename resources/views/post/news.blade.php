@@ -3,6 +3,20 @@
 @section('content')
 <div class="container post clearfix">
     <div class="row">
+        <div class="row mg">
+            {!! Form::open(['method' => 'get', 'url' => route('client.search.post')]) !!}
+                <div class="col-md-8">
+                    <div class="suggest">
+                        {!! Form::text('keyword', '', ['class' => 'form-control', 'placeholder' => trans('index.search_post')]) !!}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div>
+                        {!! Form::submit( trans('index.go'), ['class'=> 'btn btn-info']) !!}
+                    </div>
+                </div>
+            {!! Form::close() !!}
+        </div>
         @foreach ($posts as $p)
             <div class="col-md-4">
                 <div class="post-single">
@@ -10,7 +24,7 @@
                         @if ($p->category_id != null)
                           <p>
                             <strong>
-                              <a href="{{ route('cate.detail', $p->category_id->slug) }}">{{ $p->category_id->cate_name }}</a>
+                              <a class="cate_name" href="{{ route('cate.detail', $p->category_id->slug) }}">{{ str_limit($p->category_id->cate_name, 30, '...') }}</a>
                             </strong>
                           </p>
                         @endif
@@ -21,12 +35,12 @@
                             <img src="{{ asset('images/products/side.jpeg') }}" alt="">
                         </a>
                     </div>
-                    <div class="post-desk">
+                    <div class="post-title">
                         <h4>
-                            <a href="{{ url($p->slug)}}">{{ str_limit($p->title, 20, '...') }}</a>
+                            <a href="{{ url($p->slug)}}">{{ str_limit($p->title, 25, '...') }}</a>
                         </h4>
                     </div>
-                    <div class="date">
+                    <div class="author">
                         <a href="{{ url($p->slug)}}">{{ $p->created_by }}</a>
                     </div>
                     <p>{{ $p->summary }}</p>

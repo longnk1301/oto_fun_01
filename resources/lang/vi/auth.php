@@ -43,4 +43,5 @@ return [
     'zipcode' => 'Mã bưu chính:',
     'note' => 'Chú ý:',
     'ok' => 'Gửi',
+    'author' => 'Tác gỉa',
 ];

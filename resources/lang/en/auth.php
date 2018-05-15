@@ -43,4 +43,5 @@ return [
     'zipcode' => 'Zip Code:',
     'note' => 'Note:',
     'ok' => 'Send',
+    'author' => 'Author',
 ];

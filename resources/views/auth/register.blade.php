@@ -9,7 +9,6 @@
 
                 <div class="panel-body">
                     {!! Form::open(['method' => 'POST', 'url' => 'register', 'class' => 'form-horizontal']) !!}
-                        {{ csrf_field() }}
                         {{-- Name --}}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             {!! Form::label('name', trans('auth.name'), ['class' => 'col-md-4 control-label']) !!}

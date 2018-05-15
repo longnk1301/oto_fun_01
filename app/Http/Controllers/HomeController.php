@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Post;
-use App\Car;
-use App\Category;
+use App\Models\Post;
+use App\Models\Car;
+use App\Models\Category;
+use App\Models\Vehicle;
 
 class HomeController extends Controller
 {
@@ -75,8 +76,9 @@ class HomeController extends Controller
     public function detail_car($id)
     {
         $detail_car = Car::where('id', $id)->first();
+        $vehicle = Car::find($id)->getVehicle()->get();
 
-        return view('car.detail_car', compact('detail_car'));
+        return view('car.detail_car', compact('detail_car', 'vehicle'));
     }
 
     // trang tin tức
@@ -98,23 +100,6 @@ class HomeController extends Controller
         return view('search.used_car_for_sale', compact('car_sale'));
     }
 
-    //Tìm kiếm bài viết
-    public function search(Request $request)
-    {
-
-        if (!$request->keyword) {
-
-            return redirect(route('homepage'));
-        }
-        $keyword = $request->keyword;
-        $posts = Post::where('title', 'like', "%$keyword%")->paginate();
-        $posts->withPath("?keyword=$keyword");
-        foreach ($posts as $p) {
-            $p['category_id'] = $p->getCate();
-        }
-
-        return view('search.search_result', compact('keyword', 'posts'));
-    }
 
     //lấy slug chuyên mục
     public function categories($cateSlug)
