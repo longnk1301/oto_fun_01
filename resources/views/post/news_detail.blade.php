@@ -3,10 +3,24 @@
 @section('content')
 <div class="container post clearfix">
     <div class="row">
-        <p>{{ $post->title }}</p>
-        <p>{{ $post->created_by }}</p>
-        <p><strong>{{ $post->summary }}</strong></p>
-        <p>{{ $post->content }}</p>
+        <h1>
+            <p>{{ $post->title }}</p>
+        </h1>
+        <p>
+            <b>{{ trans('auth.author') }}: </b>{{ $post->created_by }} | {{ $post->created_at }}
+        </p>
+        
+        <div class="img-details-post">
+            <img src="{{ asset('images/products/index.jpeg') }}" alt="">
+        </div>
+        
+        <div class="summary">
+            <p>{{ $post->summary }}</p>
+        </div>
+        
+        <div class="content">
+            <p>{{ $post->content }}</p>
+        </div>
     </div>
 </div>
 @endsection

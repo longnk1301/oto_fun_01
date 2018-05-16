@@ -40,11 +40,14 @@ Route::group(['middleware' => 'locale'], function()
     //route tin tức
     Route::get('/news', 'HomeController@news')->name('news');
 
+    //search
+    Route::get('/search-post', 'PostsController@searchPost')->name('client.search.post');
+
     //route tìm kiếm xe cũ để bán
     Route::get('/used-car-for-sale', 'HomeController@view_used_car_for_sale')->name('used.car.for.sale');
 
-    //search
-    Route::get('/search', 'HomeController@search')->name('client.search');
+    //tim kiem san pham
+    Route::get('/search-products', 'ProductsController@searchProduct')->name('client.search.product');
 
     //Chi tiet danh muc
     Route::get('/categories/{cateSlug}', 'HomeController@categories')->name('cate.detail');

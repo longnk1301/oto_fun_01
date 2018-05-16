@@ -61,7 +61,7 @@ $(document).ready(function()
             success: function(data) {
                 var html = '';
                         html += '<p class="breadcrumbs">';
-                        html += '<span>Good choice. Which are Aura are you thinking?</span>';
+                        html += '<span>{{ trans('index.good_choice') }}</span>';
                         html += '</p>';
                         $.each(data, function(index, value){
                                 html +=  '<ul class="search">';

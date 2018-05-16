@@ -9,7 +9,6 @@
 
                 <div class="panel-body">
                     {!! Form::open(['method' => 'POST', 'url' => 'logincheck', 'class' => 'form-horizontal']) !!}
-                        {{ csrf_field() }}
                         {{-- UserName --}}
                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                            {!! Form::label('email', trans('auth.name'), ['class' => 'col-md-4 control-label']) !!}

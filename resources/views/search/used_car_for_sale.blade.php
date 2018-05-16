@@ -4,7 +4,7 @@
 <div class="container post clearfix">
     <div class="row clearfix search-box">
         <div class="search-box-wrapper">
-            <form action="{{ route('client.search') }}" method="get" accept-charset="utf-8">
+            {!! Form::open(['method' => 'get', 'url' => route('client.search.product')]) !!}
                 <div class="row">
                     <div class="col-md-12">
                         <h1>{!! trans('index.used_car_for_sale') !!}</h1>
@@ -13,94 +13,41 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="suggest">
-                            <input type="text" class="form-control" placeholder="{!! trans('index.search_by') !!}" name="keyword">
+                            {!! Form::text('keyword', '', ['class' => 'form-control', 'placeholder' => trans('index.search_by')]) !!}
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div>
-                            <button type="submit">{!! trans('index.go') !!}</button>
+                            {!! Form::submit( trans('index.go'), ['class'=> 'btn btn-info']) !!}
                         </div>
                     </div>
                 </div>
-                <div class="search-list">
-                    <div>
-                        <i class="fa fa-car" aria-hidden="true"></i>
-                        <span>
-                            <strong>Find a Car by:</strong>
-                            <div class="find-car">
-                                <span>
-                                    <a href="#">Make</a>
-                                </span>
-                                <span>
-                                    <a href="#">Year</a>
-                                </span>
-                                <span>
-                                    <a href="#">Price</a>
-                                </span>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="item-list">
-                        <div class="">
-                            <div class="clearfix">
-                                <div class="search-list-tab">
-                                    @foreach ($car_sale as $car_sale)
-                                    <ul>
-                                        <li>
-                                            <a href="#">{{ $car_sale->car_type }}</a>
-                                        </li>
-                                    </ul>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-list-2" >
-                        <div class="">
-                            <div class="clearfix">
-                                <div class="search-list-tab">
-                                    <ul>
-                                        <li>
-                                            <a href="#">2018</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2017</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2016</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">2015</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-list-3">
-                        <div class="">
-                            <div class="clearfix">
-                                <div class="search-list-tab">
-                                    <ul>
-                                        <li>
-                                            <a href="#">Below $15000</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">$15000 - $17000</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">$17000 - $20000</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Above $20000</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            {!! Form::close() !!}
+        </div>
+    </div>
+    <div class="row promo">
+        <div class="inner">
+            <div class=" col-md-4 col-xs-12">
+                <p>
+                    <i class="fa fa-truck fa-2x" aria-hidden="true"></i>
+                    Extensive Used Car Inventory
+                </p>
+                <span>Over 850,000 Pre-Owned vehicles for sale at nationwide</span>
+            </div>
+            <div class=" col-md-4 col-xs-12">
+                <p>
+                    <i class="fa fa-check-square-o fa-2x" aria-hidden="true"></i>
+                    Buy With Confidence
+                    <span>Get the best used car buying experience when you purchase from a TrueCar Certified Dealer who is dedicated to great service, and saving you time and money.</span>
+                </p>
+            </div>
+            <div class=" col-md-4 col-xs-12">
+                <p>
+                    <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+                    Get Price Confidence
+                    <span>TrueCar analyzes millions of local and national used car listings to determine whether listing prices are <b>great and good</b>.</span>
+                </p>
+            </div>
         </div>
     </div>
 </div>

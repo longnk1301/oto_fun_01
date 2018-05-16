@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,5 +10,10 @@ class Car extends Model
     {
     	$car = Car::find($this->id);
         return $car;
+    }
+
+     public function getVehicle()
+    {
+        return $this->hasMany('App\Models\Vehicle', 'id', 'vehicle');
     }
 }
