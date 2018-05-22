@@ -57,7 +57,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {!! Form:submit(trans('auth.re_password'), ['class' => 'btn btn-primary',]) !!}
+                                {!! Form::submit(trans('auth.re_password'), ['class' => 'btn btn-primary',]) !!}
                             </div>
                         </div>
                     {!! Form::close() !!}

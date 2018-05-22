@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         {!! Html::style('css/style.css') !!}
         {!! Html::style('/bower/boostrap/dist/css/bootstrap.min.css') !!}
         {!! Html::style('/bower/font-awesome/css/font-awesome.min.css') !!}
@@ -46,6 +47,12 @@
                                  <a href="{{ route('usedcar')}}" >{!! trans('index.shop_used') !!}</a>
                             </li>
                             <!-- END SHOP USED -->
+
+                            <!-- COMPARE -->
+                            <li class="bg-slate text-white">
+                                 <a href="{{ route('compare')}}" >{!! trans('index.compare') !!}</a>
+                            </li>
+                            <!-- END COMPARE -->
                         </ul>
                     </div>
                 </div>
@@ -115,10 +122,12 @@
         </div>
     </footer>
     <!-- End footer -->
-
     <!-- Bootstrap 3.3.2 JS -->
     {!! Html::script('/bower/boostrap/dist/js/bootstrap.min.js') !!}
     <!-- AdminLTE App -->
     {!! Html::script('/bower/boostrap/dist/js/app.min.js') !!}
+
+    @section('script')
+        @show
     </body>
 </html>

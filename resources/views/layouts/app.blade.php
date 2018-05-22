@@ -8,15 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{!! trans('index.ad') !!}</title>
+
     <!-- Styles -->
-    {{-- {!! Html::style('css/app.css') !!} --}}
-    <!-- Bootstrap 3.3.4 -->
-    {!! Html::style('/bower/boostrap/dist/css/bootstrap.min.css') !!}
-    <!-- FontAwesome 4.7.0 -->
-    {!! Html::style('/bower/font-awesome/css/font-awesome.min.css') !!}
-    <!-- Theme style -->
-    {!! Html::style('/bower/boostrap/dist/css/AdminLTE.min.css') !!}
-    {!! Html::style('/bower/boostrap/dist/css/skins/_all-skins.min.css') !!}
+    @include('user.admin.sub.css')
+
 </head>
 <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -39,7 +34,7 @@
                      <!-- Authentication Links -->
                     @guest
                         <li><a href="{{ route('login') }}">{!! trans('auth.login') !!}</a></li>
-                        <li><a href="{{ route('register') }}">{!! trans('auth.register') !!}</a></li>
+                        <li><a href="{{-- {{ route('register') }} --}}">{!! trans('auth.register') !!}</a></li>
                     @else
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
@@ -83,11 +78,8 @@
     <strong>Copyright &copy; 2015 - 2015.</strong>
     </div><!-- ./wrapper -->
 
-    <!-- jQuery 2.1.4 -->
-    {!! Html::script('/bower/jquery/dist/jquery.min.js') !!}
-    <!-- Bootstrap 3.3.2 JS -->
-    {!! Html::script('/bower/boostrap/dist/js/bootstrap.min.js') !!}
-    <!-- AdminLTE App -->
-    {!! Html::script('/bower/boostrap/dist/js/app.min.js') !!}
+    {{-- JS --}}
+    @include('user.admin.sub.js')
+    @yield('js')
 </body>
 </html>

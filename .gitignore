@@ -4,6 +4,7 @@
 /public/js
 /public/images
 /public/dist
+/public/storage
 /storage/*.key
 /storage/debugbar/
 /vendor

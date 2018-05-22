@@ -6,6 +6,7 @@ return [
     'news' => 'Tin Tức',
     'shop_new' => 'Xe Mới',
     'shop_used' => 'Xe Cũ',
+    'compare' => 'So sánh Xe',
     'products' => 'Các sản phẩm',
     'used_cars_for_sale' => 'Ôtô đã qua sử dụng',
     'leaser_a_car' => 'Thuê xe',

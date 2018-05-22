@@ -16,7 +16,7 @@ class SearchingRepository
             return redirect(route('homepage'));
         }
         $keyword = $attributes['keyword'];
-        $posts = Post::where('title', 'like', "%$keyword%")->paginate();
+        $posts = Post::where('title', 'like', "%$keyword%")->paginate(config('app.paginate'));
         $posts->withPath("?keyword=$keyword");
         foreach ($posts as $p) {
             $p['category_id'] = $p->getCate();

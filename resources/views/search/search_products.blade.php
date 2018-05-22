@@ -38,7 +38,7 @@
                     <p><b>{{ trans('index.car_year') }}</b>{{ $car->car_years }}</p>
                     <p><b>{{ trans('index.car_summary') }}</b>{{ $car->summary }}</p>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-3 view-details">
                     <p><b>${{ $car->car_cost }}</b></p>
                     <b><a href="/details-car/{{ $car->id }}">{{ trans('index.views_details') }}</a></b>
                 </div>

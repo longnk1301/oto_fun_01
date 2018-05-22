@@ -43,6 +43,14 @@ a {
     border-color: #b4eeb4;
     background-color: #b4eeb4;
 }
+.bg-slate {
+    border: 1px solid #CDB38B;
+    background-color: #CDB38B;
+}
+.bg-slate:hover {
+    border-color: #EECFA1;
+    background-color: #EECFA1;
+}
 .home {
     padding-top: 0;
 }
@@ -85,7 +93,7 @@ a {
             .header-right .menu {
                 display: inline-block;
                 float: right;
-                margin-right: 300px;
+                margin-right: 150px;
             }
             .header-right .menu li {
                 list-style: none;
@@ -499,7 +507,111 @@ a {
 .vehicle-item {
     padding: 30px 10px;
 }
+.view-details p{
+    margin-top: 30px;
+    font-size: 30px;
+    color: orange;
+}
+.view-details .compare {
+    margin-top: 10px;
+}
+.vehicle-compare {
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 2px rgba(102, 102, 102, 0.5);
+    padding: 0 5px;
+    margin: 30px 5px;
+    min-height: 400px;
+    min-width: 350px;
+}
+.vehicle-compare h3 {
+    text-align: center;
+    color: #00B2BF;
+    background: #ccc;
+    padding: 7px 0;
+    font-weight: bold;  
+}
+.scroll {
+    overflow: scroll;
+    width: 200px;
+    height: 250px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    padding: 5px 5px;
+}
+.scroll li {
+    padding: 3px 0;
+}
+.compare-result {
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 2px rgba(102, 102, 102, 0.5);
+    padding: 0 5px;
+    margin: 20px 5px;
+    min-width: 350px;
+    min-height: 120px;
+    height: auto;
+}
+.compare-result h4 {
+    text-align: center;
+    color: #999966;
+    padding: 1px 0;
+    font-weight: bold;
+}
+.compare-result p {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+}
+.compare-result i {
+    margin-left: 10px;
+}
+.compare-result button {
+    margin-left: 10px;
+}
+.compare-result .itemselect {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 18px;
+}
+.compare-result .itemselect .item {
+    width: 98%;
+    height: auto;
+    float: left;
+    display: inline-block;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px dotted #ccc;
+}
+.compare-result .itemselect .item .delete-car {
+    width: 25px;
+    float: left;
+    min-height: 60px;
+    display: inline-block;
+}
+.compare-result .itemselect .item .avatar-car {
+    width: 80px;
+    height: 60px;
+    float: left;
+}
+.compare-result .itemselect .item .avatar-car img {
+    width: 150px;
+}
+.compare-result .itemselect .item .info-car {
+    width: 130px;
+    margin-left: 80px;
+    height: auto;
+    float: left;
+    display: inline: block;
+}
+.compare-result .itemselect .item .info-car .name {
+    font-size: 14px;
+    color: #1260ab;
+    float: left;
+    width: 130px;
+}
+
 /* --------------------------used car for sale------------------------ */
+
 .menu-item {
     margin: 5px 0px;
 }

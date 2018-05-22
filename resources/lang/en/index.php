@@ -6,6 +6,7 @@ return [
     'news' => 'News',
     'shop_new' => 'Shop New',
     'shop_used' => 'Shop Used',
+    'compare' => 'Compare',
     'products' => 'Products',
     'used_cars_for_sale' => 'Used cars for Sale',
     'leaser_a_car' => 'Leaser a Car',
