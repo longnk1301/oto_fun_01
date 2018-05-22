@@ -42,7 +42,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
-                                    {!! Form::checkbox('remember', '1', true) !!}
+                                    {!! Form::checkbox('remember', '1', false) !!}
                                     {!! Form::label('', trans('auth.remember')) !!}
                                 </div>
                             </div>

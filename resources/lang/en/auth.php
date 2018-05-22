@@ -58,8 +58,8 @@ return [
     'category_name' => 'Category Name',
     'parent_name' => 'Parent Name',
     'image' => 'Image',
-    'update_by' => 'Update At',
-    'created_at' => 'Created_At',
+    'update_at' => 'Update At',
+    'created_at' => 'CreatedAt',
     'add' => 'Add',
     'editor' => 'Editor',
     'cancel' => 'Cancel',
@@ -78,4 +78,17 @@ return [
     /*--------------------------------------404 ---------------------*/
     'return_home' => 'Return home!',
     '404' => '404 - Not found!!!',
+
+    /*-------------------------------------post---------------------------*/
+    'posts' => 'Posts',
+    'add_post' => 'Add Post',
+    'list_posts' => 'List Posts',
+    'data_posts' => 'Data Posts',
+    'content' => 'Content',
+    'pl_enter_name_post' => 'Please enter a name by post!',
+
+    /*---------------------------------------products----------------------*/
+    'products' => 'Products',
+    'add_product' => 'Add Product',
+    'list_products' => 'List Products',
 ];
