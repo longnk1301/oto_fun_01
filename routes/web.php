@@ -7,35 +7,23 @@ Route::group(['middleware' => 'locale'], function()
     //trang chủ
     Route::get('/', 'HomeController@homepage')->name('homepage');
 
-    //check du lieu nhap vao
-    Route::post('/logincheck','TestController@check');
+    Route::get('login', 'Auth\LoginController@login')->name('login');
 
-    //dang nhap thanh cong
-    Auth::routes();
+    Route::post('login', 'Auth\LoginController@postlogin');
 
-    //data post admin
-    Route::get('/home/forms/post', 'HomeController@getPostData')->name('post.data');
-
-    //data car admin
-    Route::get('/home/forms/car', 'HomeController@getCarData')->name('car.data');
-
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::any('logout', 'Auth\LoginController@logout')->name('logout');
 
     //sản phẩm mới
     Route::get('/newcar', 'HomeController@newcar')->name('newcar');
 
     //route lấy chứa dữ liệu new car
-    Route::get('/getcar', 'HomeController@getCar')->name('getcar');
+    Route::get('/getnewcar', 'HomeController@getNewCar')->name('getnewcar');
 
     //route chứa dữ liệu used car
     Route::get('/getusedcar', 'HomeController@getUsedCar')->name('getusedcar');
 
     //route sản phẩm cũ
     Route::get('/usedcar', 'HomeController@usedcar')->name('usedcar');
-
-    //route chi tiết sản phẩm
-
-    Route::get('/details-car/{id}', 'HomeController@detail_car')->name('detail.car');
 
     //route tin tức
     Route::get('/news', 'HomeController@news')->name('news');
@@ -49,10 +37,27 @@ Route::group(['middleware' => 'locale'], function()
     //tim kiem san pham
     Route::get('/search-products', 'ProductsController@searchProduct')->name('client.search.product');
 
+    //
+    Route::post('/find-car', 'HomeController@findCar');
+
+    //so sanh
+    Route::get('/compare', 'HomeController@compare')->name('compare');
+
+    //Route::get('/compare-add/{id}', 'HomeController@compareAdd')->name('compare.add');
+    Route::post('/compare-add', 'HomeController@compareAdd')->name('compare.add');
+
+    Route::get('/compare-del', 'HomeController@compareDeleteAll')->name('compare.del');
+
+    Route::get('/compare-del-item', 'HomeController@compareDeleteItem')->name('compare.del.item');
+    //
+    Route::get('/compare-list', 'HomeController@getListCompare')->name('compare.list');
+
+    //route chi tiết sản phẩm
+    Route::get('/details-car/{id}', 'HomeController@detail_car')->name('detail.car');
+
     //Chi tiet danh muc
     Route::get('/categories/{cateSlug}', 'HomeController@categories')->name('cate.detail');
 
     //chi tiết bài  viết
     Route::get('/{slug}', 'HomeController@detail')->name('detail');
-
 });

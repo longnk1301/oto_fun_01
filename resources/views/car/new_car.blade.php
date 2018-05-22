@@ -55,7 +55,7 @@ $(document).ready(function()
         var car_type = $(this).attr('data-id');
         $.ajax({
             type: 'GET',
-            url: '/getcar',
+            url: '/getnewcar',
             dataType: 'JSON',
             data: { car_type: car_type },
             success: function(data) {

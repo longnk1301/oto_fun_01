@@ -1,0 +1,14 @@
+.div-cate-relative {
+    position: relative;
+}
+.btn-asl-form {
+    position: absolute;
+    top: 2px;
+    right: 16px;
+}
+.images-cate-admin {
+	width: 70px;
+}
+.images-show-admin {
+	width: 200px;
+}

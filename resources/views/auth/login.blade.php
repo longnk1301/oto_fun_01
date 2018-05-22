@@ -8,12 +8,17 @@
                 <div class="panel-heading">{!! trans('auth.login') !!}</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'POST', 'url' => 'logincheck', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'url' => 'login', 'class' => 'form-horizontal']) !!}
                         {{-- UserName --}}
+                        @if (session('msg'))
+                            <div class="alert alert-danger">
+                                <span>{{ session('msg') }}</span>
+                            </div>
+                        @endif
                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                           {!! Form::label('email', trans('auth.name'), ['class' => 'col-md-4 control-label']) !!}
+                           {!! Form::label('name', trans('auth.name'), ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">
-                                {!! Form::text('name', '' , ['class' => 'form-control', 'id' => 'email']) !!}
+                                {!! Form::text('name', '' , ['class' => 'form-control', 'id' => 'name']) !!}
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -37,7 +42,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
-                                    {!! Form::checkbox('remember', '' , false) !!}
+                                    {!! Form::checkbox('remember', '1', true) !!}
                                     {!! Form::label('', trans('auth.remember')) !!}
                                 </div>
                             </div>
@@ -45,8 +50,8 @@
                         {{-- Forgot --}}
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                 {!! Form::submit( trans('auth.login'), ['class' => 'btn btn-primary']) !!}
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                {!! Form::submit( trans('auth.login'), ['class' => 'btn btn-primary']) !!}
+                                <a class="btn btn-link" href="{{-- {{ route('password.request') }} --}}">
                                     {!! trans('auth.forgot') !!}
                                 </a>
                             </div>
