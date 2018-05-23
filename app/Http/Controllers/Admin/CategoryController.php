@@ -57,7 +57,8 @@ class CategoryController extends Controller
         return response()->json($result);
     }
 
-    public function checkSlug(Request $request){
+    public function checkSlug(Request $request)
+    {
         $cate = Category::where('slug', $request->name)->first();
         if($cate && $cate->id == $request->id){
             return response()->json(true);

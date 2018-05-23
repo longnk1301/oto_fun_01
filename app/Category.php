@@ -8,7 +8,7 @@ class Category extends Model
 {
 	protected $table = 'categories';
 	
-    public $fillable = ['cate_name', 'summary', 'tags', 'slug', 'parent_id'];
+    public $fillable = ['cate_name', 'summary', 'tags', 'slug', 'parent_id', 'id'];
 
     public function getParentName()
     {
@@ -17,5 +17,10 @@ class Category extends Model
     		return null;
     	}
     	return $parent->cate_name;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
     }
 }

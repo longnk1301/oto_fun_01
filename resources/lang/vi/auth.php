@@ -78,4 +78,17 @@ return [
     /*--------------------------------------404 ---------------------*/
     'return_home' => 'Trở về trang trước!',
     '404' => '404 - Không tìm thấy!!!',
+
+    /*-------------------------------------post---------------------------*/
+    'posts' => 'Bài viết',
+    'add_post' => 'Thêm bài viết',
+    'list_posts' => 'Danh sách bài viết',
+    'data_posts' => 'Dữ liệu bài viết',
+    'content' => 'Nội dung',
+    'pl_enter_name_post' => 'Nhập tên bài viết!',
+
+    /*---------------------------------------products----------------------*/
+    'products' => 'Sản phẩm',
+    'add_product' => 'Thêm sản phẩm',
+    'list_products' => 'Danh sách sản phẩm',
 ];

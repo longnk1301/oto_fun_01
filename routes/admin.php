@@ -3,6 +3,7 @@ Route::group(['middleware' => 'locale'], function()
 {
     Route::get('/', 'Admin\DashboardController@index')->name('home');
 
+    /*-----------------------------------CATEGORY--------------------------------------------------------*/
     Route::prefix('category')->group(function () {
         Route::get('/', 'Admin\CategoryController@getCate')->name('cate.index');
 
@@ -20,6 +21,23 @@ Route::group(['middleware' => 'locale'], function()
     });
     Route::post('getSlug', 'Admin\CategoryController@getSlug')->name('getSlug');
 
-    //data car admin
+    /*-----------------------------------POST--------------------------------------------------------------*/
+    Route::prefix('posts')->group(function () {
+        Route::get('/', 'Admin\PostController@getPost')->name('post.index');
+
+        Route::post('/check-name', 'Admin\PostController@checkName')->name('post.checkName');
+
+        Route::post('/check-slug', 'Admin\PostController@checkSlug')->name('post.checkSlug');
+
+        Route::get('/add', 'Admin\PostController@add')->name('post.add');
+
+        Route::get('/update/{id}', 'Admin\PostController@edit')->name('post.edit');
+
+        Route::get('/remove/{id}', 'Admin\PostController@remove')->name('post.remove');
+
+        Route::post('/save', 'Admin\PostController@save')->name('post.save');
+    });
+
+    /*------------------------------------PRODUCT--------------------------------------------------------------*/
     Route::get('cars', 'Admin\CarsController@getCarData')->name('car.data');
 });

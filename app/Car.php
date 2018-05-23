@@ -12,7 +12,7 @@ class Car extends Model
         return $car;
     }
 
-     public function getVehicle()
+    public function getVehicle()
     {
         return $this->hasMany('App\Models\Vehicle', 'id', 'vehicle');
     }
