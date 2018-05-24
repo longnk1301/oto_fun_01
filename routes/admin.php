@@ -39,5 +39,19 @@ Route::group(['middleware' => 'locale'], function()
     });
 
     /*------------------------------------PRODUCT--------------------------------------------------------------*/
-    Route::get('cars', 'Admin\CarsController@getCarData')->name('car.data');
+    Route::prefix('products')->group(function () {
+        Route::get('/', 'Admin\ProductController@getProduct')->name('product.index');
+
+        Route::post('/check-name', 'Admin\ProductController@checkName')->name('product.checkName');
+
+        Route::post('/check-slug', 'Admin\ProductController@checkSlug')->name('product.checkSlug');
+
+        Route::get('/add', 'Admin\ProductController@add')->name('product.add');
+
+        Route::get('/update/{id}', 'Admin\ProductController@edit')->name('product.edit');
+
+        Route::get('/remove/{id}', 'Admin\ProductController@remove')->name('product.remove');
+
+        Route::post('/save', 'Admin\ProductController@save')->name('product.save');
+    });
 });

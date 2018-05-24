@@ -8,7 +8,13 @@ class Post extends Model
 {
     protected $table = 'posts';
 
-    public $fillable = ['title', 'cate_id', 'content', 'slug', 'summary'];
+    public $fillable = [
+        'title',
+        'cate_id',
+        'content',
+        'slug',
+        'summary',
+    ];
 
     public function getCate()
     {
@@ -16,6 +22,7 @@ class Post extends Model
 
         return $cate;
     }
+    
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'cate_id', 'id');

@@ -23,7 +23,7 @@
             @foreach ($compare as $comp)
             <div class="row products">
                 <div class="col-xs-4">
-                        <img src="{{ asset('images/products/index.jpeg') }}" alt="">
+                        <img src="{{ asset($comp->car_image) }}" alt="">
                     </div>
                 <div class="col-xs-5">
                     <p><b>{{ trans('index.car_name') }}</b>{{ $comp->car_name }}</p>
@@ -87,6 +87,7 @@ $(document).ready(function()
     $('body').on('click', '.check', function(event) {
         event.preventDefault();
         var carId = $(this).attr('data-id');
+        console.log(carId);
         var url = "/compare-add/";
             $.ajax({
                 type: "POST",
@@ -95,40 +96,26 @@ $(document).ready(function()
                     compare_id: carId
                 },
                 success: function(data) {
-                    // alert(data.message);
-                    $.ajax({
-                        url: '/find-car',
-                        type: 'POST',
-                        dataType: 'JSON',
-                        data: {carId: carId},
-                        success: function(result) {
-                            var html = '';
-                                html += '<div class="item" id="parent' + result['id'] + '" data-id="' + result['id'] + '">';
-                                    html += '<div class="delete-car">';
-                                        html += '<a href="#" class="DeleteItem" data-id="' + result['id'] + '">';
-                                            html += '<i class="fa fa-recycle" aria-hidden="true"></i>';
-                                        html += '</a>';
-                                    html += '</div>';
-                                    html += '<div class="avatar-car">';
-                                        html += '<img src="{{ asset('images/products/index.jpeg') }}" alt="">';
-                                    html += '</div>';
-                                    html += '<div class="info-car">';
-                                        html += '<h2 class="name"><a href="#">' + result['car_name'] + '</a></h2>';
-                                    html += '</div>';
-                                html += '</div>';
-                                    var numsItem = 1;
-                                    var  num = $('.item').length;
-                                        numsItem += num;
-                                    $('.numItems').html(numsItem);
-                            $('.itemselect').append(html);
-                        }
-                    });
-                    return false;
+                    // $.ajax({
+                    //     url: '/find-car',
+                    //     type: 'POST',
+                    //     dataType: 'JSON',
+                    //     data: {carId: carId},
+                    //     success: function(result) {
+                    //         var numsItem = 1;
+                    //         var  num = $('.item').length;
+                    //         numsItem += num;
+                    //         $('.numItems').html(numsItem);
+
+                    //         $('.itemselect').html(html);
+                    //     }
+                    // });
+                    // return false;
                 }
             });
     });
 
-    $(".btncompare").click(function (event) {
+    $(".btncompare").on('click', function (event) {
         event.preventDefault();
         //alert('note');
         var item = $(".compare-result .itemselect").find(".item").length;

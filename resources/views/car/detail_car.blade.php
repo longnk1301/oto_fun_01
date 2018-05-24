@@ -7,7 +7,7 @@
         <div class="col-md-7 details_product clearfix">
             <p><b>{{ $detail_car->car_name }}</b></p>
             <p><b>{{ trans('index.engine') }}: </b>{{ $vehicle[0]->engine }} | <b>{{ trans('index.mileage') }}: </b>{{ $vehicle[0]->mileage }}</p>
-            <img src="{{ asset('images/products/toyota.jpeg') }}" alt="...">
+            <img src="{{ asset($detail_car->car_image) }}" alt="...">
         </div>
         <div class="col-md-5 search clearfix">
             <div class="image-product">

@@ -8,7 +8,14 @@ class Category extends Model
 {
 	protected $table = 'categories';
 	
-    public $fillable = ['cate_name', 'summary', 'tags', 'slug', 'parent_id', 'id'];
+    public $fillable = [
+        'cate_name',
+        'summary',
+        'tags',
+        'slug',
+        'parent_id',
+        'id',
+    ];
 
     public function getParentName()
     {

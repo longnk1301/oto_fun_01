@@ -53,8 +53,8 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
+                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
+                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
                 </ul>
             </li>
         </ul>
@@ -62,10 +62,10 @@
 <!-- /.sidebar -->
 </aside>
 
-<div class="content-wrapper">
+<div class="content-wrapper bg-color">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
+        <h1 class="color-text">
             {{ trans('auth.add_post') }}
         </h1>
         <ol class="breadcrumb">
@@ -80,7 +80,7 @@
         <div class="row">
             {!! Form::open(['method' => 'POST', 'route' => 'post.save', 'class' => 'form-horizontal', 'id' => 'post-form', 'enctype' => 'multipart/form-data']) !!}
                 {!! Form::hidden('id', $model->id) !!}
-                <div class="col-md-6">
+                <div class="col-md-5 mg-top">
                     <div class="form-group row">
                         {!! Html::decode(Form::label('title', trans('auth.title') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                         <div class="col-md-8">
@@ -104,7 +104,7 @@
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('', trans('auth.category_name'), ['class' => 'col-md-4 control-label'])) !!}
+                        {!! Html::decode(Form::label('', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                    <div class="col-md-8">
                             {!! Form::select(
                                         'cate_id',
@@ -115,7 +115,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-offset-6">
+                        <div class="col-md-offset-5">
                             <img src="
                                     @if($model->image == "")
                                         {{ asset('images/products/product-1.webp') }}
@@ -134,18 +134,22 @@
                             @endif
                         </div>
                     </div>
+
+                    <div class="text-center">
+                        <a href="{{ route('post.index') }}" class="btn btn-danger">{{ trans('auth.cancel') }}</a>
+                        {!! Form::submit(trans('auth.save'), ['class' => 'btn btn-success']) !!}
+                    </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-7">
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('', trans('auth.summary'), ['class' => 'col-md-3 control-label'])) !!}
-                        <div class="col-md-9">
+                        <div class="col-md-11 col-md-offset-1">
                             <div class="box box-info">
                                 <div class="box-header">
-                                    <h3 class="box-title">{{ trans('auth.editor') }}
+                                    <h3 class="box-title">{{ trans('auth.summary') }}
                                     </h3>
                                     <!-- tools box -->
-                                    <div class="pull-right box-tools">  
+                                    <div class="pull-right box-tools">
                                         {!! Html::decode(Form::button('<i class="fa fa-minus"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Collapse'])) !!}
                                         {!! Html::decode(Form::button('<i class="fa fa-times"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Remove'])) !!}
                                     </div>
@@ -163,11 +167,10 @@
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('', trans('auth.content'), ['class' => 'col-md-3 control-label'])) !!}
-                        <div class="col-md-9">
+                        <div class="col-md-11 col-md-offset-1">
                             <div class="box box-info">
                                 <div class="box-header">
-                                    <h3 class="box-title">{{ trans('auth.editor') }}
+                                    <h3 class="box-title">{{ trans('auth.content') }}
                                     </h3>
                                     <!-- tools box -->
                                     <div class="pull-right box-tools">
@@ -186,11 +189,6 @@
                             <!-- /.box -->
                         </div>
                     </div>
-
-                    <div class="text-center">
-                        <a href="{{ route('post.index') }}" class="btn btn-danger">{{ trans('auth.cancel') }}</a>
-                        {!! Form::submit(trans('auth.save'), ['class' => 'btn btn-success']) !!}
-                    </div>
                 </div>
                 <!-- /.col -->
                 {!! Form::hidden('', csrf_token(), ['id' => 'ajaxToken']) !!}
@@ -204,73 +202,6 @@
 
 @section('js')
 
-<script>
-    CKEDITOR.replace('editor1');
-</script>
+@include('user.admin.post.js')
 
-<script>
-    $(document).ready(function () {
-        // show image
-        $('#image').change(function(event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
-            $('#Image').attr('src',tmppath);
-        });
-
-        //tao slug
-        $('.btn-asl-form').on('click', function() {
-            var title = $('#title').val();
-            title = title.trim();
-            if(title == "" || title == null) {
-                return false;
-            }
-            //gui request lay ra url moi
-            $.ajax({
-                url: "{{ route('getSlug') }}",
-                method: 'post',
-                data: {
-                    value : title,
-                    _token: $('#ajaxToken').val()
-                },
-                dataType: "JSON",
-                success: function (rs) {
-                    $('#slug').val(rs.data);
-                }
-            });
-        });
-
-
-        $('#post-form').validate({
-            rules: {
-                title: {
-                    required: true,
-                    checkExitsted: {
-                        requestUrl : "{{route('post.checkName')}}",
-                        modelId: '{{$model->id}}'
-                     }
-                },
-                slug: {
-                    required: true,
-                    checkExitsted: {
-                        requestUrl: "{{route('post.checkSlug')}}",
-                        modelId: '{{$model->id}}'
-                     }
-                }
-            },
-            messages: {
-                title: {
-                    required: '{{ trans('auth.pl_enter_name_post') }}',
-                },
-                slug: {
-                    required: '{{ trans('auth.pl_enter_the_path') }}',
-                    checkExitsted: '{{ trans('auth.the_path_already_exixts') }}'
-                }
-            },
-            errorPlacement: function(error, element)
-            {
-                $(error).addClass('text-danger');
-                error.insertAfter(element);
-            }
-        });
-    });
-</script>
 @endsection

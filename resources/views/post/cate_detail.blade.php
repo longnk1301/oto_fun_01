@@ -36,7 +36,7 @@
                     </ul>
                     <div class="post-img">
                         <a href="{{ url($p->slug)}}">
-                            <img src="{{ asset('images/products/side.jpeg') }}" alt="">
+                            <img src="{{ asset($p->image) }}" alt="">
                         </a>
                     </div>
                     <div class="post-desk">

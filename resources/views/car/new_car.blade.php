@@ -68,7 +68,7 @@ $(document).ready(function()
                                     html +=  '<li class="col-md-4">';
                                         html +=  '<a href="/details-car/' + value.id + '">';
                                             html += '<figure>';
-                                                html += '<img src="{{ asset('images/products/side.jpeg') }}">';
+                                                html += '<img src="'+ value.car_image +'">';
                                                 html += '<figcaption>' + value.car_name + '</figcaption>';
                                             html += '</figure>';
                                         html +=  '</a>';
