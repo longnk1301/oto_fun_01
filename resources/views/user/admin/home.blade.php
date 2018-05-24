@@ -53,8 +53,8 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
+                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
+                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
                 </ul>
             </li>
         </ul>
@@ -63,7 +63,7 @@
 </aside>
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper bg-color">
 <!-- Content Header (Page header) -->
 <!-- Main content -->
     <section class="content">

@@ -42,7 +42,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('post.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_posts') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_post') }}</a></li>
+                    <li><a href="{{ route('post.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_post') }}</a></li>
                 </ul>
             </li>
 
@@ -52,8 +52,8 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
+                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
+                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
                 </ul>
             </li>
         </ul>
@@ -61,10 +61,10 @@
 <!-- /.sidebar -->
 </aside>
 
-<div class="content-wrapper">
+<div class="content-wrapper bg-color">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
+        <h1 class="color-text">
             {{ trans('auth.data_categories') }}
         </h1>
         <ol class="breadcrumb">

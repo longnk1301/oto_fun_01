@@ -13,7 +13,7 @@
     @include('user.admin.sub.css')
 
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="skin-green sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
         <!-- Logo -->

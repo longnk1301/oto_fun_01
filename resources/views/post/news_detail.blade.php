@@ -11,7 +11,7 @@
         </p>
         
         <div class="img-details-post">
-            <img src="{{ asset('images/products/index.jpeg') }}" alt="">
+            <img src="{{ asset($post->image) }}" alt="">
         </div>
         
         <div class="summary">

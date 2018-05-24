@@ -58,6 +58,8 @@ Route::group(['middleware' => 'locale'], function()
     //Chi tiet danh muc
     Route::get('/categories/{cateSlug}', 'HomeController@categories')->name('cate.detail');
 
+
+    Route::get('/getSession', 'HomeController@getSession');
     //chi tiết bài  viết
     Route::get('/{slug}', 'HomeController@detail')->name('detail');
 });

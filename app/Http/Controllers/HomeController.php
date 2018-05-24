@@ -53,7 +53,7 @@ class HomeController extends Controller
     public function detail_car(Request $request, $id)
     {
         $detail_car = Car::where('id', $id)->first();
-        $vehicle = Car::find($id)->getVehicle()->get();
+        $vehicle = Car::find($id)->vehicle()->get();
 
         return view('car.detail_car', compact('detail_car', 'vehicle'));
     }
@@ -101,23 +101,11 @@ class HomeController extends Controller
                     echo $value . "</br>";
                 }
         }
-
-        // return view('compare.compare_list', compact('compare'));
     }
 
     public function compareAdd(Request $request)
     {
-        if ($request->session()->has('compare_name') == false) {
-            $request->session()->put('compare_name', array());
-        }
-        $request->session()->push('compare_name', $request->compare_id);
-        if ($request->ajax()) {
-
-            return response()->json([
-                // 'message'    =>    'Chọn thành công',
-                'redirect'    =>    '/compare-list',
-            ]);
-        }
+        
     }
 
     public function compareDeleteAll(Request $request)
@@ -130,47 +118,7 @@ class HomeController extends Controller
 
     public function compareDeleteItem(Request $request)
     {
-        // dd($request->all());
-        // return response()->json($request->all());
-        // $remove = $request->id;
-            if ($request->session()->has('compare_name')) {
-                $del_item = $request->session()->get('compare_name');
-                if (in_array($request->id, $del_item)) {
-                    foreach($del_item as $key => $value) {
-                        if ($value == $request->id) {
-                            $request->session()->forget($del_item[$key]);
-                        }
-                    }
-                    $request->session()->put('compare_name', $del_item);
-                }
-                dd($del_item);
-            }
-        // if ($request->session()->has('compare_name')) {
-        //     $del_item = $request->session()->get('compare_name');
-        //     foreach ($del_item as $key => $value) {
-        //         if($value = $remove) {
-        //             $request->session()->pull('compare_name.'.$key);
-        //         }
-        //         break;
-        //     }
-        // }
-        // if($request->session()->has('compare_name')){
-        // $i=0;
-        // $remove = $request->id;
-        // $compare = $request->session()->get('compare_name');
-        //     foreach ($request->session()->get('compare_name') as $index=> $compare) {
-        //         if($compare == $remove){
-        //          unset($compare[$index]);
-        //            $i=1;
-        //             break;
-        //               }
-        //              }
-        // if($r==1){
-        //     $request->session()->set('compare_name', $compare);
-        //     echo 'Removed !!';
-        //     }
-        // }
-        // dd($del_item);
+        
     }
 
     //lấy slug chuyên mục
@@ -196,5 +144,10 @@ class HomeController extends Controller
         \Session::put('website_language', $language);
 
         return redirect()->back();
+    }
+
+    public function getSession(Request $request)
+    {
+        return $request->session()->all();
     }
 }

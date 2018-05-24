@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -70,7 +69,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i>{{ trans('auth.dashboard') }}</a></li>
-            <li><a href="{{ route('cate.index') }}">{{ trans('auth.categories') }}</a></li>
+            <li><a href="{{ route('product.index') }}">{{ trans('auth.products') }}</a></li>
             <li class="active">{{ trans('auth.add') }}</li>
         </ol>
     </section>
@@ -78,49 +77,65 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            {!! Form::open(['method' => 'POST', 'route' => 'cate.save', 'class' => 'form-horizontal', 'id' => 'cate-form', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['method' => 'POST', 'route' => 'product.save', 'class' => 'form-horizontal', 'id' => 'product-form', 'enctype' => 'multipart/form-data']) !!}
                 {!! Form::hidden('id', $model->id) !!}
                 <div class="col-md-6">
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('cate_name', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                        {!! Html::decode(Form::label('car_name', trans('index.car_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                         <div class="col-md-8">
-                            {!! Form::text('cate_name', $model->cate_name , ['class' => 'form-control', 'id' => 'cateName', 'placeholder' => trans('auth.category_name')]) !!}
+                            {!! Form::text('car_name', $model->car_name , ['class' => 'form-control', 'id' => 'carName', 'placeholder' => trans('auth.ex_name')]) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('slug', trans('auth.slug') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                        <div class="col-md-8 div-cate-relative">
-                            {!! Form::text('slug', $model->slug, ['class' => 'form-control', 'id' => 'slug', 'placeholder' => trans('auth.ex_slug')]) !!}
-                            {!! Html::decode(Form::button('<i class="fa fa-bolt"></i>', ['class' => 'btn btn-success btn-sm btn-asl-form'])) !!}
+                        {!! Html::decode(Form::label('car_type', trans('index.car_type'), ['class' => 'col-md-4 control-label'])) !!}
+                        <div class="col-md-8">
+                            {!! Form::text('car_type', $model->car_type, ['class' => 'form-control', 'placeholder' => trans('auth.ex_type')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('car_company', trans('auth.company')   , ['class' => 'col-md-4 control-label'])) !!}
+                        <div class="col-md-8">
+                            {!! Form::text('car_company', $model->car_company, ['class' => 'form-control', 'placeholder' => trans('auth.ex_type')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('car_number', trans('auth.car_number') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                        <div class="col-md-8">
+                            {!! Form::text('car_number', $model->car_number, ['class' => 'form-control', 'placeholder' => trans('auth.ex_mileage')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('car_cost', trans('auth.cost') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                        <div class="col-md-8">
+                            {!! Form::text('car_cost', $model->car_cost, ['class' => 'form-control', 'placeholder' => trans('auth.ex_mileage')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('car_years', trans('index.year') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                        <div class="col-md-8">
+                            {!! Form::text('car_years', $model->car_years, ['class' => 'form-control', 'placeholder' => trans('auth.ex_year')]) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         {!! Html::decode(Form::label('tags', trans('auth.tags') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                         <div class="col-md-8">
-                            {!! Form::text('tags', $model->tags , ['class' => 'form-control', 'placeholder' => trans('auth.ex_tags')]) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('', trans('auth.parent_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                       <div class="col-md-8">
-                                {!! Form::select(
-                                            'parent_id',
-                                            $select,
-                                            null,
-                                            ['class' => 'form-control']) !!}
+                            {!! Form::text('tags', $model->tags, ['class' => 'form-control', 'placeholder' => trans('auth.ex_tags')]) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-md-offset-6">
                             <img src="
-                                    @if($model->image == "")
+                                    @if($model->car_image == "")
                                         {{ asset('images/products/product-1.webp') }}
                                     @else
-                                        {{ asset($model->image) }}
+                                        {{ asset($model->car_image) }}
                                     @endif" id="Image" class="images-show-admin">
                         </div>
                     </div>
@@ -131,6 +146,60 @@
                             @if(count($errors) > 0)
                                 <span class="text-danger">{{$errors->first('image')}}</span>
                             @endif
+                        </div>
+                    </div>
+
+                    <section class="content-header">
+                        <h1 class="color-text">
+                            {{ trans('index.vo') }}
+                        </h1>
+                    </section>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('interior_color', trans('index.in_color') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('interior_color', $vehicle->interior_color, ['class' => 'form-control ', 'placeholder' => trans('auth.ex_interior')]) !!}
+                        </div>
+
+                        {!! Html::decode(Form::label('exterior_color', trans('index.ex_color') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('exterior_color', $vehicle->exterior_color, ['class' => 'form-control', 'placeholder' => trans('auth.ex_exterior')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('transmission', trans('index.trans') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('transmission', $vehicle->transmission, ['class' => 'form-control', 'placeholder' => trans('auth.ex_trans')]) !!}
+                        </div>
+
+                        {!! Html::decode(Form::label('engine', trans('index.engine') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('engine', $vehicle->engine, ['class' => 'form-control', 'placeholder' => trans('auth.ex_engine')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('mileage', trans('index.mileage'), ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('mileage', $vehicle->mileage, ['class' => 'form-control', 'placeholder' => trans('auth.ex_mileage')]) !!}
+                        </div>
+
+                        {!! Html::decode(Form::label('fuel_type', trans('index.fuel') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('fuel_type', $vehicle->fuel_type, ['class' => 'form-control', 'placeholder' => trans('auth.ex_fuel')]) !!}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('drive_type', trans('index.drive') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('drive_type', $vehicle->drive_type, ['class' => 'form-control', 'placeholder' => trans('auth.ex_drive')]) !!}
+                        </div>
+
+                        {!! Html::decode(Form::label('mpg', trans('index.mpg') . '<span class="text-danger"> *</span>', ['class' => 'col-md-3 control-label text-right'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('mpg', $vehicle->mpg, ['class' => 'form-control', 'placeholder' => trans('auth.ex_mpg')]) !!}
                         </div>
                     </div>
                 </div>
@@ -152,9 +221,6 @@
                                 <!-- /.box-header -->
                                 <div class="box-body pad">
                                     <form>
-                                        {{-- <textarea id="editor1" name="summary" rows="10" cols="80">
-                                            {{ $model->summary }}
-                                        </textarea> --}}
                                         {{ Form::textarea('summary', $model->summary, ['size' => '80x10', 'id' => 'editor1']) }}
                                     </form>
                                 </div>
@@ -180,6 +246,6 @@
 
 @section('js')
 
-@include('user.admin.category.js')
+@include('user.admin.car.js')
 
 @endsection
