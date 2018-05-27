@@ -32,19 +32,19 @@
                     <p><b>{{ trans('index.car_summary') }}</b>{{ str_limit($comp->summary, 120, '...') }}</p>
                 </div>
                 <div class="col-xs-3 view-details">
-                    <p><b>${{ $comp->car_cost }}</b></p>
+                    <p><b>${{ number_format($comp->car_cost, 0, ", ", ".") }}</b></p>
                     <b><a href="/details-car/{{ $comp->id }}">{{ trans('index.views_details') }}</a></b><br>
                     <div class="compare ">
-                        {!! Form::checkbox('compare', 'on', false, ['data-id' => $comp->id, 'class' => 'check']) !!}
-                        <span class="link">Compare</span>
+                        {!! Form::checkbox('compare', '1', false, ['data-id' => $comp->id, 'class' => 'check']) !!}
+                        <span class="link">{{ trans('index.compare') }}</span>
                     </div>
                 </div>
             </div>
             @endforeach
         </div>
-        <div class="col-md-3 col-md-offset-1 ">
+        <div class="col-md-3 col-md-offset-1">
             <div class="vehicle-compare">
-                <h3>Vehicle Compare</h3>
+                <h3>{{ trans('auth.va') }}</h3>
                 <input type="" name="txtsearch" class="form-control" id="txtsearch" placeholder="Search Car Type" autocomplete="off">
                 <div class="scroll">
                     <ul>
@@ -57,11 +57,12 @@
                 </div>
             </div>
             <div class="compare-result">
-                <h4>Selected Car </h4>
+                <h4>{{ trans('auth.selected_car') }}</h4>
                 <p>
-                    <span>Selected <strong class="numItems"></strong> cars</span>
-                    <i class="fa fa-recycle" aria-hidden="true"></i><a href="javascript:void(0)" class="Delete-all" data-id="{{ $comp->id }}">Delete All</a>
-                    <button type="submit" class="btncompare">Compare</button>
+                    <span>{{ trans('auth.selected') }} <strong class="numItems"></strong> {{ trans('auth.cars') }}</span>
+                    <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                    <a href="javascript:void(0)" class="Delete-all" data-id="{{ $comp->id }}">{{ trans('auth.delete_all') }}</a>
+                    <button type="submit" class="btncompare">{{ trans('index.compare') }}</button>
                 </p>
                 <div class="itemselect">
 
@@ -70,7 +71,6 @@
             {!! Form::close() !!}
         </div>
     </div>
-
 @endsection
 
 @section('script')
@@ -83,11 +83,9 @@
 
 $(document).ready(function()
 {
-
     $('body').on('click', '.check', function(event) {
         event.preventDefault();
         var carId = $(this).attr('data-id');
-        console.log(carId);
         var url = "/compare-add/";
             $.ajax({
                 type: "POST",
@@ -96,31 +94,42 @@ $(document).ready(function()
                     compare_id: carId
                 },
                 success: function(data) {
-                    // $.ajax({
-                    //     url: '/find-car',
-                    //     type: 'POST',
-                    //     dataType: 'JSON',
-                    //     data: {carId: carId},
-                    //     success: function(result) {
-                    //         var numsItem = 1;
-                    //         var  num = $('.item').length;
-                    //         numsItem += num;
-                    //         $('.numItems').html(numsItem);
-
-                    //         $('.itemselect').html(html);
-                    //     }
-                    // });
-                    // return false;
+                    $.ajax({
+                        url: '/find-car',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data: {carId: carId},
+                        success: function(result) {
+                            console.log(result);
+                            var html = '';
+                                html += '<div class="item" id="parent' + result['id'] + '" data-id="' + result['id'] + '">';
+                                    html += '<div class="delete-car">';
+                                        html += '<a href="#" class="DeleteItem" data-id="' + result['id'] + '">';
+                                            html += '<i class="fa fa-trash" aria-hidden="true"></i>';
+                                        html += '</a>';
+                                    html += '</div>';
+                                    html += '<div class="avatar-car">';
+                                        html += '<img src="' + result['car_image'] +'" alt="">';
+                                    html += '</div>';
+                                    html += '<div class="info-car">';
+                                        html += '<h2 class="name"><a href="#">' + result['car_name'] + '</a></h2>';
+                                    html += '</div>';
+                                html += '</div>';
+                                    var  num = $('.item').length+1;
+                                    $('.numItems').html(num);
+                            $('.itemselect').append(html);
+                        }
+                    });
+                    return false;
                 }
             });
     });
 
     $(".btncompare").on('click', function (event) {
         event.preventDefault();
-        //alert('note');
         var item = $(".compare-result .itemselect").find(".item").length;
-        if (eval(item) < 2) {
-            alert("Bạn phải chọn ít nhất 2 xe để so sánh");
+        if (eval(item) > 5 || eval(item) < 2) {
+            alert("Bạn phải chọn ít nhất 2 xe hoặc tối đa 5 xe để so sánh");
         } else {
             location.href = "/compare-list";
         }
@@ -149,11 +158,33 @@ $(document).ready(function()
                 id:id
             },
             success: function(result) {
-                console.log(result);
                 $('#parent'+ result.id).remove();
             }
         });
     });
 });
+</script>
+
+<script>
+    function confirmRemove(url) {
+        bootbox.confirm({
+            message: '{{ trans('auth.are_you_delete?') }}',
+            buttons: {
+                confirm: {
+                    label: '{{ trans('auth.yes') }}',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: '{{ trans('auth.no') }}',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if(result) {
+                    window.location.href = url;
+                }
+            }
+        });
+    }
 </script>
 @endsection

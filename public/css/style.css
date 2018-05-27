@@ -688,3 +688,53 @@ a {
     padding: 20px 20px;
     margin: 20px 0;
 }
+/* -----------------------------------------compare-details-------------------------------- */
+.pro-left {
+    width: 200px;
+    float: left;
+}
+.property-fly {
+    height: auto;
+    float: left;
+    overflow: hidden;
+}
+.property-fly .height-img {
+    height: 109px;
+    text-align: center;
+}
+.property-fly .height-img button {
+    margin-top: 10px;
+}
+.contentscroll {
+    margin-left: 100px;
+}
+.contentscroll .content-header {
+    width: auto;
+    float: left;
+    overflow: hidden;
+}
+.contentscroll .content-item {
+    float: left;
+    width: 200px;
+    height: auto;
+    overflow: auto;
+}
+.autocompare-item {
+    float: left;
+    text-align: center;
+    z-index: 9999
+}
+.autocompare-item img {
+    width: 150px;
+    text-align: center;
+}
+.height-th {
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+.height-th-left {
+    height: 40px;
+    text-align: left;
+    line-height: 40px;
+}

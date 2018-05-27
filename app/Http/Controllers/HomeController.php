@@ -10,6 +10,7 @@ use App\Models\Post;
 use App\Models\Car;
 use App\Models\Category;
 use App\Models\Vehicle;
+use Cart;
 
 class HomeController extends Controller
 {
@@ -93,32 +94,54 @@ class HomeController extends Controller
         return view('compare.compare', compact('compare'));
     }
 
-    public function getListCompare(Request $request)
+    public function getListCompare()
     {
-        if ($request->session()->has('compare_name') == true) {
-            $list_compare = $request->session()->get('compare_name');
-                foreach($list_compare as $key => $value) {
-                    echo $value . "</br>";
-                }
-        }
+        $content = Cart::content();
+            if (!$content) {
+               return view('user.admin.404');
+            } else {
+               return view('compare.compare_list', compact('content'));
+            }
     }
 
     public function compareAdd(Request $request)
     {
-        
+        $cars = Car::where('id', $request->compare_id)->first();
+        $vehicles = Vehicle::where('car_id', $cars->id)->first();
+        Cart::add(array(
+            'id' => $request->compare_id,
+            'name' => $cars->car_name,
+            'qty' => $cars->car_number,
+            'price' => $cars->car_cost,
+            'options' => array(
+                            'img' => $cars->car_image,
+                            'type' => $cars->car_type,
+                            'year' => $cars->car_years,
+                            'inColor' => $vehicles->interior_color,
+                            'exColor' => $vehicles->exterior_color,
+                            'trans' => $vehicles->transmission,
+                            'engine' => $vehicles->engine,
+                            'mileage' => $vehicles->mileage,
+                            'fuel' => $vehicles->fuel_type,
+                            'drive' => $vehicles->drive_type,
+                            'mpg' => $vehicles->mpg
+                          )));
     }
 
     public function compareDeleteAll(Request $request)
     {
-        if ($request->session()->has('compare_name')) {
-            $request->session()->forget('compare_name');
-        }
-        return redirect('/compare-list');
+        Cart::destroy();
+        Cart::count();
     }
 
     public function compareDeleteItem(Request $request)
     {
-        
+        $id = $request->id;
+        $rows = Cart::content();
+        $rowId = $rows->where('id', $id)->first()->rowId;
+        $item = Cart::remove($rowId);
+
+        return response()->json($request->all());
     }
 
     //lấy slug chuyên mục

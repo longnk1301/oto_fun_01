@@ -121,4 +121,9 @@ return [
     'pl_enter_drive' => 'Hãy nhập loại ổ đĩa!',
     'pl_enter_mpg' => 'Hãy nhập MPG!',
     'the_cate_already_exixts' => 'Chuyên mục đã tồn tại!',
+    'va' => 'So sánh xe',
+    'selected_car' => 'Xe đã chọn',
+    'selected' => 'Đã chọn',
+    'cars' => 'xe',
+    'delete_all' => 'Xóa tất cả',
 ];
