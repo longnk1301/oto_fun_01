@@ -46,49 +46,49 @@
 
                                 <ul>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/acura_96x96.png')}}" alt="acura" width="24px" height="24px"/>
                                             Acura
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/alfa-romeo_96x96.png')}}" alt="alfa" width="24px" height="24px"/>
                                             Alfa Romeo
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/audi_96x96.png')}}" alt="audi" width="24px" height="24px"/>
                                             Audi
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/bmw_96x96.png')}}" alt="bmw" width="24px" height="24px"/>
                                             BMW
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/buick_96x96.png')}}" alt="buick" width="24px" height="24px"/>
                                             Buick
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/cadillac_96x96.png')}}" alt="cadillac" width="24px" height="24px"/>
                                             Cadillac
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/chevrolet_96x96.png')}}" alt="chevrolet" width="24px" height="24px"/>
                                             Chevrolet
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/chrysler_96x96.png')}}" alt="chrysler" width="24px" height="24px"/>
                                             Chrysler
                                         </a>
@@ -97,49 +97,49 @@
 
                                 <ul>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/dodge_96x96.png')}}" alt="dodge" width="24px" height="24px"/>
                                             Dodge
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/fiat_96x96.png')}}" alt="fiat" width="24px" height="24px"/>
                                             Fiat
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/ford_96x96.png')}}" alt="ford" width="24px" height="24px"/>
                                             Ford
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/genesis_96x96.png')}}" alt="genesis" width="24px" height="24px"/>
                                             Genesis
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/gmc_96x96.png')}}" alt="gmc" width="24px" height="24px"/>
                                             GMC
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/honda_96x96.png')}}" alt="honda" width="24px" height="24px"/>
                                             Honda
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/hyundai_96x96.png')}}" alt="hyundai" width="24px" height="24px"/>
                                             Hyundai
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/infiniti_96x96.png')}}" alt="infiniti" width="24px" height="24px"/>
                                             Infiniti
                                         </a>
@@ -148,49 +148,49 @@
 
                                 <ul>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/jaguar_96x96.png')}}" alt="jaguar" width="24px" height="24px"/>
                                             Jaguar
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/jeep_96x96.png')}}" alt="jeep" width="24px" height="24px"/>
                                             Jeep
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/kia_96x96.png')}}" alt="kia" width="24px" height="24px"/>
                                             KIA
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/land-rover_96x96.png')}}" alt="lanrover" width="24px" height="24px"/>
                                             Lan Rover
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/lexus_96x96.png')}}" alt="lexus" width="24px" height="24px"/>
                                             Lexus
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/lincoln_96x96.png')}}" alt="lincoln" width="24px" height="24px"/>
                                             Lincoln
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/maserati_96x96.png')}}" alt="maserati" width="24px" height="24px"/>
                                             Maserati
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/mazda_96x96.png')}}" alt="mazda" width="24px" height="24px"/>
                                             Mazda
                                         </a>
@@ -199,49 +199,49 @@
 
                                 <ul>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/mercedes-benz_96x96.png')}}" alt="mercedes" width="24px" height="24px"/>
                                             Mercedes
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/mini_96x96.png')}}" alt="mini" width="24px" height="24px"/>
                                             Mini
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                             <img src="{{ asset('images/mitsubishi_96x96.png')}}" alt="mitsubishi" width="24px" height="24px"/>
                                             Mitsubishi
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/nissan_96x96.png')}}" alt="nissan" width="24px" height="24px"/>
                                             Nissan
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/porsche_96x96.png')}}" alt="porsche" width="24px" height="24px"/>
                                             Porsche
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/ram_96x96.png')}}" alt="ram" width="24px" height="24px"/>
                                             Ram
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/scion_96x96.png')}}" alt="scion" width="24px" height="24px"/>
                                             Scion
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('car') }}">
+                                        <a href="{{ route('newcar') }}">
                                              <img src="{{ asset('images/subaru_96x96.png')}}" alt="subaru" width="24px" height="24px"/>
                                             Subaru
                                         </a>

@@ -121,4 +121,9 @@ return [
     'pl_enter_drive' => 'Please enter the drive type!',
     'pl_enter_mpg' => 'Please enter the mpg',
     'the_cate_already_exixts' => 'The cate already exixts',
+    'va' => 'Vehicle Compare',
+    'selected_car' => 'Selected Car',
+    'selected' => 'Selected',
+    'cars' => 'cars',
+    'delete_all' => 'Delete All',
 ];

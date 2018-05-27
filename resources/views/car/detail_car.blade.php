@@ -12,7 +12,7 @@
         <div class="col-md-5 search clearfix">
             <div class="image-product">
                 <aside>
-                    <h1><i class="fa fa-usd" aria-hidden="true"></i>{{ $detail_car->car_cost }}</h1>
+                    <h1><i class="fa fa-usd" aria-hidden="true"></i>{{ number_format($detail_car->car_cost, 0, ", ", ".") }}</h1>
                     <ul>
                         <li>
                             <p>{{ $detail_car->summary }}</p>

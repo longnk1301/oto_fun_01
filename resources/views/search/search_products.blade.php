@@ -30,16 +30,16 @@
     	<div class="row">
             <div class="col-md-8 products">
                 <div class="col-xs-4">
-                    <img src="{{ asset('images/products/index.jpeg') }}" alt="">
+                    <img src="{{ asset($car->car_image) }}" alt="">
                 </div>
                 <div class="col-xs-5">
                     <p><b>{{ trans('index.car_name') }}</b>{{ $car->car_name }}</p>
                     <p><b>{{ trans('index.car_type') }}</b>{{ $car->car_type }}</p>
                     <p><b>{{ trans('index.car_year') }}</b>{{ $car->car_years }}</p>
-                    <p><b>{{ trans('index.car_summary') }}</b>{{ $car->summary }}</p>
+                    <p><b>{{ trans('index.car_summary') }}</b>{{ str_limit($car->summary, 120, '...') }}</p>
                 </div>
                 <div class="col-xs-3 view-details">
-                    <p><b>${{ $car->car_cost }}</b></p>
+                    <p><b>${{ number_format($car->car_cost, 0, ", ", ".") }}</b></p>
                     <b><a href="/details-car/{{ $car->id }}">{{ trans('index.views_details') }}</a></b>
                 </div>
             </div>
