@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'name' => 'UserName/Email:',
-    'fullname' => 'Full Name:',
-    'email' => 'Email:',
+    'name' => 'UserName/Email',
+    'fullname' => 'Full Name',
+    'email' => 'Email',
     'phone' => 'Phone',
     'address' => 'Address',
     'password' => 'Password',
@@ -126,4 +126,24 @@ return [
     'selected' => 'Selected',
     'cars' => 'cars',
     'delete_all' => 'Delete All',
+    'edit' => 'Edit',
+
+    /*-----------------------------------------------------------------------------*/
+    'wrong_acc' => 'Wrong account name or password!',
+    'success_info' => 'Successful information exchange!',
+    'pl_name' => 'Please enter your account name!',
+    'pl_pass' => 'Please enter your password name!',
+    'pl_phone' => 'Please enter a phone number!',
+    'pl_add' => 'Please enter your address name!',
+    'thank' => 'Thank you for trusting our company, we will contact you soonest !!',
+
+    /*-------------------------order-------------------------------------------------*/
+    'orders' => 'Orders',
+    'list_orders' => 'List Orders',
+    'data_orders' => 'Data Orders',
+    'edit_orders' => 'Edit Orders',
+    'car_name' => 'Car Name',
+    'cus_name' => 'Customer Name',
+    'suc_register' => 'Register Successful!!',
+
 ];

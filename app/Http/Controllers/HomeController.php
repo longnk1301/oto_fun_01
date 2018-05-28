@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\Car;
 use App\Models\Category;
 use App\Models\Vehicle;
 use Cart;
+use App\User;
+use App\Order;
+use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
+use Lang;
+
 
 class HomeController extends Controller
 {
@@ -20,10 +25,101 @@ class HomeController extends Controller
         return view('welcome');
     }
 
+    public function login()
+    {
+        return view('user.customer.login');
+    }
+
+    public function postLogin(LoginRequest $request)
+    {
+        if (Auth::attempt(['name' => $request->name, 'password' => $request->password], $request->remember)
+            || Auth::attempt(['email' => $request->name, 'password' => $request->password], $request->remember)) {
+            return redirect()->route('homepage');
+        } else {
+            return back()->with('msg', Lang::get('auth.wrong_acc'));
+        }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('user.login');
+    }
+
+    public function getProfile()
+    {
+        $user = Auth::user();
+
+        return view('user.customer.profile', compact('user'));
+    }
+
+    public function postProfile(Request $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->password = bcrypt($request->password);
+        $user->phone = $request->phone;
+        $user->add = $request->add;
+        $user->save();
+
+        return redirect('user.profile')->with('msg', Lang::get('auth.success_info'));
+    }
+
+    public function getRegister()
+    {
+        return view('user.customer.register');
+    }
+
+    public function postRegister(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required|string|min:4|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'required|string|min:10|max:11',
+            'add' => 'required|string|min:4|max:255',
+            'password' => 'required|string|min:6|max:32|confirmed',
+            'password_confirmation' => 'required|same:password',
+        ]);
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->phone = $request->phone;
+        $user->add = $request->add;
+        $user->save();
+
+        return redirect('user.register')->with('msg', Lang::get('auth.suc_register'));
+    }
+
+    public function postCheckout(Request $request)
+    {
+        $order = new Order;
+        $order->cus_name = $request->cus_name;
+        $order->identification = $request->identification;
+        $order->cus_zip = $request->cus_zip;
+        $order->cus_phone = $request->cus_phone;
+        $order->cus_add = $request->cus_add;
+        $order->cus_email = $request->cus_email;
+        $order->content = $request->content;
+        $order->car_id = $request->car_id;
+        $order->fill($request->all());
+        $order->save();
+
+        return redirect()->back()->with('msg', Lang::get('auth.thank'));
+    }
+
+    public function getOrderDetails()
+    {
+
+    }
+
     //trang san pham mới, lấy loại xe để check từng loại
     public function newcar()
     {
         $new_car = Car::distinct()->where('car_years', Carbon::now()->year)->get(['car_type']);
+
         return view('car.new_car', compact('new_car'));
     }
 
@@ -167,10 +263,5 @@ class HomeController extends Controller
         \Session::put('website_language', $language);
 
         return redirect()->back();
-    }
-
-    public function getSession(Request $request)
-    {
-        return $request->session()->all();
     }
 }

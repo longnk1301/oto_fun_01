@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class LoginRequest extends FormRequest
 {
@@ -32,8 +33,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Vui lòng điền tên tài khoản!!!',
-            'password.required' => 'Vui lòng điền mật khẩu!!!'
+            'name.required' => Lang::,get('auth.pl_name'),
+            'password.required' => Lang::,get('auth.pl_pass')
         ];
     }
 }

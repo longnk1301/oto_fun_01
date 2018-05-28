@@ -120,6 +120,14 @@ a {
                 .float-right a:hover {
                     color: #0098d1;
                 }
+                .float-right img {
+                    width: 30px;
+                }
+                .float-right li {
+                    list-style: none;
+                    float: left;
+                    margin-left: 5px;
+                }
 #header a:hover {
     text-decoration: none;
 }
