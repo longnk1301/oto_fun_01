@@ -9,21 +9,18 @@
 
                 <div class="panel-body">
                         {!! Form::open(['method' => 'POST', 'routes' => 'password.request'], ['class' => 'form-horizontal']) !!}
-                        {{ csrf_field() }}
                         {!!  Form::hidden('name', '$token') !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             {!! Form::label('email', trans('auth.email'), ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
-                             {{--    <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}" required autofocus> --}}
-                             {!! Form::email('email', '$email', ['class' => 'form-control', 'id' => 'email']) !!}
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                {!! Form::email('email', $email or old('email'), array('class' => 'form-control', 'id' => 'email', 'required', 'autofocus')) !!}
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
                             </div>
                         </div>
 

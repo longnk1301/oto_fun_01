@@ -34,7 +34,7 @@
                      <!-- Authentication Links -->
                     @guest
                         <li><a href="{{ route('login') }}">{!! trans('auth.login') !!}</a></li>
-                        <li><a href="{{-- {{ route('register') }} --}}">{!! trans('auth.register') !!}</a></li>
+                        <li><a href="{{ route('register') }}">{!! trans('auth.register') !!}</a></li>
                     @else
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
@@ -45,7 +45,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="User Image" />
+                                    <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="User Image"/>
                                     <p>
                                       {!! trans('index.ad') !!}
                                       <small>{!! trans('auth.member') !!}</small>
@@ -54,20 +54,20 @@
                                   <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">{!! trans('auth.pf') !!}</a>
+                                        <a href="{{ route('admin.profile') }}" class="btn btn-default btn-flat">{!! trans('auth.pf') !!}</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
                                             onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">{!! trans('auth.logout') !!}
                                         </a>
-                                        {!! Form::open(['method' => 'POST', 'url' => 'logout', 'id' => 'logout-form']) !!}
+                                        {!! Form::open(['method' => 'POST', 'route' => 'logout', 'id' => 'logout-form']) !!}
                                         {{ csrf_field() }}
                                         {!! Form::close() !!}
                                     </div>
                                 </li>
                             </ul>
-                            </li>
+                        </li>
                     @endguest
                     </ul>
                 </div>

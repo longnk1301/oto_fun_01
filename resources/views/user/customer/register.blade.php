@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.index')
 
 @section('content')
-<div class="content-wrapper bg-color">
+<div class="container post clearfix">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default mg-top">
-                <div class="panel-heading">{!! trans('auth.register') !!}</div>
+                <div class="panel-heading">{!! trans('auth.login') !!}</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'POST', 'route' => 'register', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'user.register', 'class' => 'form-horizontal']) !!}
                         {{-- Name --}}
                         @if (session('msg'))
                             <div class="alert alert-danger">

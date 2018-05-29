@@ -4,7 +4,7 @@ Route::group(['middleware' => 'locale'], function()
     Route::get('/', 'Admin\DashboardController@index')->name('home');
 
     /*-----------------------------------CATEGORY--------------------------------------------------------*/
-    Route::prefix('category')->group(function () {
+    Route::group(['prefix' => 'category', 'middleware' => 'isAuthor'], function() {
         Route::get('/', 'Admin\CategoryController@getCate')->name('cate.index');
 
         Route::post('/check-name', 'Admin\CategoryController@checkName')->name('cate.checkName');
@@ -22,7 +22,7 @@ Route::group(['middleware' => 'locale'], function()
     Route::post('getSlug', 'Admin\CategoryController@getSlug')->name('getSlug');
 
     /*-----------------------------------POST--------------------------------------------------------------*/
-    Route::prefix('posts')->group(function () {
+    Route::group(['prefix' => 'posts', 'middleware' => 'isAuthor'], function() {
         Route::get('/', 'Admin\PostController@getPost')->name('post.index');
 
         Route::post('/check-name', 'Admin\PostController@checkName')->name('post.checkName');

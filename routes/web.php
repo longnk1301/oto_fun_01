@@ -9,9 +9,33 @@ Route::group(['middleware' => 'locale'], function()
 
     Route::get('login', 'Auth\LoginController@login')->name('login');
 
-    Route::post('login', 'Auth\LoginController@postlogin');
+    Route::post('login', 'Auth\LoginController@postLogin');
 
     Route::any('logout', 'Auth\LoginController@logout')->name('logout');
+
+    Route::get('register', 'Auth\RegisterController@getRegister')->name('register');
+
+    Route::post('register', 'Auth\RegisterController@postRegister');
+
+    Route::get('profile', 'Auth\LoginController@getProfile')->name('admin.profile');
+
+    Route::post('profile', 'Auth\LoginController@postProfile');
+
+    Route::get('/user/login', 'HomeController@login')->name('user.login');
+
+    Route::post('/user/login', 'HomeController@postLogin');
+
+    Route::any('/user/logout', 'HomeController@logout')->name('user.logout');
+
+    Route::get('/user/profile', 'HomeController@getProfile')->name('user.profile');
+
+    Route::post('/user/profile', 'HomeController@postProfile');
+
+    Route::get('/user/register', 'HomeController@getRegister')->name('user.register');
+
+    Route::post('/user/register', 'HomeController@postRegister');
+
+    Route::post('order', 'HomeController@postCheckout')->name('order');
 
     //sản phẩm mới
     Route::get('/newcar', 'HomeController@newcar')->name('newcar');

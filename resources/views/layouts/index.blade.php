@@ -25,10 +25,40 @@
                 <!-- Start Menu -->
                 <div class="header-right">
                     <div class="float-right">
-                        <a href="{!! route('user.change-language', ['en']) !!}">{!! trans('index.en') !!} | </a>
-                        <a href="{!! route('user.change-language', ['vi']) !!}">{!! trans('index.vn') !!} | </a>
-                        <a href="{{ route('login')}}" >{!! trans('auth.login') !!}</a>
+                        <li>
+                            <a href="{!! route('user.change-language', ['en']) !!}">{!! trans('index.en') !!} | </a>
+                        </li>
+                        <li>
+                            <a href="{!! route('user.change-language', ['vi']) !!}">{!! trans('index.vn') !!} | </a>
+                        </li>
+                        @if (!isset($user))
+                            <a href="{{ route('user.login')}}" >{!! trans('auth.login') !!}</a>
+                        @else
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="User Image" />
+                                    <span class="hidden-xs">{{ Auth::user()->name }}</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="{{ route('user.profile') }}" class="btn btn-default btn-flat">{!! trans('auth.pf') !!}</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="{{ route('user.logout') }}" class="btn btn-default btn-flat"
+                                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{!! trans('auth.logout') !!}
+                                            </a>
+                                            {!! Form::open(['method' => 'POST', 'route' => 'user.logout', 'id' => 'logout-form']) !!}
+                                            {{ csrf_field() }}
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
                     </div>
+
                     <div class="menu">
                         <ul>
                             <!-- NEWS -->
