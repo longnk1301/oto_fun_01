@@ -126,4 +126,29 @@ return [
     'selected' => 'Đã chọn',
     'cars' => 'xe',
     'delete_all' => 'Xóa tất cả',
+    'edit' => 'Sửa',
+
+    /*-----------------------------------------------------------------------------*/
+    'wrong_acc' => 'Tên tài khoản hoặc mật khẩu sai!',
+    'success_info' => 'Thay đổi thông tin thành công!',
+    'pl_name' => 'Hãy điền tên tài khoản!',
+    'pl_pass' => 'Hãy điền mật khẩu!',
+    'pl_phone' => 'Hãy điền số điện thoại!',
+    'pl_add' => 'Hãy điền địa chỉ!',
+    'thank' => 'Cảm ơn bạn đã tin tưởng công ty chúng tôi, chúng tôi sẽ liên hệ với bạn sớm nhất!!',
+
+    /*-------------------------order-------------------------------------------------*/
+    'orders' => 'Các đơn hàng',
+    'list_orders' => 'Danh sách các đơn hàng',
+    'data_orders' => 'Dữ liệu đơn hàng',
+    'edit_orders' => 'Chỉnh sửa đơn hàng',
+    'car_name' => 'Tên Xe',
+    'cus_name' => 'Tên khách hàng',
+    'suc_register' => 'Đăng ký thành công!!',
+    'confirm' => 'Xác nhận',
+    'item_ready' => 'Sẵn sàng',
+    'send' => 'Gửi',
+    'delivered' => 'Đã chuyển',
+    'returned' => 'Đã trả lại',
+    'cancelled' => 'Đã hủy',
 ];

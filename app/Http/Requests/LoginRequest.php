@@ -33,8 +33,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => Lang::,get('auth.pl_name'),
-            'password.required' => Lang::,get('auth.pl_pass')
+            'name.required' => Lang::get('auth.pl_name'),
+            'password.required' => Lang::get('auth.pl_pass')
         ];
     }
 }

@@ -36,4 +36,9 @@ class Car extends Model
 
         return $car;
     }
+
+    public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
 }
