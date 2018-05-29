@@ -102,11 +102,12 @@ class CategoryController extends Controller
             return view('user.admin.404');
         } else {
             $cates = Category::all();
+            $selected = $model->parent_id;
             foreach ($cates as $element) {
                 $select[$element->id] = $element->cate_name;
             }
 
-            return view('user.admin.category.form', compact('model', 'cates', 'select'));
+            return view('user.admin.category.form', compact('model', 'cates', 'select', 'selected'));
         }
 
         $cates = Category::all();

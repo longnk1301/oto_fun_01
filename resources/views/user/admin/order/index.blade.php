@@ -75,12 +75,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 class="color-text">
-            {{ trans('auth.data_products') }}
+            {{ trans('auth.data_orders') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i>{{ trans('auth.dashboard') }}</a></li>
-            <li><a href="{{ route('product.index') }}">{{ trans('auth.products') }}</a></li>
-            <li class="active">{{ trans('auth.data_products') }}</li>
+            <li><a href="{{ route('order.index') }}">{{ trans('auth.orders') }}</a></li>
+            <li class="active">{{ trans('auth.data_orders') }}</li>
         </ol>
     </section>
 
@@ -111,48 +111,34 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                   <th>{!! trans('auth.id') !!}</th>
-                                   <th>{!! trans('auth.image') !!}</th>
-                                   <th>{!! trans('index.car_name') !!}</th>
-                                   <th>{!! trans('auth.cost') !!}</th>
-                                   <th>{!! trans('index.car_type') !!}</th>
-                                   <th>{!! trans('auth.car_number') !!}</th>
-                                   <th>{!! trans('index.year') !!}</th>
-                                   <th>{!! trans('index.in_color') !!}</th>
-                                   <th>{!! trans('index.ex_color') !!}</th>
-                                   <th>{!! trans('index.fuel') !!}</th>
-                                   <th>{!! trans('index.drive') !!}</th>
-                                   <th>{!! trans('index.mpg') !!}</th>
-                                   <th>
-                                       <a href="{{ route('product.add') }}"" class="btn btn-success">
-                                           <i class="fa fa-plus"></i>
-                                           {{ trans('auth.add') }}
-                                       </a>
-                                   </th>
+                                    <th>{!! trans('auth.id') !!}</th>
+                                    <th>{!! trans('auth.car_name') !!}</th>
+                                    <th>{!! trans('auth.cus_name') !!}</th>
+                                    <th>{!! trans('auth.phone') !!}</th>
+                                    <th>{!! trans('auth.add') !!}</th>
+                                    <th>{!! trans('auth.email') !!}</th>
+                                    <th>{!! trans('auth.status') !!}</th>
+                                    <th>{!! trans('index.in_color') !!}</th>
+                                    <th>{!! trans('index.ex_color') !!}</th>
                                </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($orders as $order)
                                         <tr>
-                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $order->id }}</td>
+                                            <td>{{ $order->car_name->car_name }}</td>
+                                            <td>{{ $order->cus_name }}</td>
+                                            <td>{{ $order->cus_phone }}</td>
+                                            <td>{{ $order->cus_add }}</td>
+                                            <td>{{ $order->cus_email }}</td>
+                                            <td>{{ $order->status }}</td>
+                                            <td>{{ $order->vehicle->interior_color }}</td>
+                                            <td>{{ $order->vehicle->exterior_color }}</td>
                                             <td>
-                                                <img src="{{ asset($product->car_image) }}" class="images-cate-admin">
-                                            </td>
-                                            <td>{{ $product->car_name }}</td>
-                                            <td>{{ $product->car_cost }}</td>
-                                            <td>{{ $product->car_type }}</td>
-                                            <td>{{ $product->car_number }}</td>
-                                            <td>{{ $product->car_years }}</td>
-                                            <td>{{ $product->vehicles->interior_color }}</td>
-                                            <td>{{ $product->vehicles->exterior_color }}</td>
-                                            <td>{{ $product->vehicles->fuel_type }}</td>
-                                            <td>{{ $product->vehicles->drive_type }}</td>
-                                            <td>{{ $product->vehicles->mpg }}</td>
-                                            <td>
-                                                <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('order.edit', ['id' => $order->id]) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('product.remove', ['id' => $product->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $order->id]) }}')" class="btn btn-sm btn-danger">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -162,22 +148,19 @@
                             <tfoot>
                                 <tr>
                                     <th>{!! trans('auth.id') !!}</th>
-                                   <th>{!! trans('auth.image') !!}</th>
-                                   <th>{!! trans('index.car_name') !!}</th>
-                                   <th>{!! trans('auth.cost') !!}</th>
-                                   <th>{!! trans('index.car_type') !!}</th>
-                                   <th>{!! trans('auth.car_number') !!}</th>
-                                   <th>{!! trans('index.year') !!}</th>
-                                   <th>{!! trans('index.in_color') !!}</th>
-                                   <th>{!! trans('index.ex_color') !!}</th>
-                                   <th>{!! trans('index.fuel') !!}</th>
-                                   <th>{!! trans('index.drive') !!}</th>
-                                   <th>{!! trans('index.mpg') !!}</th>
+                                    <th>{!! trans('auth.car_name') !!}</th>
+                                    <th>{!! trans('auth.cus_name') !!}</th>
+                                    <th>{!! trans('auth.phone') !!}</th>
+                                    <th>{!! trans('auth.add') !!}</th>
+                                    <th>{!! trans('auth.email') !!}</th>
+                                    <th>{!! trans('auth.status') !!}</th>
+                                    <th>{!! trans('index.in_color') !!}</th>
+                                    <th>{!! trans('index.ex_color') !!}</th>
                                </tr>
                             </tfoot>
                         </table>
                         <div class="text-center">
-                            {{ $products->links() }}
+                            {{ $orders->links() }}
                         </div>
                     </div>
                     <!-- /.box-body -->

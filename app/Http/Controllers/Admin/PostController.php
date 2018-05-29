@@ -102,12 +102,13 @@ class PostController extends Controller
         if (!$model) {
             return view('user.admin.404');
         } else {
+            $selected = $model->cate_id;
             $categories = Category::get(['id', 'cate_name']);
             foreach ($categories as $category) {
                 $select[$category->id] = $category->cate_name;
             }
 
-            return view('user.admin.post.form', compact('model', 'categories', 'select'));
+            return view('user.admin.post.form', compact('model', 'categories', 'select', 'selected'));
         }
 
         $categories = Category::get(['id', 'cate_name']);

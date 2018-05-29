@@ -4,7 +4,7 @@ Route::group(['middleware' => 'locale'], function()
     Route::get('/', 'Admin\DashboardController@index')->name('home');
 
     /*-----------------------------------CATEGORY--------------------------------------------------------*/
-    Route::group(['prefix' => 'category', 'middleware' => 'isAuthor'], function() {
+    Route::group(['prefix' => 'category'], function() {
         Route::get('/', 'Admin\CategoryController@getCate')->name('cate.index');
 
         Route::post('/check-name', 'Admin\CategoryController@checkName')->name('cate.checkName');
@@ -13,16 +13,16 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::get('/add', 'Admin\CategoryController@add')->name('cate.add');
 
-        Route::get('/update/{id}', 'Admin\CategoryController@edit')->name('cate.edit');
+        Route::get('/update/{id}', 'Admin\CategoryController@edit')->name('cate.edit')->middleware('isAuthor');
 
-        Route::get('/remove/{id}', 'Admin\CategoryController@remove')->name('cate.remove');
+        Route::get('/remove/{id}', 'Admin\CategoryController@remove')->name('cate.remove')->middleware('isAuthor');
 
         Route::post('/save', 'Admin\CategoryController@save')->name('cate.save');
     });
     Route::post('getSlug', 'Admin\CategoryController@getSlug')->name('getSlug');
 
     /*-----------------------------------POST--------------------------------------------------------------*/
-    Route::group(['prefix' => 'posts', 'middleware' => 'isAuthor'], function() {
+    Route::group(['prefix' => 'posts'], function() {
         Route::get('/', 'Admin\PostController@getPost')->name('post.index');
 
         Route::post('/check-name', 'Admin\PostController@checkName')->name('post.checkName');
@@ -31,9 +31,9 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::get('/add', 'Admin\PostController@add')->name('post.add');
 
-        Route::get('/update/{id}', 'Admin\PostController@edit')->name('post.edit');
+        Route::get('/update/{id}', 'Admin\PostController@edit')->name('post.edit')->middleware('isAuthor');
 
-        Route::get('/remove/{id}', 'Admin\PostController@remove')->name('post.remove');
+        Route::get('/remove/{id}', 'Admin\PostController@remove')->name('post.remove')->middleware('isAuthor');
 
         Route::post('/save', 'Admin\PostController@save')->name('post.save');
     });
@@ -48,10 +48,20 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::get('/add', 'Admin\ProductController@add')->name('product.add');
 
-        Route::get('/update/{id}', 'Admin\ProductController@edit')->name('product.edit');
+        Route::get('/update/{id}', 'Admin\ProductController@edit')->name('product.edit')->middleware('isAuthor');
 
-        Route::get('/remove/{id}', 'Admin\ProductController@remove')->name('product.remove');
+        Route::get('/remove/{id}', 'Admin\ProductController@remove')->name('product.remove')->middleware('isAuthor');
 
         Route::post('/save', 'Admin\ProductController@save')->name('product.save');
+    });
+
+    Route::prefix('orders')->group(function () {
+        Route::get('/', 'Admin\OrderController@getOrders')->name('order.index');
+
+        Route::get('/update/{id}', 'Admin\OrderController@edit')->name('order.edit')->middleware('isAuthor');
+
+        Route::get('/remove/{id}', 'Admin\OrderController@remove')->name('order.remove')->middleware('isAuthor');
+
+        Route::put('/save', 'Admin\OrderController@save')->name('order.save');
     });
 });

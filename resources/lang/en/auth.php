@@ -145,5 +145,17 @@ return [
     'car_name' => 'Car Name',
     'cus_name' => 'Customer Name',
     'suc_register' => 'Register Successful!!',
+    'confirm' => 'Confirm',
+    'item_ready' => 'Item Ready',
+    'send' => 'Send',
+    'delivered' => 'Delivered',
+    'returned' => 'Returned',
+    'cancelled' => 'Cancelled',
+    'pl_name_customer' => 'Please enter your name!',
+    'pl_name_phone' => 'Please enter your phone!',
+    'pl_name_add' => 'Please enter your address!',
+    'pl_name_email' => 'Please enter your email!',
+    'pl_name_zipcode' => 'Please enter your zipcode!',
+    'pl_name_identification' => 'Please enter your identification!',
 
 ];

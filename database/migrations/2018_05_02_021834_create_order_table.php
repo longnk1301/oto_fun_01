@@ -16,14 +16,14 @@ class CreateOrderTable extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cus_name')->nullable();
-            $table->integer('identification')->unique();
+            $table->integer('identification');
             $table->integer('cus_zip');
             $table->integer('cus_phone')->nullable();
             $table->text('cus_add')->nullable();
-            $table->string('cus_email')->unique();
+            $table->string('cus_email');
             $table->integer('car_id');
             $table->text('content')->nullable();
-            $table->integer('status')->default(0);
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

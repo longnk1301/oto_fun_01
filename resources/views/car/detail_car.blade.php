@@ -4,6 +4,13 @@
 
 <div class="container post clearfix">
     <div class="row clearfix">
+        <div class="row">
+            @if (session('msg'))
+                <div class="alert alert-success">
+                    <span>{{ session('msg') }}</span>
+                </div>
+            @endif
+        </div>
         <div class="col-md-7 details_product clearfix">
             <p><b>{{ $detail_car->car_name }}</b></p>
             <p><b>{{ trans('index.engine') }}: </b>{{ $vehicle[0]->engine }} | <b>{{ trans('index.mileage') }}: </b>{{ $vehicle[0]->mileage }}</p>
@@ -28,7 +35,7 @@
                                 <li><i class="fa fa-check" aria-hidden="true"></i>{{ trans('index.check1') }}</li>
                             </ul>
                             <div class="card-button">
-                                {!! Form::open(['method' => 'post', 'url' => '#', 'class' => 'sidebar-form']) !!}
+                                {!! Form::open(['method' => 'post', 'route' => 'order', 'class' => 'sidebar-form']) !!}
                                     <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#myModal">{!! trans('index.order') !!}</button>
                                         <div class="modal fade" id="myModal" role="dialog">
                                             <div class="modal-dialog ">
@@ -38,40 +45,40 @@
                                                         <h4>{!! trans('index.info') !!}</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        {!! Form::hidden('car_id') !!}
+                                                        {!! Form::hidden('car_id', $detail_car->id) !!}
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.fullname')) !!}
-                                                            {!! Form::text('fullname', '' , ['class' => 'form-control']) !!}
+                                                            {!! Form::label('fullname', trans('auth.fullname')) !!}
+                                                            {!! Form::text('cus_name', '' , ['class' => 'form-control']) !!}
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.identification')) !!}
+                                                            {!! Form::label('identification', trans('auth.identification')) !!}
                                                             {!! Form::text('identification', '' , ['class' => 'form-control']) !!}
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.zipcode')) !!}
-                                                            {!! Form::text('zipcode', '' , ['class' => 'form-control']) !!}
+                                                            {!! Form::label('zipcode', trans('auth.zipcode')) !!}
+                                                            {!! Form::text('cus_zip', '' , ['class' => 'form-control']) !!}
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.phone')) !!}
-                                                            {!! Form::text('phone', '' , ['class' => 'form-control']) !!}
+                                                            {!! Form::label('phone', trans('auth.phone')) !!}
+                                                            {!! Form::text('cus_phone', '' , ['class' => 'form-control']) !!}
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.address')) !!}
-                                                            {!! Form::text('address', '' , ['class' => 'form-control']) !!}
+                                                            {!! Form::label('address', trans('auth.address')) !!}
+                                                            {!! Form::text('cus_add', '' , ['class' => 'form-control']) !!}
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.email')) !!}
-                                                            {!! Form::text('email', '' , ['class' => 'form-control']) !!}
+                                                            {!! Form::label('email', trans('auth.email')) !!}
+                                                            {!! Form::text('cus_email', '' , ['class' => 'form-control']) !!}
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('', trans('auth.note')) !!}
-                                                            {{ Form::textarea('notes', null, ['size' => '68x5']) }}
+                                                            {!! Form::label('notes', trans('auth.note')) !!}
+                                                            {{ Form::textarea('content', null, ['size' => '80x10', 'class' => 'form-control']) }}
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

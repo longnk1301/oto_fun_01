@@ -57,6 +57,16 @@
                     <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_orders') }}</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
 <!-- /.sidebar -->
@@ -102,14 +112,14 @@
                             {!! Form::text('tags', $model->tags , ['class' => 'form-control', 'placeholder' => trans('auth.ex_tags')]) !!}
                         </div>
                     </div>
-
+                    
                     <div class="form-group row">
                         {!! Html::decode(Form::label('', trans('auth.parent_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                        <div class="col-md-8">
                                 {!! Form::select(
                                             'parent_id',
                                             $select,
-                                            null,
+                                            $selected,
                                             ['class' => 'form-control']) !!}
                         </div>
                     </div>
