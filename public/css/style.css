@@ -51,10 +51,15 @@ a {
     border-color: #EECFA1;
     background-color: #EECFA1;
 }
+.text-orange {
+    color: #ff9200;
+}
+.text-blue {
+    color: #5ac1e7;
+}
 .home {
     padding-top: 0;
 }
-
     .home #header {
         background-color: transparent;
     }
@@ -62,7 +67,12 @@ a {
     .home #header .logo {
         float:left;
     }
-
+.scrolling {
+    background-color: #3399CC !important;
+}
+.scrolling a {
+    color: #fff !important;
+}
 #header {
     position: fixed;
     top: 0;
@@ -74,7 +84,7 @@ a {
     box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.15);
 }
     #header .logo {
-        padding: 10px 0;
+        padding: 15px 0;
         position: relative;
         z-index: 1;
     }
@@ -94,6 +104,7 @@ a {
                 display: inline-block;
                 float: right;
                 margin-right: 150px;
+                margin-top: 3px;
             }
             .header-right .menu li {
                 list-style: none;
@@ -112,7 +123,7 @@ a {
             .float-right {
                 float: right;
                 display: inline-block;
-                padding: 30px 0;
+                padding: 29px 0;
                 }
                 .float-right a {
                     color: #ccc;
@@ -429,24 +440,34 @@ a {
 }
 /* ------------------------------------post ---------------------- */
 .post-single {
-    box-shadow: 0 3px 2px rgba(102, 102, 102, 0.5);
+    box-shadow: 1px 2px 3px 2px rgba(102, 102, 102, 0.5);
     padding: 20px 10px;
     margin: 30px 20px;
 }
 .post-single .cate_name {
-    font-size: 16px;
+    font-size: 14px;
+    color: #B93939;
+}
+.post-single .read-more {
+    color: #B4B0B0;
 }
 .post-single .post-title a {
-    font-size: 20px;
+    font-size: 18px;
 }
 .post-single .post-img img {
     text-align: center;
     width: 100%;
+    height: 180px
 }
-.post-single .author {
+.post-single .author a {
     margin: 10px 0;
+    color:#7C4C4C;
+    font-size: 13px;
 }
-
+.post-single .tags {
+    color: #004AFF;
+    text-decoration: underline;
+}
 .post-single ul li{
     list-style: none;
 }
@@ -455,9 +476,15 @@ a {
 }
 
 /* ----------------------------------------details post--------------------------------------- */
-.img-details-post img {
+.detail-post .img-details-post img {
     width: 500px;
     margin: 30px;
+}
+.detail-post .created-at {
+    color:#7c4c4c;
+}
+.detail-post h1 {
+    color: #717882;
 }
 .summary {
     font-style: italic;

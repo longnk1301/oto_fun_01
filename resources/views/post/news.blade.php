@@ -41,10 +41,13 @@
                         </h4>
                     </div>
                     <div class="author">
-                        <a href="{{ url($p->slug)}}">{{ $p->created_by }}</a>
+                        <a href="{{ url($p->slug)}}">{{ $p->created_at }}</a>
                     </div>
                     <p>{{ $p->summary }}</p>
-                    <a href="{{ url($p->slug) }}">
+                    <p>
+                        <a class="tags" href ="#">{{ $p->tags }}</a>
+                    </p>
+                    <a  class="read-more" href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>
                 </div>

@@ -19,11 +19,11 @@
         <div class="col-md-5 search clearfix">
             <div class="image-product">
                 <aside>
-                    <h1><i class="fa fa-usd" aria-hidden="true"></i>{{ number_format($detail_car->car_cost, 0, ", ", ".") }}</h1>
+                    <h1 class="text-orange"><i class="fa fa-usd" aria-hidden="true"></i>{{ number_format($detail_car->car_cost, 0, ", ", ".") }}</h1>
                     <ul>
                         <li>
                             <p>{{ $detail_car->summary }}</p>
-                            <p>{{ trans('index.year') }}: {{ $detail_car->car_years }}</p>
+                            <p class="text-blue">{{ trans('index.year') }}: {{ $detail_car->car_years }}</p>
                         </li>
                     </ul>
                     <div class="card clearfix">

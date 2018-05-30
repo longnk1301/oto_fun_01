@@ -61,7 +61,7 @@
                 <p>
                     <span>{{ trans('auth.selected') }} <strong class="numItems"></strong> {{ trans('auth.cars') }}</span>
                     <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                    <a href="javascript:void(0)" class="Delete-all" data-id="{{ $comp->id }}">{{ trans('auth.delete_all') }}</a>
+                    <a href="javascript:void(0)" data-id="{{ $comp->id }}" class="Delete-all" >{{ trans('auth.delete_all') }}</a>
                     <button type="submit" class="btncompare">{{ trans('index.compare') }}</button>
                 </p>
                 <div class="itemselect">
@@ -74,6 +74,7 @@
 @endsection
 
 @section('script')
+
 <script>
     $.ajaxSetup({
     headers: {
@@ -165,26 +166,4 @@ $(document).ready(function()
 });
 </script>
 
-<script>
-    function confirmRemove(url) {
-        bootbox.confirm({
-            message: '{{ trans('auth.are_you_delete?') }}',
-            buttons: {
-                confirm: {
-                    label: '{{ trans('auth.yes') }}',
-                    className: 'btn-success'
-                },
-                cancel: {
-                    label: '{{ trans('auth.no') }}',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
-                if(result) {
-                    window.location.href = url;
-                }
-            }
-        });
-    }
-</script>
 @endsection

@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         {!! Html::style('css/style.css') !!}
         {!! Html::style('/bower/boostrap/dist/css/bootstrap.min.css') !!}
-        {!! Html::script('/bower/bootbox/bootbox.min.js') !!}
         {!! Html::style('/bower/font-awesome/css/font-awesome.min.css') !!}
         {!! Html::script('/bower/jquery/dist/jquery.min.js') !!}
         <title>{!! trans('auth.fc') !!}</title>
@@ -157,6 +156,9 @@
     {!! Html::script('/bower/boostrap/dist/js/bootstrap.min.js') !!}
     <!-- AdminLTE App -->
     {!! Html::script('/bower/boostrap/dist/js/app.min.js') !!}
+    {!! Html::script('/bower/bootbox/bootbox.min.js') !!}
+
+    @include('layouts.js')
 
     @section('script')
         @show

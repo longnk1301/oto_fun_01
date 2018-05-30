@@ -228,6 +228,9 @@ class HomeController extends Controller
     {
         Cart::destroy();
         Cart::count();
+
+        return redirect(route('compare'));
+
     }
 
     public function compareDeleteItem(Request $request)
