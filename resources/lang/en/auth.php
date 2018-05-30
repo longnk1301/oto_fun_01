@@ -158,4 +158,13 @@ return [
     'pl_name_zipcode' => 'Please enter your zipcode!',
     'pl_name_identification' => 'Please enter your identification!',
 
+    /*------------------------------------------------user-------------------------------------------*/
+    'users' => 'Users',
+    'list_users' => 'List Users',
+    'data_users' => 'Data Users',
+    'edit_user' => 'Edit User',
+    'role' => 'Role',
+    'admin' => 'Admin',
+    'author' => 'Author',
+    'member' => 'Member',
 ];

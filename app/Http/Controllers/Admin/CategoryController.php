@@ -38,11 +38,12 @@ class CategoryController extends Controller
         $cates = Category::all();
         $select = [];
         $select = ['-1' => '------------------------------------------'];
+            $selected = $model->parent_id;
             foreach ($cates as $element) {
                 $select[$element->id] = $element->cate_name;
             }
 
-        return view('user.admin.category.form', compact('model', 'cates', 'select'));
+        return view('user.admin.category.form', compact('model', 'cates', 'select', 'selected'));
     }
 
     public function checkName(Request $request)

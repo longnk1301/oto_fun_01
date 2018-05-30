@@ -85,12 +85,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1 class="color-text">
-            {{ trans('auth.data_orders') }}
+            {{ trans('auth.data_users') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i>{{ trans('auth.dashboard') }}</a></li>
-            <li><a href="{{ route('order.index') }}">{{ trans('auth.orders') }}</a></li>
-            <li class="active">{{ trans('auth.data_orders') }}</li>
+            <li><a href="{{ route('user.index') }}">{{ trans('auth.users') }}</a></li>
+            <li class="active">{{ trans('auth.data_users') }}</li>
         </ol>
     </section>
 
@@ -122,33 +122,27 @@
                             <thead>
                                 <tr>
                                     <th>{!! trans('auth.id') !!}</th>
-                                    <th>{!! trans('auth.car_name') !!}</th>
-                                    <th>{!! trans('auth.cus_name') !!}</th>
+                                    <th>{!! trans('auth.fullname') !!}</th>
+                                    <th>{!! trans('auth.email') !!}</th>
                                     <th>{!! trans('auth.phone') !!}</th>
                                     <th>{!! trans('auth.add') !!}</th>
-                                    <th>{!! trans('auth.email') !!}</th>
-                                    <th>{!! trans('auth.status') !!}</th>
-                                    <th>{!! trans('index.in_color') !!}</th>
-                                    <th>{!! trans('index.ex_color') !!}</th>
-                               </tr>
+                                    <th>{!! trans('auth.role') !!}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $order)
+                                @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $order->id }}</td>
-                                            <td>{{ $order->car_name->car_name }}</td>
-                                            <td>{{ $order->cus_name }}</td>
-                                            <td>{{ $order->cus_phone }}</td>
-                                            <td>{{ $order->cus_add }}</td>
-                                            <td>{{ $order->cus_email }}</td>
-                                            <td>{{ $order->status }}</td>
-                                            <td>{{ $order->vehicle->interior_color }}</td>
-                                            <td>{{ $order->vehicle->exterior_color }}</td>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->phone }}</td>
+                                            <td>{{ $user->add }}</td>
+                                            <td class="text-success"><b>{{ $user->role_name->role_name }}</b></td>
                                             <td>
-                                                <a href="{{ route('order.edit', ['id' => $order->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $order->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('user.remove', ['id' => $user->id]) }}')" class="btn btn-sm btn-danger">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -158,19 +152,16 @@
                             <tfoot>
                                 <tr>
                                     <th>{!! trans('auth.id') !!}</th>
-                                    <th>{!! trans('auth.car_name') !!}</th>
-                                    <th>{!! trans('auth.cus_name') !!}</th>
+                                    <th>{!! trans('auth.fullname') !!}</th>
+                                    <th>{!! trans('auth.email') !!}</th>
                                     <th>{!! trans('auth.phone') !!}</th>
                                     <th>{!! trans('auth.add') !!}</th>
-                                    <th>{!! trans('auth.email') !!}</th>
-                                    <th>{!! trans('auth.status') !!}</th>
-                                    <th>{!! trans('index.in_color') !!}</th>
-                                    <th>{!! trans('index.ex_color') !!}</th>
-                               </tr>
+                                    <th>{!! trans('auth.role') !!}</th>
+                                </tr>
                             </tfoot>
                         </table>
                         <div class="text-center">
-                            {{ $orders->links() }}
+                            {{ $users->links() }}
                         </div>
                     </div>
                     <!-- /.box-body -->

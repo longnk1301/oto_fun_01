@@ -55,6 +55,7 @@ Route::group(['middleware' => 'locale'], function()
         Route::post('/save', 'Admin\ProductController@save')->name('product.save');
     });
 
+/*---------------------------------------------ORDER----------------------------------------------------------------*/
     Route::prefix('orders')->group(function () {
         Route::get('/', 'Admin\OrderController@getOrders')->name('order.index');
 
@@ -63,5 +64,16 @@ Route::group(['middleware' => 'locale'], function()
         Route::get('/remove/{id}', 'Admin\OrderController@remove')->name('order.remove')->middleware('isAuthor');
 
         Route::put('/save', 'Admin\OrderController@save')->name('order.save');
+    });
+
+/*-------------------------------------------User--------------------------------------------------------------*/
+    Route::group(['prefix' => 'users', 'middleware' => 'isAuthor'], function() {
+        Route::get('/', 'Admin\UserController@getUsers')->name('user.index');
+
+        Route::get('/update/{id}', 'Admin\UserController@edit')->name('user.edit');
+
+        Route::get('/remove/{id}', 'Admin\UserController@remove')->name('user.remove');
+
+        Route::put('/edit', 'Admin\UserController@save')->name('user.save');
     });
 });
