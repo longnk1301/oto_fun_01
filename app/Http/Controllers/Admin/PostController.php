@@ -39,11 +39,12 @@ class PostController extends Controller
         $categories = Category::get(['id', 'cate_name']);
         $select = [];
         $select = ['-1' => '------------------------------------------'];
+        $selected = $model->cate_id;
             foreach ($categories as $category) {
                 $select[$category->id] = $category->cate_name;
             }
 
-        return view('user.admin.post.form', compact('model', 'categories', 'select'));
+        return view('user.admin.post.form', compact('model', 'categories', 'select', 'selected'));
     }
 
     public function checkName(Request $request)

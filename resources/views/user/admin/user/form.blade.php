@@ -87,63 +87,39 @@
         <section class="scrollable padder">
             <section class="content-header">
             <h1 class="color-text">
-                {{ trans('auth.edit_orders') }}
+                {{ trans('auth.edit_user') }}
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i>{{ trans('auth.dashboard') }}</a></li>
-                <li><a href="{{ route('order.index') }}">{{ trans('auth.orders') }}</a></li>
-                <li class="active">{{ trans('auth.edit_orders') }}</li>
+                <li><a href="{{ route('user.index') }}">{{ trans('auth.users') }}</a></li>
+                <li class="active">{{ trans('auth.edit_user') }}</li>
             </ol>
         </section>
             <section class="panel panel-default">
 
 
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'PUT', 'route' => 'order.save', 'class' => 'form-horizontal', 'id' => 'order-form', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['method' => 'PUT', 'route' => 'user.save', 'class' => 'form-horizontal', 'id' => 'user-form', 'enctype' => 'multipart/form-data']) !!}
                         <div class="col-sm-6">
                             <div class="form-group">
-                                {!! Form::hidden('car_id', $order->car_id) !!}
-                                {!! Form::hidden('id', $order->id) !!}
-                                {!! Form::label('cus_name', trans('auth.cus_name')) !!}
-                                {!! Form::text('cus_name', $order->cus_name, ['class'=>'form-control input-lg','required', 'disabled']) !!}
+                                {!! Form::hidden('id', $user->id) !!}
+                                {!! Form::hidden('role_user', $user->roles) !!}
+                                {!! Form::label('name', trans('auth.fullname')) !!}
+                                {!! Form::text('name', $user->name, ['class'=>'form-control input-lg','required', 'disabled']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('cus_phone', trans('auth.phone')) !!}
-                                {!! Form::text('cus_phone', $order->cus_phone, ['class'=>'form-control input-lg','required', 'disabled']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('cus-add', trans('auth.add')) !!}
-                                {!! Form::text('cus_add', $order->cus_add, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('cus_email', trans('auth.email')) !!}
-                                {!! Form::text('cus_email', $order->cus_email, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('cus_zip', trans('auth.zipcode')) !!}
-                                {!! Form::text('cus_zip', $order->cus_zip, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('identification', trans('auth.identification')) !!}
-                                {!! Form::text('identification', $order->identification, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
+                                {!! Form::label('email', trans('auth.email')) !!}
+                                {!! Form::text('email', $user->email, ['class'=>'form-control input-lg','required', 'disabled']) !!}
                             </div>
                         </div>
                         <div class="col-sm-5 col-sm-offset-1">
                             <div class="form-group">
-                                {!! Form::label('car_name', trans('auth.car_name')) !!}
-                                {!! Form::text('car_name', $car->car_name, ['class'=>'form-control input-lg','required', 'disabled']) !!}
+                                {!! Form::label('add', trans('auth.add')) !!}
+                                {!! Form::text('add', $user->add, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('interior_color', trans('index.in_color')) !!}
-                                {!! Form::text('interior_color', $vehicle->interior_color, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('exterior_color', trans('index.ex_color')) !!}
-                                {!! Form::text('exterior_color', $vehicle->exterior_color, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('content', trans('auth.content')) !!}
-                                {!! Form::textarea('content', $order->content, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
+                                {!! Form::label('phone', trans('auth.phone')) !!}
+                                {!! Form::text('phone', $user->phone, ['class'=>'form-control input-lg', 'required', 'disabled']) !!}
                             </div>
                         </div>
 
@@ -151,31 +127,19 @@
                             <div class="line line-dashed line-lg pull-in"></div>
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="col-sm-2">{{ trans('auth.status') }}</label>
+                                    <label class="col-sm-2">{{ trans('auth.role') }}</label>
                                     <div class="col-sm-10 ">
                                         <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('order_status', 'Confirm', $checked == 'Confirm') !!}
-                                            {{ trans('auth.confirm') }}
+                                            {!! Form::radio('role', 900, $checked == 'Admin') !!}
+                                            {{ trans('auth.admin') }}
                                         </label>
                                         <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('order_status', 'Ready', $checked == 'Ready') !!}
-                                            {{ trans('auth.item_ready') }}
+                                            {!! Form::radio('role', 300, $checked == 'Author') !!}
+                                            {{ trans('auth.author') }}
                                         </label>
                                         <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('order_status', 'Send', $checked == 'Send') !!}
-                                            {{ trans('auth.send') }}
-                                        </label>
-                                        <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('order_status', 'Delivered', $checked == 'Delivered') !!}
-                                            {{ trans('auth.delivered') }}
-                                        </label>
-                                        <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('order_status', 'Returned', $checked == 'Returned') !!}
-                                            {{ trans('auth.returned') }}
-                                        </label>
-                                        <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('order_status', 'Cancelled', $checked == 'Cancelled') !!}
-                                            {{ trans('auth.cancelled') }}
+                                            {!! Form::radio('role', 100, $checked == 'Member') !!}
+                                            {{ trans('auth.member') }}
                                         </label>
                                     </div>
                                 </div>

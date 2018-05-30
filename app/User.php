@@ -23,11 +23,18 @@ class User extends Authenticatable
         'roles',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    public function role()
+    {
+        return $this->belongsTo('App\Role', 'user_id', 'roles');
+    }
+
+    public function getRole()
+    {
+        $users = Role::find($this->roles);
+
+        return $users;
+    }
+
     protected $hidden = [
         'password', 'remember_token',
     ];
