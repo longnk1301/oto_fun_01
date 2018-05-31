@@ -183,6 +183,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="line line-dashed line-lg pull-in"></div>
+                            <a href="{{ route('order.index') }}" class="btn btn-danger">{{ trans('auth.cancel') }}</a>
                             {!! Form::submit('Submit', [ 'class'=>'btn btn-info']) !!}
                         </div>
                     {!! Form::close() !!}

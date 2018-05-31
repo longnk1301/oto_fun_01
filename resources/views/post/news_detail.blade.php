@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container post clearfix">
-    <div class="row">
+    <div class="row detail-post">
         <h1>
             <p>{{ $post->title }}</p>
         </h1>
-        <p>
-            <b>{{ trans('auth.author') }}: </b>{{ $post->created_by }} | {{ $post->created_at }}
+        <p class="created-at">
+            <b>{{ trans('auth.created_at') }} : {{ $post->created_at }}
         </p>
         
         <div class="img-details-post">

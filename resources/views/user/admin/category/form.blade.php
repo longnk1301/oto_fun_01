@@ -137,10 +137,10 @@
                     <div class="form-group row">
                         <div class="col-md-offset-6">
                             <img src="
-                                    @if($model->image == "")
+                                    @if($model->images == "")
                                         {{ asset('images/products/product-1.webp') }}
                                     @else
-                                        {{ asset($model->image) }}
+                                        {{ asset('/storage/' . $model->images) }}
                                     @endif" id="Image" class="images-show-admin">
                         </div>
                     </div>
@@ -171,12 +171,7 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body pad">
-                                    <form>
-                                        {{-- <textarea id="editor1" name="summary" rows="10" cols="80">
-                                            {{ $model->summary }}
-                                        </textarea> --}}
-                                        {{ Form::textarea('summary', $model->summary, ['size' => '80x10', 'id' => 'editor1']) }}
-                                    </form>
+                                    {{ Form::textarea('summary', $model->summary, ['size' => '80x10', 'id' => 'editor1']) }}
                                 </div>
                             </div>
                             <!-- /.box -->

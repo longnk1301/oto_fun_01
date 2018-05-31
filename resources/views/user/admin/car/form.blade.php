@@ -250,7 +250,7 @@
                     </div>
 
                     <div class="text-center">
-                        <a href="{{ route('cate.index') }}" class="btn btn-danger">{{ trans('auth.cancel') }}</a>
+                        <a href="{{ route('product.index') }}" class="btn btn-danger">{{ trans('auth.cancel') }}</a>
                         {!! Form::submit(trans('auth.save'), ['class' => 'btn btn-success']) !!}
                     </div>
                 </div>

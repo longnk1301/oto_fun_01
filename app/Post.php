@@ -14,6 +14,7 @@ class Post extends Model
         'content',
         'slug',
         'summary',
+        'tags',
     ];
 
     public function getCate()

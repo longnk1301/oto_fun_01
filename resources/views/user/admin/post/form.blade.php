@@ -100,114 +100,111 @@
         <div class="row">
             {!! Form::open(['method' => 'POST', 'route' => 'post.save', 'class' => 'form-horizontal', 'id' => 'post-form', 'enctype' => 'multipart/form-data']) !!}
                 {!! Form::hidden('id', $model->id) !!}
-                <div class="col-md-5 mg-top">
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('title', trans('auth.title') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                        <div class="col-md-8">
-                            {!! Form::text('title', $model->title , ['class' => 'form-control', 'id' => 'title', 'placeholder' => trans('auth.title')]) !!}
+                <div>
+                    <div class="col-md-5 mg-top">
+                        <div class="form-group row">
+                            {!! Html::decode(Form::label('title', trans('auth.title') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('title', $model->title , ['class' => 'form-control', 'id' => 'title', 'placeholder' => trans('auth.title')]) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('slug', trans('auth.slug') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                        <div class="col-md-8 div-cate-relative">
-                            {!! Form::text('slug', $model->slug, ['class' => 'form-control', 'id' => 'slug', 'placeholder' => trans('auth.ex_slug')]) !!}
-                            {!! Html::decode(Form::button('<i class="fa fa-bolt"></i>', ['class' => 'btn btn-success btn-sm btn-asl-form'])) !!}
+                        <div class="form-group row">
+                            {!! Html::decode(Form::label('slug', trans('auth.slug') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                            <div class="col-md-8 div-cate-relative">
+                                {!! Form::text('slug', $model->slug, ['class' => 'form-control', 'id' => 'slug', 'placeholder' => trans('auth.ex_slug')]) !!}
+                                {!! Html::decode(Form::button('<i class="fa fa-bolt"></i>', ['class' => 'btn btn-success btn-sm btn-asl-form'])) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('tags', trans('auth.tags') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                        <div class="col-md-8">
-                            {!! Form::text('tags', $model->tags , ['class' => 'form-control', 'placeholder' => trans('auth.ex_tags')]) !!}
+                        <div class="form-group row">
+                            {!! Html::decode(Form::label('tags', trans('auth.tags') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                            <div class="col-md-8">
+                                {!! Form::text('tags', $model->tags , ['class' => 'form-control', 'placeholder' => trans('auth.ex_tags')]) !!}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                   <div class="col-md-8">
+                        <div class="form-group row">
+                            {!! Html::decode(Form::label('', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                       <div class="col-md-8">
                             {!! Form::select(
-                                        'cate_id',
-                                        $select,
-                                        $selected,
-                                        ['class' => 'form-control']) !!}
+                                    'cate_id',
+                                    $select,
+                                    $selected,
+                                    ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-offset-5">
+                                <img src="
+                                        @if($model->image == "")
+                                            {{ asset('images/products/product-1.webp') }}
+                                        @else
+                                            {{ asset($model->image) }}
+                                        @endif" id="Image" class="images-show-admin">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            {!! Html::decode(Form::label('image', trans('auth.image'), ['class' => 'col-md-4 control-label'])) !!}
+                            <div class="col-md-8">
+                                {!! Form::file('image', ['id' => 'image', 'accept' => 'image/*']) !!}
+                                @if(count($errors) > 0)
+                                    <span class="text-danger">{{$errors->first('image')}}</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-offset-5">
-                            <img src="
-                                    @if($model->image == "")
-                                        {{ asset('images/products/product-1.webp') }}
-                                    @else
-                                        {{ asset($model->image) }}
-                                    @endif" id="Image" class="images-show-admin">
+                    <div class="col-md-7">
+                        <div class="form-group row">
+                            <div class="col-md-11 col-md-offset-1">
+                                <div class="box box-info">
+                                    <div class="box-header">
+                                        <h3 class="box-title">{{ trans('auth.summary') }}
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            {!! Html::decode(Form::button('<i class="fa fa-minus"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Collapse'])) !!}
+                                            {!! Html::decode(Form::button('<i class="fa fa-times"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Remove'])) !!}
+                                        </div>
+                                    <!-- /. tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        {{ Form::textarea('summary', $model->summary, ['size' => '80x10', 'class' => 'ckeditor']) }}
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-11 col-md-offset-1">
+                                <div class="box box-info">
+                                    <div class="box-header">
+                                        <h3 class="box-title">{{ trans('auth.content') }}
+                                        </h3>
+                                        <!-- tools box -->
+                                        <div class="pull-right box-tools">
+                                            {!! Html::decode(Form::button('<i class="fa fa-minus"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Collapse'])) !!}
+                                            {!! Html::decode(Form::button('<i class="fa fa-times"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Remove'])) !!}
+                                        </div>
+                                    <!-- /. tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body pad">
+                                        {{ Form::textarea('content', $model->content, ['size' => '80x10', 'class' => 'ckeditor']) }}
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+                            </div>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('image', trans('auth.image'), ['class' => 'col-md-4 control-label'])) !!}
-                        <div class="col-md-8">
-                            {!! Form::file('image', ['id' => 'image', 'accept' => 'image/*']) !!}
-                            @if(count($errors) > 0)
-                                <span class="text-danger">{{$errors->first('image')}}</span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="text-center">
+                    <div class="text-center form-group row">
                         <a href="{{ route('post.index') }}" class="btn btn-danger">{{ trans('auth.cancel') }}</a>
                         {!! Form::submit(trans('auth.save'), ['class' => 'btn btn-success']) !!}
-                    </div>
-                </div>
-
-                <div class="col-md-7">
-                    <div class="form-group row">
-                        <div class="col-md-11 col-md-offset-1">
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <h3 class="box-title">{{ trans('auth.summary') }}
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        {!! Html::decode(Form::button('<i class="fa fa-minus"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Collapse'])) !!}
-                                        {!! Html::decode(Form::button('<i class="fa fa-times"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Remove'])) !!}
-                                    </div>
-                                <!-- /. tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <form>
-                                        {{ Form::textarea('summary', $model->summary, ['size' => '80x10', 'class' => 'ckeditor']) }}
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-11 col-md-offset-1">
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <h3 class="box-title">{{ trans('auth.content') }}
-                                    </h3>
-                                    <!-- tools box -->
-                                    <div class="pull-right box-tools">
-                                        {!! Html::decode(Form::button('<i class="fa fa-minus"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Collapse'])) !!}
-                                        {!! Html::decode(Form::button('<i class="fa fa-times"></i>', ['class' => 'btn btn-info btn-sm', 'data-toggle' => 'tooltip', 'data-wiget' => 'collapse', 'title' => 'Remove'])) !!}
-                                    </div>
-                                <!-- /. tools -->
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body pad">
-                                    <form>
-                                        {{ Form::textarea('content', $model->content, ['size' => '80x10', 'class' => 'ckeditor']) }}
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- /.box -->
-                        </div>
                     </div>
                 </div>
                 <!-- /.col -->

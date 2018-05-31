@@ -28,7 +28,7 @@
                         @if ($cate != null)
                           <p>
                             <strong>
-                              <a href="{{ route('cate.detail',$cate->slug) }}">{{ $cate->cate_name }}</a>
+                              <a class="cate_name" href="{{ route('cate.detail',$cate->slug) }}">{{ $cate->cate_name }}</a>
                             </strong>
                           </p>
                         @endif
@@ -39,16 +39,19 @@
                             <img src="{{ asset($p->image) }}" alt="">
                         </a>
                     </div>
-                    <div class="post-desk">
+                    <div class="post-title ">
                         <h4>
                             <a href="{{ url($p->slug) }}">{{ str_limit($p->title, 20, '...') }}</a>
                         </h4>
                     </div>
-                    <div class="date">
-                        <a href="{{ url($p->slug) }}">{{ $p->created_by }}</a>
+                    <div class="date author">
+                        <a href="{{ url($p->slug) }}">{{ $p->updated_at }}</a>
                     </div>
                     <p>{{ $p->summary }}</p>
-                    <a href="{{ url($p->slug) }}">
+                    <p>
+                        <a class="tags" href ="#">{{ $p->tags }}</a>
+                    </p>
+                    <a class="read-more" href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>
                 </div>
