@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatePhoneOrderTable extends Migration
+class CreateTableOperates extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class UpdatePhoneOrderTable extends Migration
      */
     public function up()
     {
-        Schema::table('order', function (Blueprint $table) {
-             $table->string('cus_phone')->nullable()->change();
+        Schema::create('operates', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('vehicle_id');
+            $table->string('tissue_man')->nullable();
+            $table->string('gear')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class UpdatePhoneOrderTable extends Migration
      */
     public function down()
     {
-        Schema::table('order', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

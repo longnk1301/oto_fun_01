@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatePhoneUsersTable extends Migration
+class CreateTableColor extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class UpdatePhoneUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->change();
+        Schema::create('colors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('vehicle_id');
+            $table->string('color')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class UpdatePhoneUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

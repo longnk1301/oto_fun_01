@@ -13,12 +13,11 @@ class CreateOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('order', function (Blueprint $table) {
+        Schema::create('advisory', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cus_name')->nullable();
+            $table->string('cus_name');
             $table->integer('identification');
-            $table->integer('cus_zip');
-            $table->integer('cus_phone')->nullable();
+            $table->integer('cus_phone');
             $table->text('cus_add')->nullable();
             $table->string('cus_email');
             $table->integer('car_id');

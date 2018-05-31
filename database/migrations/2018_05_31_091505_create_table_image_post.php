@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeRoleTableUser extends Migration
+class CreateTableImagePost extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class ChangeRoleTableUser extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('roles')->default(100)->change();
+        Schema::create('image_post', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('post_id');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class ChangeRoleTableUser extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

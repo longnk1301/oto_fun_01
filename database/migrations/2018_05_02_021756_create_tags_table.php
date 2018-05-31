@@ -14,11 +14,10 @@ class CreateTagsTable extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->string('id')->unique();
-            $table->string('make')->unique();
-            $table->string('type');
-            $table->integer('year');
-            $table->integer('price');
+            $table->increments('id');
+            $table->integer('car_id')->nullable();
+            $table->integer('post_id')->nullable();
+            $table->string('tag')->nullable();
             $table->timestamps();
         });
     }

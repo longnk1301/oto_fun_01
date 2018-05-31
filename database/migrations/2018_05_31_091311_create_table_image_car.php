@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterUsersTable extends Migration
+class CreateTableImageCar extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('phone');
-            $table->string('add');
-            $table->integer('roles');
+        Schema::create('image_car', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('car_id');
+            $table->integer('color_id');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -27,8 +29,6 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

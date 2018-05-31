@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateZipcodeTable extends Migration
+class CreateTableExteriors extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateZipcodeTable extends Migration
      */
     public function up()
     {
-        Schema::create('zipcode', function (Blueprint $table) {
-            $table->integer('id')->unique();
-            $table->text('zip_name')->nullable();
+        Schema::create('exteriors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('vehicle_id');
+            $table->string('locks_nearby');
+            $table->string('locks_remote');
+            $table->string('turn_signal_light');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateZipcodeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('zipcode');
+        //
     }
 }

@@ -13,16 +13,9 @@ class CreateVehicleTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('interior_color');
-            $table->string('exterior_color');
-            $table->string('transmission');
-            $table->string('engine');
-            $table->integer('mileage')->nullable();
-            $table->string('fuel_type');
-            $table->string('drive_type');
-            $table->string('mpg');
+            $table->integer('car_id');
             $table->timestamps();
         });
     }
