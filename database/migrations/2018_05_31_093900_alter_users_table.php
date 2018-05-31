@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterVehicleTable extends Migration
+class AlterUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AlterVehicleTable extends Migration
      */
     public function up()
     {
-        Schema::table('vehicle', function (Blueprint $table) {
-            $table->integer('mileage')->default(0)->change();
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('avatar')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('add')->nullable();
+            $table->integer('role')->default(100);
         });
     }
 
@@ -26,7 +28,7 @@ class AlterVehicleTable extends Migration
      */
     public function down()
     {
-        Schema::table('vehicle', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

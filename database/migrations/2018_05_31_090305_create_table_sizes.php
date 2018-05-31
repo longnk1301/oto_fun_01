@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFunctionsTable extends Migration
+class CreateTableSizes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateFunctionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('functions', function (Blueprint $table) {
+        Schema::create('sizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('func_name')->unique();
-            $table->text('func_desc')->nullable();
+            $table->integer('vehicle_id');
+            $table->string('height')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('width')->nullable();
+            $table->string('colc')->nullable();
+            $table->string('volume_fuel')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateFunctionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('functions');
+        //
     }
 }

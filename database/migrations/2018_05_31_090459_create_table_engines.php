@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesFunctionsTable extends Migration
+class CreateTableEngines extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateRolesFunctionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles_functions', function (Blueprint $table) {
+        Schema::create('engines', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('role_id');
-            $table->integer('func_id');
+            $table->integer('vehicle_id');
+            $table->string('engine_type')->nullable();
+            $table->string('cylinder_capacity')->nullable();
+            $table->string('max_capacity')->nullable();
+            $table->string('drive_style')->nullable();
+            $table->string('drive_type')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateRolesFunctionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles_functions');
+        //
     }
 }

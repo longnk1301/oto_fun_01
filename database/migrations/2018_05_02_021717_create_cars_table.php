@@ -15,17 +15,13 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('comp_id');
+            $table->integer('type_id');
             $table->string('car_name')->unique();
-            $table->string('car_image')->nullable();
             $table->integer('car_cost')->default(0);
             $table->text('summary')->nullable();
-            $table->string('car_type')->nullable();
-            $table->string('car_company');
             $table->integer('car_number')->default(0);
-            $table->string('car_color')->nullable();
-            $table->integer('car_years')->nullable();
-            $table->string('tags');
-            $table->string('view_id');
+            $table->integer('car_year')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });
