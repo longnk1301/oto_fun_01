@@ -16,7 +16,7 @@ class IsAuthor
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->roles > 300) {
+        if (Auth::user()->role > 300) {
             return $next($request);
         }
         return response()->view('user.admin.404');

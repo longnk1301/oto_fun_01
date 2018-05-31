@@ -8,7 +8,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
+                <img src="{{ asset( Auth::user()->avatar ) }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->name }}</p>
@@ -121,7 +121,6 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                   <th>{!! trans('auth.id') !!}</th>
                                    <th>{!! trans('auth.image') !!}</th>
                                    <th>{!! trans('index.car_name') !!}</th>
                                    <th>{!! trans('auth.cost') !!}</th>
@@ -141,7 +140,7 @@
                                    </th>
                                </tr>
                             </thead>
-                            <tbody>
+                            {{-- <tbody>
                                 @foreach ($products as $product)
                                         <tr>
                                             <td>{{ $product->id }}</td>
@@ -168,10 +167,9 @@
                                             </td>
                                         </tr>
                                 @endforeach
-                            </tbody>
+                            </tbody> --}}
                             <tfoot>
                                 <tr>
-                                    <th>{!! trans('auth.id') !!}</th>
                                    <th>{!! trans('auth.image') !!}</th>
                                    <th>{!! trans('index.car_name') !!}</th>
                                    <th>{!! trans('auth.cost') !!}</th>
@@ -187,7 +185,7 @@
                             </tfoot>
                         </table>
                         <div class="text-center">
-                            {{ $products->links() }}
+                            {{-- {{ $products->links() }} --}}
                         </div>
                     </div>
                     <!-- /.box-body -->

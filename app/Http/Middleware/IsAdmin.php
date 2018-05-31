@@ -18,7 +18,7 @@ class IsAdmin
     {
         if (Auth::check()) {
             $user = Auth::user();
-            if ($user->roles > 100) {
+            if ($user->role > 100) {
 
                 return $next($request);
             } else {

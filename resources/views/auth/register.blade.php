@@ -8,13 +8,23 @@
                 <div class="panel-heading">{!! trans('auth.register') !!}</div>
 
                 <div class="panel-body">
-                    {!! Form::open(['method' => 'POST', 'route' => 'register', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['method' => 'POST', 'route' => 'register', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                         {{-- Name --}}
                         @if (session('msg'))
-                            <div class="alert alert-danger">
+                            <div class="alert alert-success">
                                 <span>{{ session('msg') }}</span>
                             </div>
                         @endif
+                        <div class="form-group row">
+                            {!! Html::decode(Form::label('avatar', trans('auth.image'), ['class' => 'col-md-4 control-label'])) !!}
+                            <div class="col-md-8">
+                                {!! Form::file('avatar', ['id' => 'avatar', 'accept' => 'image/*']) !!}
+                                @if(count($errors) > 0)
+                                    <span class="text-danger">{{$errors->first('avatar')}}</span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             {!! Form::label('name', trans('auth.name'), ['class' => 'col-md-4 control-label']) !!}
                             <div class="col-md-6">

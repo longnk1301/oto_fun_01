@@ -13,7 +13,7 @@ class ProductController extends Controller
     {
         $keyword = $request->keyword;
         $fullUrl = $request->fullUrl();
-        $pageSize = $request->pagesize == null ? 10 : $request->pagesize;
+        $pageSize = $request->pagesize == null ? 5 : $request->pagesize;
         $addPath = "";
         if (!$keyword) {
             $products = Car::paginate($pageSize);
