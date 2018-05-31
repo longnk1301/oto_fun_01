@@ -41,4 +41,14 @@ class Car extends Model
     {
         return $this->hasMany('App\Order');
     }
+
+    public function company()
+    {
+        return $this->belongsTo('App\Company');
+    }
+
+    public function carType()
+    {
+        return $this->belongsTo('App\CarType' , 'type_id', 'id');
+    }
 }

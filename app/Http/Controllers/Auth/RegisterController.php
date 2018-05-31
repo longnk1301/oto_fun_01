@@ -27,6 +27,7 @@ class RegisterController extends Controller
 
     public function postRegister(Request $request)
     {
+        // dd($request->all());
         $this->validate($request,[
             'name' => 'required|string|min:4|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -42,6 +43,12 @@ class RegisterController extends Controller
         $user->password = bcrypt($request->password);
         $user->phone = $request->phone;
         $user->add = $request->add;
+        if($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $fileName = uniqid() . '-' . $file->getClientOriginalName();
+            $file->storeAs('public/avatar', $fileName);
+            $user->avatar = 'storage/avatar/'.$fileName;
+        }
         $user->save();
 
         return redirect('register')->with('msg', Lang::get('auth.suc_register'));
