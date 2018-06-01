@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Vehicle;
+use App\Models\Operate;
+use App\Models\CarType;
+use App\Models\Color;
+use App\Models\Company;
+use App\Models\Engine;
+use App\Models\Exterior;
+use App\Models\Size;
 
 class ProductController extends Controller
 {
@@ -20,6 +27,13 @@ class ProductController extends Controller
             $addPath .= "?pagesize=$pageSize";
             foreach ($products as $product) {
                 $product['vehicles'] = $product->getVehicle();
+                $product['operates'] = $product->getOperate();
+                $product['colors'] = $product->getColor();
+                $product['engines'] = $product->getEngine();
+                $product['exteriors'] = $product->getExterior();
+                $product['sizes'] = $product->getSize();
+                $product['car_type'] = $product->getCarType();
+                $product['companys'] = $product->getCompany();
             }
         } else {
             $products = Car::where('car_type', 'like', "%$keyword%")->orwhere('car_name', 'like', "%$keyword%")->paginate();
@@ -33,9 +47,64 @@ class ProductController extends Controller
         return view('user.admin.car.index', compact('products', 'keyword', 'fullUrl', 'pageSize'));
     }
 
-    public function add(Car $model, Vehicle $vehicle)
+    public function show($id)
     {
-        return view('user.admin.car.form', compact('model', 'vehicle'));
+        $detail_car = Car::find($id);
+        // dd($detail_car);
+        if (!$detail_car) {
+            return view('user.admin.404');
+        } else {
+            $id_vehicle = Vehicle::where('car_id', $id)->pluck('id')->first();
+            $vehicle = Vehicle::where('car_id', $id)->first();
+            $operates = Operate::where('vehicle_id', $id_vehicle)->first();
+            $colors = Color::where('vehicle_id', $id_vehicle)->get();
+            $engines = Engine::where('vehicle_id', $id_vehicle)->first();
+            $exteriors = Exterior::where('vehicle_id', $id_vehicle)->first();
+            $sizes = Size::where('vehicle_id', $id_vehicle)->first();
+            $car_type = CarType::where('id', $id)->first();
+            $companys = Company::where('id', $id)->first();
+            }
+        return view('user.admin.car.details_car', compact(
+            'detail_car',
+            'operates',
+            'vehicle',
+            'colors',
+            'engines',
+            'exteriors',
+            'sizes',
+            'car_type',
+            'company'
+        ));
+    }
+
+    public function add(Car $car, Vehicle $vehicle, Operate $operates, Color $colors, Engine $engines, Exterior $exteriors, Size $sizes, CarType $car_type, Company $companys)
+    {
+        $car_types = CarType::all();
+        $types = [];
+        $typed = $car->type_id;
+            foreach ($car_types as $type) {
+                $types[$type->id] = $type->type;
+            }
+
+        $car_companys = Company::all();
+        $car_company = [];
+        $companyed = $car->comp_id;
+            foreach ($car_companys as $company) {
+                $car_company[$company->id] = $company->com_name;
+            }
+
+        $car_colors = Color::all();
+        $car_color = [];
+        $colored = $colors->vehicle_id;
+            foreach ($car_colors as $color) {
+                $car_color[$color->id] = $color->color;
+            }
+
+        return view('user.admin.car.form', compact(
+            'car', 'vehicle', 'operates', 'colors', 'engines', 'exteriors', 'sizes', 'car_type', 'companys',
+            'types', 'typed',
+            'car_company', 'companyed',
+            'car_color', 'colored'));
     }
 
     public function checkName(Request $request)
@@ -51,15 +120,16 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
+        dd($request->all());
         if ($request->id) {
-           $model = Car::find($request->id);
-            if (!$model) {
+           $car = Car::find($request->id);
+            if (!$car) {
                 return view('user.admin.404');
             }
         } else {
-            $model = new Car();
+            $car = new Car();
         }
-        $model->fill($request->all());
+        $car->fill($request->all());
 
         // upload file
         if($request->hasFile('image')) {
