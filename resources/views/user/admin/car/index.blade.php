@@ -121,17 +121,13 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                   <th>{!! trans('auth.image') !!}</th>
                                    <th>{!! trans('index.car_name') !!}</th>
+                                   <th>{!! trans('auth.image') !!}</th>
                                    <th>{!! trans('auth.cost') !!}</th>
                                    <th>{!! trans('index.car_type') !!}</th>
-                                   <th>{!! trans('auth.car_number') !!}</th>
+                                   <th>{!! trans('auth.company') !!}</th>
                                    <th>{!! trans('index.year') !!}</th>
-                                   <th>{!! trans('index.in_color') !!}</th>
-                                   <th>{!! trans('index.ex_color') !!}</th>
-                                   <th>{!! trans('index.fuel') !!}</th>
-                                   <th>{!! trans('index.drive') !!}</th>
-                                   <th>{!! trans('index.mpg') !!}</th>
+                                   <th>{!! trans('auth.status') !!}</th>
                                    <th>
                                        <a href="{{ route('product.add') }}"" class="btn btn-success">
                                            <i class="fa fa-plus"></i>
@@ -140,24 +136,22 @@
                                    </th>
                                </tr>
                             </thead>
-                            {{-- <tbody>
+                            <tbody>
                                 @foreach ($products as $product)
                                         <tr>
-                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $product->car_name }}</td>
                                             <td>
                                                 <img src="{{ asset($product->car_image) }}" class="images-cate-admin">
                                             </td>
-                                            <td>{{ $product->car_name }}</td>
                                             <td>{{ $product->car_cost }}</td>
-                                            <td>{{ $product->car_type }}</td>
-                                            <td>{{ $product->car_number }}</td>
-                                            <td>{{ $product->car_years }}</td>
-                                            <td>{{ $product->vehicles->interior_color }}</td>
-                                            <td>{{ $product->vehicles->exterior_color }}</td>
-                                            <td>{{ $product->vehicles->fuel_type }}</td>
-                                            <td>{{ $product->vehicles->drive_type }}</td>
-                                            <td>{{ $product->vehicles->mpg }}</td>
+                                            <td>{{ $product->car_type->type }}</td>
+                                            <td>{{ $product->companys->com_name }}</td>
+                                            <td>{{ $product->car_year }}</td>
+                                            <td>{{ $product->status }}</td>
                                             <td>
+                                                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="btn btn-sm btn-success">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </a>
                                                 <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
@@ -167,20 +161,17 @@
                                             </td>
                                         </tr>
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                             <tfoot>
                                 <tr>
-                                   <th>{!! trans('auth.image') !!}</th>
+                                   >
                                    <th>{!! trans('index.car_name') !!}</th>
+                                   <th>{!! trans('auth.image') !!}</th>
                                    <th>{!! trans('auth.cost') !!}</th>
                                    <th>{!! trans('index.car_type') !!}</th>
-                                   <th>{!! trans('auth.car_number') !!}</th>
+                                   <th>{!! trans('auth.company') !!}</th>
                                    <th>{!! trans('index.year') !!}</th>
-                                   <th>{!! trans('index.in_color') !!}</th>
-                                   <th>{!! trans('index.ex_color') !!}</th>
-                                   <th>{!! trans('index.fuel') !!}</th>
-                                   <th>{!! trans('index.drive') !!}</th>
-                                   <th>{!! trans('index.mpg') !!}</th>
+                                   <th>{!! trans('auth.status') !!}</th>
                                </tr>
                             </tfoot>
                         </table>

@@ -50,6 +50,8 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::get('/update/{id}', 'Admin\ProductController@edit')->name('product.edit')->middleware('isAuthor');
 
+        Route::get('/show/{id}', 'Admin\ProductController@show')->name('product.show');
+
         Route::get('/remove/{id}', 'Admin\ProductController@remove')->name('product.remove')->middleware('isAuthor');
 
         Route::post('/save', 'Admin\ProductController@save')->name('product.save');

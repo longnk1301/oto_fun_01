@@ -15,31 +15,31 @@ class Vehicle extends Model
 
     public function car()
     {
-        return $this->belongsTo('App\Models\Car', 'car_id', 'id');
+        return $this->belongsTo('App\Models\Car');
     }
 
     public function exterior()
     {
-        return $this->hasMany('App\Exterior');
+        return $this->hasMany('App\Models\Exterior');
     }
 
     public function operate()
     {
-        return $this->hasMany('App\Operate');
+        return $this->hasMany('App\Models\Operate');
     }
 
     public function size()
     {
-        return $this->hasMany('App\Size');
+        return $this->hasMany('App\Models\Size');
     }
 
     public function engine()
     {
-        return $this->hasMany('App\Engine');
+        return $this->hasMany('App\Models\Engine');
     }
 
     public function color()
     {
-        return $this->hasMany('App\Color');
+        return $this->hasMany('App\Models\Color');
     }
 }
