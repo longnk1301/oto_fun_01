@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,4 +13,9 @@ class ImageCar extends Model
         'color_id',
         'image',
     ];
+
+    public function car()
+    {
+        return $this->belongsTo('App\Models\Car');
+    }
 }

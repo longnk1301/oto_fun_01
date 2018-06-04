@@ -13,8 +13,8 @@ class Color extends Model
         'color',
     ];
 
-    public function vehicle()
+    public function car()
     {
-    	return $this->belongsTo('App\Models\Vehicle', 'vehicle_id', 'id');
+    	return $this->belongsTo('App\Models\Car');
     }
 }

@@ -37,9 +37,4 @@ class Vehicle extends Model
     {
         return $this->hasMany('App\Models\Engine');
     }
-
-    public function color()
-    {
-        return $this->hasMany('App\Models\Color');
-    }
 }

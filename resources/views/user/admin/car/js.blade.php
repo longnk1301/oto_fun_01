@@ -15,8 +15,8 @@
                 car_name: {
                     required: true,
                     checkExitsted: {
-                        requestUrl : "{{route('cate.checkName')}}",
-                        modelId: '{{$model->id}}'
+                        requestUrl : "{{ route('product.checkName') }}",
+                        modelId: '{{ $car->id }}'
                      }
                 },
                 car_number: {
@@ -27,36 +27,9 @@
                     required: true,
                     number: true
                 },
-                car_years: {
+                car_year: {
                     required: true,
                     number: true
-                },
-                tags: {
-                    required: true
-                },
-                interior_color: {
-                    required: true
-                },
-                exterior_color: {
-                    required: true
-                },
-                transmission: {
-                    required: true
-                },
-                engine: {
-                    required: true
-                },
-                mileage: {
-                    number: true
-                },
-                fuel_type: {
-                    required: true
-                },
-                drive_type: {
-                    required: true
-                },
-                mpg: {
-                    required: true
                 },
             },
             messages: {
@@ -77,30 +50,6 @@
                 },
                 tags: {
                     required: '{{ trans('auth.pl_enter_tag') }}'
-                },
-                interior_color: {
-                    required: '{{ trans('auth.pl_enter_car_color') }}'
-                },
-                exterior_color: {
-                    required: '{{ trans('auth.pl_enter_car_color') }}'
-                },
-                transmission: {
-                    required: '{{ trans('auth.pl_enter_car_trans') }}'
-                },
-                engine: {
-                    required: '{{ trans('auth.pl_enter_car_engine') }}'
-                },
-                mileage: {
-                    number: '{{ trans('auth.pl_enter_number') }}'
-                },
-                fuel_type: {
-                    required: '{{ trans('auth.pl_enter_fuel') }}'
-                },
-                drive_type: {
-                    required: '{{ trans('auth.pl_enter_drive') }}'
-                },
-                mpg: {
-                    required: '{{ trans('auth.pl_enter_mpg') }}'
                 },
             },
             errorPlacement: function(error, element)

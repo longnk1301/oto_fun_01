@@ -27,3 +27,55 @@
 .bg-white {
 	background-color: white !important;
 }
+.bg-grey {
+	background-color: #d7d7d7;
+}
+.text-orange {
+	color: orange;
+}
+.image-car {
+	float: left;
+}
+.image-car img {
+	width: 350px;
+	height: 180px;
+	background-color: transparent;
+	margin-left: 80px;
+}
+.wd {
+	width: 30%;
+	color: #000;
+	font-weight: bold;
+}
+.content-header h1 {
+	color: #000;
+}
+.content-header h2 {
+	color: #68571D;
+}
+.Tooltip {
+    position: relative !important;
+    display: inline-block !important;
+    /*border-bottom: 1px dotted black;*/
+}
+
+.Tooltip .tooltipText {
+    visibility: hidden !important;
+    width: 55px !important;
+    background-color: #eeeeee !important;
+    color: blue !important;
+    text-align: center !important;
+    border-radius: 10px !important;
+    padding: 2px 0 !important;
+    position: absolute !important;
+    z-index: 1000 !important;
+    top: -27px;
+    left: 5px;
+}
+
+.Tooltip:hover .tooltipText {
+    visibility: visible !important;
+}
+.f-right {
+	float: right;
+}
