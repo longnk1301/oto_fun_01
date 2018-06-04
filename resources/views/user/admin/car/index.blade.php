@@ -95,7 +95,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content ">
+    <section class="content">
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -116,7 +116,7 @@
                             {!! Form::close() !!}
                         </div>
                     </div>
-                    <!-- /.box-header -->
+                    <!-- /box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -129,8 +129,9 @@
                                    <th>{!! trans('index.year') !!}</th>
                                    <th>{!! trans('auth.status') !!}</th>
                                    <th>
-                                       <a href="{{ route('product.add') }}"" class="btn btn-success">
+                                       <a href="{{ route('product.add') }}" class="btn btn-success Tooltip">
                                            <i class="fa fa-plus"></i>
+                                           <span class="tooltipText">{{ trans('auth.add') }}</span>
                                            {{ trans('auth.add') }}
                                        </a>
                                    </th>
@@ -141,7 +142,9 @@
                                         <tr>
                                             <td>{{ $product->car_name }}</td>
                                             <td>
-                                                <img src="{{ asset($product->car_image) }}" class="images-cate-admin">
+                                                @foreach ($product->images as $allImage)
+                                                    <img src="{{ asset($allImage->image) }}" class="images-cate-admin">
+                                                @endforeach
                                             </td>
                                             <td>{{ $product->car_cost }}</td>
                                             <td>{{ $product->car_type->type }}</td>
@@ -149,14 +152,17 @@
                                             <td>{{ $product->car_year }}</td>
                                             <td>{{ $product->status }}</td>
                                             <td>
-                                                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="btn btn-sm btn-success">
+                                                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="btn btn-sm btn-success Tooltip">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    <span class="tooltipText">{{ trans('auth.show') }}</span>
                                                 </a>
-                                                <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-primary Tooltip">
                                                     <i class="fa fa-pencil"></i>
+                                                    <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('product.remove', ['id' => $product->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('product.remove', ['id' => $product->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                     <i class="fa fa-remove"></i>
+                                                    <span class="tooltipText">{{ trans('auth.delete') }}</span>
                                                 </a>
                                             </td>
                                         </tr>
@@ -164,7 +170,6 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                   >
                                    <th>{!! trans('index.car_name') !!}</th>
                                    <th>{!! trans('auth.image') !!}</th>
                                    <th>{!! trans('auth.cost') !!}</th>
@@ -176,7 +181,7 @@
                             </tfoot>
                         </table>
                         <div class="text-center">
-                            {{-- {{ $products->links() }} --}}
+                            {{ $products->links() }}
                         </div>
                     </div>
                     <!-- /.box-body -->

@@ -49,18 +49,6 @@ class Car extends Model
         return $operates;
     }
 
-    public function color()
-    {
-        return $this->hasManyThrough('App\Models\Color', 'App\Models\Vehicle');
-    }
-
-    public function getColor()
-    {
-        $colors = Color::find($this->id);
-
-        return $colors;
-    }
-
     public function engine()
     {
         return $this->hasManyThrough('App\Models\Engine', 'App\Models\Vehicle');
@@ -124,5 +112,30 @@ class Car extends Model
         $car_type = CarType::find($this->type_id);
 
         return $car_type;
+    }
+
+    public function color()
+    {
+        return $this->belongsTo('App\Models\Color');
+    }
+
+    public function getColor()
+    {
+        $colors = Color::find($this->color_id);
+
+        return $colors;
+    }
+
+    public function image()
+    {
+        return $this->hasMany('App\Models\ImageCar');
+    }
+
+    public function getImageCar()
+    {
+        $car = Car::find($this->id);
+        $images = ImageCar::where('car_id', $car->id);
+
+        return $images;
     }
 }
