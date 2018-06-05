@@ -1,20 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset( Auth::user()->avatar ) }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>{!! trans('auth.ol') !!}</a>
-            </div>
-        </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">{!! trans('auth.main') !!}</li>
@@ -25,56 +17,38 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('cate.index') }}">
                     <i class="fa fa-edit"></i> <span>{{ trans('auth.categories') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.list_categories') }}</a></li>
-                    <li><a href="{{ route('cate.add') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.add_category') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('post.index') }}">
                     <i class="fa fa-file-text-o"></i> <span>{{ trans('auth.posts') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('post.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_posts') }}</a></li>
-                    <li><a href="{{ route('post.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_post') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('product.index') }}">
                     <i class="fa fa-car"></i> <span>{{ trans('auth.products') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_orders') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('user.index') }}">
                     <i class="fa fa-user-o"></i> <span>{{ trans('auth.users') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_users') }}</a></li>
-                </ul>
             </li>
         </ul>
     </section>
@@ -120,6 +94,7 @@
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
+                                <button class="btn btn-danger delete_all" data-url="{{ route('product.remove.all') }}">Delete All</button>
                                 <tr>
                                    <th>{!! trans('index.car_name') !!}</th>
                                    <th>{!! trans('auth.image') !!}</th>
@@ -128,12 +103,19 @@
                                    <th>{!! trans('auth.company') !!}</th>
                                    <th>{!! trans('index.year') !!}</th>
                                    <th>{!! trans('auth.status') !!}</th>
+                                   <th><input type="checkbox" id="master"></th>
                                    <th>
-                                       <a href="{{ route('product.add') }}" class="btn btn-success Tooltip">
+                                       <a href="{{ route('product.add') }}" class="btn btn-success Tooltip" data-toggle="modal" data-target="#myModal1">
                                            <i class="fa fa-plus"></i>
                                            <span class="tooltipText">{{ trans('auth.add') }}</span>
                                            {{ trans('auth.add') }}
                                        </a>
+                                        <div class="modal fade" id="myModal1" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                </div>
+                                            </div>
+                                        </div>
                                    </th>
                                </tr>
                             </thead>
@@ -142,24 +124,64 @@
                                         <tr>
                                             <td>{{ $product->car_name }}</td>
                                             <td>
-                                                @foreach ($product->images as $allImage)
-                                                    <img src="{{ asset($allImage->image) }}" class="images-cate-admin">
-                                                @endforeach
+                                                @if (count($product->images) > 0)
+                                                    <img src="{{ asset($product->images->image) }}" class="images-cate-admin">
+                                                @endif
                                             </td>
                                             <td>{{ $product->car_cost }}</td>
-                                            <td>{{ $product->car_type->type }}</td>
-                                            <td>{{ $product->companys->com_name }}</td>
+                                            <td>
+                                                @if (!isset($product->car_type->type))
+                                                    {{ null }}
+                                                @else
+                                                    {{ $product->car_type->type }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if (!isset($product->companys->com_name))
+                                                    {{ null }}
+                                                @else
+                                                    {{ $product->companys->com_name }}
+                                                @endif
+                                            </td>
                                             <td>{{ $product->car_year }}</td>
                                             <td>{{ $product->status }}</td>
                                             <td>
-                                                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="btn btn-sm btn-success Tooltip">
+                                                <input type="checkbox" class="sub_chk" data-id="{{ $product->id }}">
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('product.show', ['id' => $product->id]) }}" class="btn btn-sm btn-primary Tooltip" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                     <span class="tooltipText">{{ trans('auth.show') }}</span>
                                                 </a>
-                                                <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-primary Tooltip">
+                                                    <div class="modal fade" id="myModal" role="dialog">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                <a href="{{ route('product.edit', ['id' => $product->id]) }}" class="btn btn-sm btn-warning Tooltip" data-toggle="modal" data-target="#myModal1">
                                                     <i class="fa fa-pencil"></i>
                                                     <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                                 </a>
+                                                    <div class="modal fade" id="myModal1" role="dialog">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                <a href="{{ route('product.duplicate', ['id' => $product->id]) }}" class="btn btn-sm btn-success Tooltip" data-toggle="modal" data-target="#myModal1">
+                                                    <i class="fa fa-files-o"></i>
+                                                    <span class="tooltipText">{{ trans('auth.duplicate') }}</span>
+                                                </a>
+                                                    <div class="modal fade" id="myModal1" role="dialog">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 <a href="javascript:;" onclick="confirmRemove('{{ route('product.remove', ['id' => $product->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                     <i class="fa fa-remove"></i>
                                                     <span class="tooltipText">{{ trans('auth.delete') }}</span>
@@ -197,6 +219,17 @@
 @endsection
 
 @section('js')
+    <script>
+        $(document.body).on('hidden.bs.modal', function () {
+            $('#myModal').removeData('bs.modal')
+        });
+
+        //Edit SL: more universal
+        $(document).on('hidden.bs.modal', function (e) {
+            $(e.target).removeData('bs.modal');
+        });
+    </script>
+
     <script>
         function confirmRemove(url) {
             bootbox.confirm({
@@ -238,4 +271,89 @@
           'autoWidth'   : false
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#master').on('click', function(e) {
+                if ($(this).is(':checked',true)) {
+                    $(".sub_chk").prop('checked', true);
+                } else {
+                    $(".sub_chk").prop('checked',false);
+                }
+            });
+
+            $('.delete_all').on('click', function(e) {
+                var allVals = [];
+                $(".sub_chk:checked").each(function() {
+                    allVals.push($(this).attr('data-id'));
+                });
+                if(allVals.length <=0) {
+                    alert("Please select row.");
+                }  else {
+                    var check = confirm("Are you sure you want to delete this row?");
+                    if(check == true) {
+                        var join_selected_values = allVals.join(",");
+                        // console.log($(this).data('url'));
+                        $.ajax({
+                            url: $(this).data('url'),
+                            type: 'DELETE',
+                            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                            data: 'ids='+join_selected_values,
+                            success: function (data) {
+                                if (data['success']) {
+                                    $(".sub_chk:checked").each(function() {
+                                        $(this).parents("tr").remove();
+                                    });
+                                    alert(data['success']);
+                                } else if (data['error']) {
+                                    alert(data['error']);
+                                } else {
+                                    alert('Whoops Something went wrong!!');
+                                }
+                            },
+                            error: function (data) {
+                                alert(data.responseText);
+                            }
+                        });
+                      $.each(allVals, function( index, value ) {
+                          $('table tr').filter("[data-row-id='" + value + "']").remove();
+                      });
+                    }
+                }
+            });
+
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+                onConfirm: function (event, element) {
+                    element.trigger('confirm');
+                }
+            });
+
+            $(document).on('confirm', function (e) {
+                var ele = e.target;
+                e.preventDefault();
+
+                $.ajax({
+                    url: ele.href,
+                    type: 'DELETE',
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    success: function (data) {
+                        if (data['success']) {
+                            $("#" + data['tr']).slideUp("slow");
+                            alert(data['success']);
+                        } else if (data['error']) {
+                            alert(data['error']);
+                        } else {
+                            alert('Whoops Something went wrong!!');
+                        }
+                    },
+                    error: function (data) {
+                        alert(data.responseText);
+                    }
+                });
+
+                return false;
+            });
+        });
+</script>
 @endsection

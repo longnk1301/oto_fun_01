@@ -31,6 +31,9 @@
                     required: true,
                     number: true
                 },
+                image: {
+                    required: true
+                },
             },
             messages: {
                 car_name: {

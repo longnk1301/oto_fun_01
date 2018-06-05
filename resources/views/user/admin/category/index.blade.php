@@ -5,16 +5,6 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>{!! trans('auth.ol') !!}</a>
-            </div>
-        </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">{!! trans('auth.main') !!}</li>
@@ -25,56 +15,38 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('cate.index') }}">
                     <i class="fa fa-edit"></i> <span>{{ trans('auth.categories') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.list_categories') }}</a></li>
-                    <li><a href="{{ route('cate.add') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.add_category') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('post.index') }}">
                     <i class="fa fa-file-text-o"></i> <span>{{ trans('auth.posts') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('post.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_posts') }}</a></li>
-                    <li><a href="{{ route('post.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_post') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('product.index') }}">
                     <i class="fa fa-car"></i> <span>{{ trans('auth.products') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_orders') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('user.index') }}">
                     <i class="fa fa-user-o"></i> <span>{{ trans('auth.users') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_users') }}</a></li>
-                </ul>
             </li>
         </ul>
     </section>
@@ -121,39 +93,59 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                   <th>{!! trans('auth.id') !!}</th>
                                    <th>{!! trans('auth.category_name') !!}</th>
                                    <th>{!! trans('auth.parent_name') !!}</th>
                                    <th>{!! trans('auth.image') !!}</th>
-                                   <th>{!! trans('auth.slug') !!}</th>
+                                   <th>{!! trans('auth.status') !!}</th>
                                    <th>{!! trans('auth.created_at') !!}</th>
                                    <th>{!! trans('auth.update_at') !!}</th>
                                    <th>
-                                       <a href="{{ route('cate.add') }}"" class="btn btn-success">
+                                       <a href="{{ route('cate.add') }}"" class="btn btn-success Tooltip" data-toggle="modal" data-target="#myModal2">
                                            <i class="fa fa-plus"></i>
+                                           <span class="tooltipText">{{ trans('auth.add') }}</span>
                                            {{ trans('auth.add') }}
                                        </a>
+                                       <div class="modal fade" id="myModal2" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                </div>
+                                            </div>
+                                        </div>
                                    </th>
                                </tr>
                             </thead>
                             <tbody>
                                  @foreach ($category as $cate)
                                     <tr>
-                                        <td>{{ $cate->id }}</td>
-                                        <td>{{ $cate->cate_name }}</td>
+                                        <td>
+                                            @if (count($cate->category_name) > 0)
+                                                {{ $cate->category_name }}
+                                            @endif
+                                        </td>
                                         <td>{{ $cate->parent_name }}</td>
                                         <td>
-                                            <img src="{{ asset('/storage/' . $cate->images) }}" class="images-cate-admin">
+                                            @if (count($cate->image) > 0)
+                                                <img src="{{ asset('/storage/' . $cate->image) }}" class="images-cate-admin">
+                                            @endif
                                         </td>
-                                        <td>{{ $cate->slug }}</td>
+                                        <td>{{ $cate->status }}</td>
                                         <td>{{ $cate->created_at }}</td>
                                         <td>{{ $cate->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('cate.edit', ['id' => $cate->id]) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('cate.edit', ['id' => $cate->id]) }}" class="btn btn-sm btn-warning Tooltip" data-toggle="modal" data-target="#myModal2">
                                                 <i class="fa fa-pencil"></i>
+                                                <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                             </a>
-                                            <a href="javascript:;" onclick="confirmRemove('{{ route('cate.remove', ['id' => $cate->id]) }}')" class="btn btn-sm btn-danger">
+                                            <div class="modal fade" id="myModal2" role="dialog">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <a href="javascript:;" onclick="confirmRemove('{{ route('cate.remove', ['id' => $cate->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                 <i class="fa fa-remove"></i>
+                                                <span class="tooltipText">{{ trans('auth.delete') }}</span>
                                             </a>
                                         </td>
                                     </tr>
@@ -161,11 +153,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                   <th>{!! trans('auth.id') !!}</th>
                                    <th>{!! trans('auth.category_name') !!}</th>
                                    <th>{!! trans('auth.parent_name') !!}</th>
                                    <th>{!! trans('auth.image') !!}</th>
-                                   <th>{!! trans('auth.slug') !!}</th>
+                                   <th>{!! trans('auth.status') !!}</th>
                                    <th>{!! trans('auth.created_at') !!}</th>
                                    <th>{!! trans('auth.update_at') !!}</th>
                                </tr>

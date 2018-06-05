@@ -9,12 +9,13 @@ class Category extends Model
 	protected $table = 'categories';
 	
     public $fillable = [
-        'cate_name',
+        'category_name',
         'summary',
-        'tags',
         'slug',
         'parent_id',
+        'image',
         'id',
+        'status',
     ];
 
     public function getParentName()
@@ -23,7 +24,7 @@ class Category extends Model
     	if (!$parent) {
     		return null;
     	}
-    	return $parent->cate_name;
+    	return $parent->category_name;
     }
 
     public function posts()

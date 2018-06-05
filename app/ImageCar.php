@@ -10,7 +10,6 @@ class ImageCar extends Model
 
     public $fillable = [
         'car_id',
-        'color_id',
         'image',
     ];
 

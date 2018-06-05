@@ -32,7 +32,6 @@
             });
         });
 
-
         $('#post-form').validate({
             rules: {
                 title: {
@@ -45,16 +44,19 @@
                         modelId: '{{$model->id}}'
                     }
                 },
-                cate_id: {
+                category_id: {
                     required: true
-                    }
                 },
                 tags: {
                     required: true,
                     checkExitsted: {
-                        requestUrl: "{{route('post.checkName')}}",
+                        requestUrl: "{{route('post.checkTag')}}",
                         modelId: '{{$model->id}}'
                     }
+                },
+                image: {
+                    required: true
+                },
             },
             messages: {
                 title: {
@@ -70,7 +72,7 @@
                 tags: {
                     required: '{{ trans('auth.pl_enter_tag') }}',
                     checkExitsted: '{{ trans('auth.the_cate_already_exixts') }}',
-                }
+                },
             },
             errorPlacement: function(error, element)
             {

@@ -5,4 +5,5 @@
     {!! Html::style('/bower/AdminLTE-2.4.3/dist/css/skins/_all-skins.min.css') !!}
     {!! Html::style('/bower/AdminLTE-2.4.3/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}
     {!! Html::style('/bower/AdminLTE-2.4.3/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') !!}
+    {!! Html::style('/bower/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.css') !!}
     {!! Html::style('css/admin.css') !!}

@@ -35,7 +35,7 @@
 
         $('#cate-form').validate({
             rules: {
-                cate_name: {
+                category_name: {
                     required: true,
                     checkExitsted: {
                         requestUrl : "{{route('cate.checkName')}}",
@@ -51,14 +51,7 @@
                 },
                 parent_id: {
                     required: true
-                    }
-                },
-                tags: {
-                    required: true,
-                    checkExitsted: {
-                        requestUrl: "{{route('cate.checkName')}}",
-                        modelId: '{{$model->id}}'
-                    }
+                    },
             },
             messages: {
                 cate_name: {

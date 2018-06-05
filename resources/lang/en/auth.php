@@ -127,7 +127,7 @@ return [
     'cars' => 'cars',
     'delete_all' => 'Delete All',
     'edit' => 'Edit',
-    'tissue_men' => 'Tissue Men',
+    'tissue_men' => 'Tissue',
     'drive_type' => 'Drive Type',
     'engine_type' => 'Engine Type',
     'cylinder_capacity' => 'Cylinder Capacity',

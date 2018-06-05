@@ -28,7 +28,7 @@ class ProductController extends Controller
             foreach ($products as $product) {
                 $product['car_type'] = $product->getCarType();
                 $product['companys'] = $product->getCompany();
-                $product['images'] = $product->getImageCar()->get();
+                $product['images'] = $product->getImageCar()->first();
             }
         } else {
             $products = Car::where('car_type', 'like', "%$keyword%")->orwhere('car_name', 'like', "%$keyword%")->paginate();
@@ -73,7 +73,7 @@ class ProductController extends Controller
 
     public function add(Car $car, Vehicle $vehicle, Operate $operates, Engine $engines, Exterior $exteriors, Size $sizes)
     {
-        $status = $car->status;
+        $status = 'UnPublic';
         $car_types = CarType::all();
         $types = [];
         $typed = $car->type_id;
@@ -216,8 +216,8 @@ class ProductController extends Controller
             foreach ($files as $file) {
                 $images = new ImageCar();
                 $fileName = uniqid() . '-' . $file->getClientOriginalName();
-                $file->storeAs('public/products', $fileName);
-                $images->image = 'storage/products/'.$fileName;
+                $file->storeAs(config('mysetting.ImgProduct'), $fileName);
+                $images->image = config('mysetting.GetImgeProduct' . $fileName);
                 $images->car_id = $car->id;
                 $images->save();
             }

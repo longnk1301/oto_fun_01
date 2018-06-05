@@ -15,6 +15,8 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::get('/update/{id}', 'Admin\CategoryController@edit')->name('cate.edit')->middleware('isAuthor');
 
+        Route::get('/show/{id}', 'Admin\CategoryController@show')->name('cate.show');
+
         Route::get('/remove/{id}', 'Admin\CategoryController@remove')->name('cate.remove')->middleware('isAuthor');
 
         Route::post('/save', 'Admin\CategoryController@save')->name('cate.save');
@@ -27,11 +29,15 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::post('/check-name', 'Admin\PostController@checkName')->name('post.checkName');
 
+        Route::post('/check-tag', 'Admin\PostController@checkTag')->name('post.checkTag');
+
         Route::post('/check-slug', 'Admin\PostController@checkSlug')->name('post.checkSlug');
 
         Route::get('/add', 'Admin\PostController@add')->name('post.add');
 
         Route::get('/update/{id}', 'Admin\PostController@edit')->name('post.edit')->middleware('isAuthor');
+
+        Route::get('/show/{id}', 'Admin\PostController@show')->name('post.show');
 
         Route::get('/remove/{id}', 'Admin\PostController@remove')->name('post.remove')->middleware('isAuthor');
 
