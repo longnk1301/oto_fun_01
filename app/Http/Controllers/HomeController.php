@@ -133,7 +133,7 @@ class HomeController extends Controller
     //lấy dữ liệu new car chuyển sang json
     public function getNewCar(Request $request)
     {
-        $getcar = Car::where('comp_id', $request->id_company)->where('car_year', Carbon::now()->year)->get();
+        $getcar = Car::where('comp_id', $request->id_company)->where('car_year', Carbon::now()->year)->where('status', 'Public')->get();
         foreach ($getcar as $imgCar) {
             $imgCar['img'] = $imgCar->getImageCar()->first();
         }
@@ -143,7 +143,7 @@ class HomeController extends Controller
     //lấy dữ liệu used car chuyen sang dang json
     public function getUsedCar(Request $request)
     {
-        $getcar = Car::where('comp_id', $request->id_company)->whereBetween('car_year', [2000, 2017])->get();
+        $getcar = Car::where('comp_id', $request->id_company)->whereBetween('car_year', [2000, 2017])->where('status', 'Public')->get();
         foreach ($getcar as $imgCar) {
             $imgCar['img'] = $imgCar->getImageCar()->first();
         }
@@ -189,6 +189,7 @@ class HomeController extends Controller
     public function findCar(Request $request)
     {
         $car = Car::find($request->carId);
+        $car['img'] = $car->getImageCar()->first();
 
         return response()->json($car);
     }
@@ -196,28 +197,28 @@ class HomeController extends Controller
     // trang tin tức
     public function news()
     {
-        $posts = Post::paginate(config('app.paginate'));
+        $parent_categories = Category::where('status', 'Public')->where('parent_id', -1)->get();
+        $posts = Post::where('status', 'Public')->paginate(config('app.paginate'));
         foreach ($posts as $p) {
             $p['category_id'] = $p->getCate();
             $p['imgPost'] = $p->getImagePost()->first();
         }
-
-        return view('post.news', compact('posts'));
+        return view('post.news', compact('posts', 'parent_categories', 'categories'));
     }
 
     //trỏ tới form search
     public function view_used_car_for_sale()
     {
-        $car_sale = Car::distinct()->get(['car_type']);
-
-        return view('search.used_car_for_sale', compact('car_sale'));
+        return view('search.used_car_for_sale');
     }
 
     //so sanh
     public function compare()
     {
-        $compare = Car::all();
-
+        $compare = Car::where('status', 'Public')->paginate(config('app.paginate'));
+        foreach ($compare as $imgCar) {
+            $imgCar['img'] = $imgCar->getImageCar()->first();
+        }
         return view('compare.compare', compact('compare'));
     }
 
@@ -234,24 +235,42 @@ class HomeController extends Controller
     public function compareAdd(Request $request)
     {
         $cars = Car::where('id', $request->compare_id)->first();
-        $vehicles = Vehicle::where('car_id', $cars->id)->first();
+        $img = ImageCar::where('car_id', $cars->id)->first();
+        $type = CarType::where('id', $cars->type_id)->first();
+        $company = Company::where('id', $cars->comp_id)->first();
+        $color = Color::where('id', $cars->color_id)->first();
+        $id_vehicle = Vehicle::where('car_id', $cars->id)->pluck('id')->first();
+        $operates = Operate::where('vehicle_id', $id_vehicle)->first();
+        $engines = Engine::where('vehicle_id', $id_vehicle)->first();
+        $exteriors = Exterior::where('vehicle_id', $id_vehicle)->first();
+        $sizes = Size::where('vehicle_id', $id_vehicle)->first();
+
         Cart::add(array(
             'id' => $request->compare_id,
             'name' => $cars->car_name,
             'qty' => $cars->car_number,
             'price' => $cars->car_cost,
             'options' => array(
-                            'img' => $cars->car_image,
-                            'type' => $cars->car_type,
-                            'year' => $cars->car_years,
-                            'inColor' => $vehicles->interior_color,
-                            'exColor' => $vehicles->exterior_color,
-                            'trans' => $vehicles->transmission,
-                            'engine' => $vehicles->engine,
-                            'mileage' => $vehicles->mileage,
-                            'fuel' => $vehicles->fuel_type,
-                            'drive' => $vehicles->drive_type,
-                            'mpg' => $vehicles->mpg
+                            'img' => $img->image,
+                            'type' => $type->type,
+                            'year' => $cars->car_year,
+                            'color' => $color->color,
+                            'company' => $company->com_name,
+                            'tissue_men' => $operates->tissue_man,
+                            'gear' => $operates->gear,
+                            'engine_type' => $engines->engine_type,
+                            'cylinder_capacity' => $engines->cylinder_capacity,
+                            'max_capacity' => $engines->cylinder_capacity,
+                            'drive_type' => $engines->drive_type,
+                            'drive_style' => $engines->drive_style,
+                            'locks_nearby' => $exteriors->locks_nearby,
+                            'locks_remote' => $exteriors->locks_remote,
+                            'turn_signal_light' => $exteriors->turn_signal_light,
+                            'height' => $sizes->height,
+                            'weight' => $sizes->weight,
+                            'width' => $sizes->width,
+                            'colc' => $sizes->colc,
+                            'volume_fuel' => $sizes->volume_fuel
                           )));
     }
 
@@ -261,7 +280,6 @@ class HomeController extends Controller
         Cart::count();
 
         return redirect(route('compare'));
-
     }
 
     public function compareDeleteItem(Request $request)
@@ -278,7 +296,7 @@ class HomeController extends Controller
     public function categories($cateSlug)
     {
         $cate = Category::where('slug', $cateSlug)->first();
-        $posts = Post::where('category_id', $cate->id)->paginate();
+        $posts = Post::where('category_id', $cate->id)->where('status', 'Public')->paginate();
         foreach ($posts as $p) {
             $p['category_id'] = $p->getCate();
             $p['imgPost'] = $p->getImagePost()->first();

@@ -23,18 +23,16 @@
             <div class="col-md-4">
                 <div class="post-single">
                     <ul>
-                        @if ($p->category_id != null)
-                          <p>
+                        <p>
                             <strong>
-                              <a class="cate_name" href="{{ route('cate.detail', $p->category_id->slug) }}">{{ $p->category_id->cate_name }}</a>
+                                <a class="cate_name" href="{{ route('cate.detail', $p->category_id->slug) }}">{{ $p->category_id->category_name }}</a>
                             </strong>
-                          </p>
-                        @endif
+                        </p>
                         <li></li>
                     </ul>
                     <div class="post-img">
                         <a href="{{ url($p->slug)}}">
-                            <img src="{{ asset($p->image) }}" alt="">
+                            <img src="{{ asset($p->imgPost->image) }}" alt="">
                         </a>
                     </div>
                     <div class="post-desk">
@@ -46,9 +44,6 @@
                         <a href="{{ url($p->slug) }}">{{ $p->updated_at }}</a>
                     </div>
                     <p>{{ $p->summary }}</p>
-                    <p>
-                        <a class="tags" href ="#">{{ $p->tags }}</a>
-                    </p>
                     <a href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>

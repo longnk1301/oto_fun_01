@@ -110,11 +110,13 @@
                                             <td>{{ $advisory->cus_email }}</td>
                                             <td>{{ $advisory->status }}</td>
                                             <td>
-                                                <a href="{{ route('order.edit', ['id' => $advisory->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('order.edit', ['id' => $advisory->id]) }}" class="btn btn-sm btn-primary Tooltip">
                                                     <i class="fa fa-pencil"></i>
+                                                    <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $advisory->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $advisory->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                     <i class="fa fa-remove"></i>
+                                                    <span class="tooltipText">{{ trans('auth.delete') }}</span>
                                                 </a>
                                             </td>
                                         </tr>

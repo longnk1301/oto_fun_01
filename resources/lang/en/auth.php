@@ -151,6 +151,7 @@ return [
     'back' => 'Back',
     'vehicles' => 'Vehicles',
     'pending' => 'Pending',
+    'duplicate' => 'Duplicate',
 
     /*-----------------------------------------------------------------------------*/
     'wrong_acc' => 'Wrong account name or password!',

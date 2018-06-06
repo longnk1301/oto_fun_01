@@ -111,11 +111,13 @@
                                             <td>{{ $user->add }}</td>
                                             <td class="text-success"><b>{{ $user->role_name->role_name }}</b></td>
                                             <td>
-                                                <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary Tooltip">
                                                     <i class="fa fa-pencil"></i>
+                                                    <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('user.remove', ['id' => $user->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('user.remove', ['id' => $user->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                     <i class="fa fa-remove"></i>
+                                                    <span class="tooltipText">{{ trans('auth.delete') }}</span>
                                                 </a>
                                             </td>
                                         </tr>

@@ -23,13 +23,13 @@
             @foreach ($compare as $comp)
             <div class="row products">
                 <div class="col-xs-4">
-                        <img src="{{ asset($comp->car_image) }}" alt="">
+                        <img src="{{ asset($comp->img->image) }}" alt="">
                     </div>
                 <div class="col-xs-5">
                     <p><b>{{ trans('index.car_name') }}</b>{{ $comp->car_name }}</p>
-                    <p><b>{{ trans('index.car_type') }}</b>{{ $comp->car_type }}</p>
-                    <p><b>{{ trans('index.car_year') }}</b>{{ $comp->car_years }}</p>
-                    <p><b>{{ trans('index.car_summary') }}</b>{{ str_limit($comp->summary, 120, '...') }}</p>
+                    {{-- <p><b>{{ trans('index.car_type') }}</b>{{ $comp->car_type }}</p> --}}
+                    <p><b>{{ trans('index.car_year') }}</b>{{ $comp->car_year }}</p>
+                    <p><b>{{ trans('index.car_summary') }}</b>{!! str_limit($comp->summary, 120, '...') !!}</p>
                 </div>
                 <div class="col-xs-3 view-details">
                     <p><b>${{ number_format($comp->car_cost, 0, ", ", ".") }}</b></p>
@@ -101,7 +101,6 @@ $(document).ready(function()
                         dataType: 'JSON',
                         data: {carId: carId},
                         success: function(result) {
-                            console.log(result);
                             var html = '';
                                 html += '<div class="item" id="parent' + result['id'] + '" data-id="' + result['id'] + '">';
                                     html += '<div class="delete-car">';
@@ -110,7 +109,7 @@ $(document).ready(function()
                                         html += '</a>';
                                     html += '</div>';
                                     html += '<div class="avatar-car">';
-                                        html += '<img src="' + result['car_image'] +'" alt="">';
+                                        html += '<img src="' + result['img']['image'] +'" alt="">';
                                     html += '</div>';
                                     html += '<div class="info-car">';
                                         html += '<h2 class="name"><a href="#">' + result['car_name'] + '</a></h2>';
