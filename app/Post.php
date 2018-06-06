@@ -10,22 +10,41 @@ class Post extends Model
 
     public $fillable = [
         'title',
-        'cate_id',
+        'category_id',
         'content',
         'slug',
         'summary',
-        'tags',
+        'status',
     ];
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 
     public function getCate()
     {
-        $cate = Category::find($this->cate_id);
-
-        return $cate;
+        $category = Category::find($this->category_id);
+        
+        return $category;
     }
-    
-    public function category()
+
+    public function image()
     {
-        return $this->belongsTo('App\Models\Category', 'cate_id', 'id');
+        return $this->hasMany('App\Models\ImagePost');
+    }
+
+    public function getImagePost()
+    {
+        $post = Post::find($this->id);
+        $images = ImagePost::where('post_id', $post->id);
+
+        return $images;
+    }
+
+    public $timestamps = true;
+
+    public function tags()
+    {
+        return $this->belongsToMany('App\Models\Tag', 'post_tag');
     }
 }

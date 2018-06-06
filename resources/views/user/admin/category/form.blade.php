@@ -37,25 +37,17 @@
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('post.index') }}">
                     <i class="fa fa-file-text-o"></i> <span>{{ trans('auth.posts') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('post.index') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.list_posts') }}</a></li>
-                    <li><a href="{{ route('post.add') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.add_post') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('product.index') }}">
                     <i class="fa fa-car"></i> <span>{{ trans('auth.products') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
@@ -102,9 +94,9 @@
                 {!! Form::hidden('id', $model->id) !!}
                 <div class="col-md-6">
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('cate_name', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
+                        {!! Html::decode(Form::label('category_name', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                         <div class="col-md-8">
-                            {!! Form::text('cate_name', $model->cate_name , ['class' => 'form-control', 'id' => 'cateName', 'placeholder' => trans('auth.category_name')]) !!}
+                            {!! Form::text('category_name', $model->category_name , ['class' => 'form-control', 'id' => 'cateName', 'placeholder' => trans('auth.category_name')]) !!}
                         </div>
                     </div>
 
@@ -117,13 +109,6 @@
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('tags', trans('auth.tags') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
-                        <div class="col-md-8">
-                            {!! Form::text('tags', $model->tags , ['class' => 'form-control', 'placeholder' => trans('auth.ex_tags')]) !!}
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
                         {!! Html::decode(Form::label('', trans('auth.parent_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-4 control-label'])) !!}
                        <div class="col-md-8">
                                 {!! Form::select(
@@ -135,12 +120,24 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="col-md-2 col-md-offset-2">{{ trans('auth.status') }}</label>
+                        <label class="radio-custom col-md-3 input-md">
+                            {!! Form::radio('status', 'UnPublic', $status == 'UnPublic') !!}
+                            {{ trans('auth.unpublic') }}
+                        </label>
+                        <label class="radio-custom col-md-3 input-md">
+                            {!! Form::radio('status', 'Public', $status == 'Public') !!}
+                            {{ trans('auth.public') }}
+                        </label>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-md-offset-6">
                             <img src="
                                     @if($model->images == "")
                                         {{ asset('images/products/product-1.webp') }}
                                     @else
-                                        {{ asset('/storage/' . $model->images) }}
+                                        {{ asset('/storage/' . $model->image) }}
                                     @endif" id="Image" class="images-show-admin">
                         </div>
                     </div>

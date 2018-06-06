@@ -21,7 +21,7 @@ class CategoryController extends Controller
                 $cate['parent_name'] = $cate->getParentName();
             }
         } else {
-            $category = Category::where('cate_name', 'like', "%$keyword%")->paginate($pageSize);
+            $category = Category::where('category_name', 'like', "%$keyword%")->paginate($pageSize);
             $addPath .= "?keyword=$keyword&pagesize=$pageSize";
             foreach ($category as $cate) {
                 $cate['parent_name'] = $cate->getParentName();
@@ -35,20 +35,21 @@ class CategoryController extends Controller
     public function add()
     {
         $model = new Category();
+        $status = $model->status;
         $cates = Category::all();
         $select = [];
         $select = ['-1' => '------------------------------------------'];
             $selected = $model->parent_id;
             foreach ($cates as $element) {
-                $select[$element->id] = $element->cate_name;
+                $select[$element->id] = $element->category_name;
             }
 
-        return view('user.admin.category.form', compact('model', 'cates', 'select', 'selected'));
+        return view('user.admin.category.form', compact('model', 'cates', 'select', 'selected', 'status'));
     }
 
     public function checkName(Request $request)
     {
-        $cate = Category::where('cate_name', $request->name)->first();
+        $cate = Category::where('category_name', $request->name)->first();
         if($cate && $cate->id == $request->id) {
             return response()->json(true);
         }
@@ -71,6 +72,7 @@ class CategoryController extends Controller
 
     public function save(Request $request)
     {
+        // dd($request->all());
         if ($request->id) {
     	   $model = Category::find($request->id);
             if (!$model) {
@@ -78,16 +80,16 @@ class CategoryController extends Controller
             }
         } else {
             $model = new Category();
+            $model->status = $request->status;
         }
         $model->fill($request->all());
 
         // upload file
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            //getClient... ham luu file name
             $fileName = uniqid() . '-' . $file->getClientOriginalName();
-            $file->storeAs('public/uploads', $fileName);
-            $model->images = 'uploads/'.$fileName;
+            $file->storeAs(config('mysetting.ImgCategory'), $fileName);
+            $model->image = config('mysetting.GetImgCategory') . $fileName;
         }
         $model->save();
 
@@ -103,17 +105,18 @@ class CategoryController extends Controller
             return view('user.admin.404');
         } else {
             $cates = Category::all();
+            $status = $model->status;
             $selected = $model->parent_id;
             foreach ($cates as $element) {
-                $select[$element->id] = $element->cate_name;
+                $select[$element->id] = $element->category_name;
             }
 
-            return view('user.admin.category.form', compact('model', 'cates', 'select', 'selected'));
+            return view('user.admin.category.form', compact('model', 'cates', 'select', 'selected', 'status'));
         }
 
         $cates = Category::all();
         foreach ($cates as $element) {
-                $select[$element->id] = $element->cate_name;
+                $select[$element->id] = $element->category_name;
             }
 
         return view('user.admin.category.form', compact('model', 'cates', 'select'));

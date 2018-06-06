@@ -1,6 +1,7 @@
     {!! Html::script('/bower/jquery/dist/jquery.min.js') !!}
     {!! Html::script('/bower/boostrap/dist/js/bootstrap.min.js') !!}
     {!! Html::script('/bower/bootbox/bootbox.min.js') !!}
+    {!! Html::script('/bower/bootstrap-tagsinput-latest/dist/bootstrap-tagsinput.min.js') !!}
     {!! Html::script('/bower/boostrap/dist/js/app.min.js') !!}
     {!! Html::script('/bower/jquery-validation-1.17.0/dist/jquery.validate.min.js') !!}
     {!! Html::script('/bower/jquery-validation-1.17.0/dist/additional-methods.js') !!}
