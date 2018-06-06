@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         $keyword = $request->keyword;
         $fullUrl = $request->fullUrl();
-        $pageSize = $request->pagesize == null ? 10 : $request->pagesize;
+        $pageSize = $request->pagesize == null ? 5 : $request->pagesize;
         $addPath = "";
         if (!$keyword) {
             $category = Category::paginate($pageSize);
@@ -72,7 +72,6 @@ class CategoryController extends Controller
 
     public function save(Request $request)
     {
-        // dd($request->all());
         if ($request->id) {
     	   $model = Category::find($request->id);
             if (!$model) {

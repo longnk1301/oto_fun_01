@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function getRole()
     {
-        $users = Role::find($this->roles);
+        $users = Role::find($this->role);
 
         return $users;
     }

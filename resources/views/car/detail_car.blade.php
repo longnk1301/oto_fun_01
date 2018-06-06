@@ -12,9 +12,15 @@
             @endif
         </div>
         <div class="col-md-7 details_product clearfix">
-            <p><b>{{ $detail_car->car_name }}</b></p>
-            <p><b>{{ trans('index.engine') }}: </b>{{ $vehicle[0]->engine }} | <b>{{ trans('index.mileage') }}: </b>{{ $vehicle[0]->mileage }}</p>
-            <img src="{{ asset($detail_car->car_image) }}" alt="...">
+            <p><b>{{ trans('index.car_name') }}: {{ $detail_car->car_name }}</b></p>
+            <p><b>{{ trans('index.car_color') }}: </b>{{ $colors->color }}</p>
+            @if (!isset($images))
+                {{ null }}
+            @else
+                @foreach ($images as $image)
+                    <img src="{{ asset($image->image) }}" alt="...">
+                @endforeach
+            @endif
         </div>
         <div class="col-md-5 search clearfix">
             <div class="image-product">
@@ -22,8 +28,9 @@
                     <h1 class="text-orange"><i class="fa fa-usd" aria-hidden="true"></i>{{ number_format($detail_car->car_cost, 0, ", ", ".") }}</h1>
                     <ul>
                         <li>
-                            <p>{{ $detail_car->summary }}</p>
-                            <p class="text-blue">{{ trans('index.year') }}: {{ $detail_car->car_years }}</p>
+                            <p>{{ trans('auth.gear') }}: {{ $operates->gear }}</p>
+                            <p>{!! $detail_car->summary !!}</p>
+                            <p class="text-blue">{{ trans('index.year') }}: {{ $detail_car->car_year }}</p>
                         </li>
                     </ul>
                     <div class="card clearfix">
@@ -48,7 +55,11 @@
                                                         {!! Form::hidden('car_id', $detail_car->id) !!}
                                                         <div class="text-left">
                                                             {!! Form::label('fullname', trans('auth.fullname')) !!}
-                                                            {!! Form::text('cus_name', '' , ['class' => 'form-control']) !!}
+                                                            @if (!isset(Auth::user()->name))
+                                                                {!! Form::text('cus_name', '' , ['class' => 'form-control']) !!}
+                                                            @else
+                                                                {!! Form::text('cus_name', Auth::user()->name , ['class' => 'form-control']) !!}
+                                                            @endif
                                                         </div>
 
                                                         <div class="text-left">
@@ -57,23 +68,30 @@
                                                         </div>
 
                                                         <div class="text-left">
-                                                            {!! Form::label('zipcode', trans('auth.zipcode')) !!}
-                                                            {!! Form::text('cus_zip', '' , ['class' => 'form-control']) !!}
-                                                        </div>
-
-                                                        <div class="text-left">
                                                             {!! Form::label('phone', trans('auth.phone')) !!}
-                                                            {!! Form::text('cus_phone', '' , ['class' => 'form-control']) !!}
+                                                            @if (!isset(Auth::user()->phone))
+                                                                {!! Form::text('cus_phone', '' , ['class' => 'form-control']) !!}
+                                                            @else
+                                                                {!! Form::text('cus_phone', Auth::user()->phone , ['class' => 'form-control']) !!}
+                                                            @endif
                                                         </div>
 
                                                         <div class="text-left">
                                                             {!! Form::label('address', trans('auth.address')) !!}
-                                                            {!! Form::text('cus_add', '' , ['class' => 'form-control']) !!}
+                                                            @if (!isset(Auth::user()->add))
+                                                                {!! Form::text('cus_add', '' , ['class' => 'form-control']) !!}
+                                                            @else
+                                                                {!! Form::text('cus_add', Auth::user()->add , ['class' => 'form-control']) !!}
+                                                            @endif
                                                         </div>
 
                                                         <div class="text-left">
                                                             {!! Form::label('email', trans('auth.email')) !!}
-                                                            {!! Form::text('cus_email', '' , ['class' => 'form-control']) !!}
+                                                            @if (!isset(Auth::user()->email))
+                                                                {!! Form::text('cus_email', '' , ['class' => 'form-control']) !!}
+                                                            @else
+                                                                {!! Form::text('cus_email', Auth::user()->email , ['class' => 'form-control']) !!}
+                                                            @endif
                                                         </div>
 
                                                         <div class="text-left">
@@ -95,7 +113,7 @@
             </div>
         </div>
     </div>
-     <div class="row vehicle clearfix">
+    <div class="row vehicle clearfix">
         <h3>{!! trans('index.vo') !!}</h3>
             <div class="col-md-4">
                 <div class="vehicle-item">
@@ -109,74 +127,152 @@
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-stethoscope fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.trans') }}
-                        <h5>{{ $vehicle[0]->transmission }}</h5>
+                        <i class="fa fa-certificate fa-3x" aria-hidden="true"></i>
+                        {{ trans('index.in_color') }}
+                        <h5>{{ $colors->color }}</h5>
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-paint-brush fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.ex_color') }}
-                        <h5>{{ $vehicle[0]->exterior_color }}</h5>
+                        <i class="fa fa-money fa-3x" aria-hidden="true"></i>
+                        {{ trans('index.price') }}
+                        <h5>{{ $detail_car->car_cost }}</h5>
                     </p>
                 </div>
             </div>
+
+        {{-- engines --}}
+        <h3>{!! trans('auth.engines') !!}</h3>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
                         <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.engine') }}
-                        <h5>{{ $vehicle[0]->engine }}</h5>
+                        {{ trans('auth.engine_type') }}
+                        <h5>{{ $engines->engine_type }}</h5>
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-certificate fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.in_color') }}
-                        <h5>{{ $vehicle[0]->interior_color }}</h5>
+                        <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.cylinder_capacity') }}
+                        <h5>{{ $engines->cylinder_capacity }}</h5>
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.drive') }}
-                        <h5>{{ $vehicle[0]->drive_type }}</h5>
+                        <i class="fa fa-maxcdn fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.max_capacity') }}
+                        <h5>{{ $engines->max_capacity }}</h5>
+                    </p>
+                </div>
+            </div>
+
+        {{-- exteriors --}}
+        <h3>{!! trans('auth.exteriors') !!}</h3>
+            <div class="col-md-4">
+                <div class="vehicle-item">
+                    <p>
+                        <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.locksner') }}
+                        <h5>{{ $exteriors->locks_nearby }}</h5>
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-line-chart fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.mileage') }}
-                        <h5>{{ $vehicle[0]->mileage }}</h5>
+                        <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.locksremote') }}
+                        <h5>{{ $exteriors->locks_remote }}</h5>
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-free-code-camp fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.fuel') }}
-                        <h5>{{ $vehicle[0]->fuel_type }}</h5>
+                        <i class="fa fa-maxcdn fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.turn_light') }}
+                        <h5>{{ $exteriors->turn_signal_light }}</h5>
+                    </p>
+                </div>
+            </div>
+
+        {{-- sizes --}}
+        <h3>{!! trans('auth.sizes') !!}</h3>
+        <div class="col-md-3">
+            <div class="vehicle-item">
+                <p>
+                    <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                    {{ trans('auth.height') }}
+                    <h5>{{ $sizes->height }}</h5>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="vehicle-item">
+                <p>
+                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                    {{ trans('auth.weight') }}
+                    <h5>{{ $sizes->weight }}</h5>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="vehicle-item">
+                <p>
+                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                    {{ trans('auth.width') }}
+                    <h5>{{ $sizes->width }}</h5>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="vehicle-item">
+                <p>
+                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                    {{ trans('auth.colc') }}
+                    <h5>{{ $sizes->colc }}</h5>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="vehicle-item">
+                <p>
+                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                    {{ trans('auth.volume_fuel') }}
+                    <h5>{{ $sizes->volume_fuel }}</h5>
+                </p>
+            </div>
+        </div>
+
+        {{-- operates --}}
+        <div class="row">
+            <h3>{!! trans('auth.operates') !!}</h3>
+            <div class="col-md-4">
+                <div class="vehicle-item">
+                    <p>
+                        <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.tissue_men') }}
+                        <h5>{{ $operates->tissue_man }}</h5>
                     </p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="vehicle-item">
                     <p>
-                        <i class="fa fa-tint fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.mpg') }}
-                        <h5>{{ $vehicle[0]->mpg }}</h5>
+                        <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                        {{ trans('auth.gear') }}
+                        <h5>{{ $operates->gear }}</h5>
+                    </p>
                 </div>
             </div>
+        </div>
     </div>
     <div class="col-md-12 feature">
                 <h3>{{ trans('index.feature') }}</h3>

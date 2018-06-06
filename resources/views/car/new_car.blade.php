@@ -10,10 +10,10 @@
                     <li>
                         <ul>
                             <li>
-                                @foreach ($new_car as $c)
+                                @foreach ($companys as $company)
                                 <ul class="">
                                     <li class="col-sm-4">
-                                        <a href="#" class="demo" id ="{{ $c->car_type }}" data-id="{{ $c->car_type }}">{{ $c->car_type }}</a>
+                                        <a href="#" class="demo" id ="{{ $company->id }}" data-id="{{ $company->id }}">{{ $company->com_name }}</a>
                                     </li>
                                 </ul>
                                 @endforeach
@@ -52,12 +52,12 @@ $(document).ready(function()
 {
     $('body').on('click', '.demo', function (e) {
         e.preventDefault();
-        var car_type = $(this).attr('data-id');
+        var id_company = $(this).attr('data-id');
         $.ajax({
             type: 'GET',
             url: '/getnewcar',
             dataType: 'JSON',
-            data: { car_type: car_type },
+            data: { id_company: id_company },
             success: function(data) {
                 var html = '';
                         html += '<p class="breadcrumbs">';
@@ -68,7 +68,7 @@ $(document).ready(function()
                                     html +=  '<li class="col-md-4">';
                                         html +=  '<a href="/details-car/' + value.id + '">';
                                             html += '<figure>';
-                                                html += '<img src="'+ value.car_image +'">';
+                                                html += '<img src="'+ value.img.image +'">';
                                                 html += '<figcaption>' + value.car_name + '</figcaption>';
                                             html += '</figure>';
                                         html +=  '</a>';

@@ -55,7 +55,7 @@ class UserController extends Controller
         if (!$user) {
             return view('user.admin.404');
         } else {
-            $role = Role::find($user->roles);
+            $role = Role::find($user->role);
             $checked = $role->role_name;
 
             return view('user.admin.user.form', compact('checked', 'user'));

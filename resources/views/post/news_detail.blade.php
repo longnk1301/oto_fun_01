@@ -9,15 +9,24 @@
         <p class="created-at">
             <b>{{ trans('auth.created_at') }} : {{ $post->created_at }}
         </p>
-        
+        <a href=" {{ route('news') }}" class="btn btn-light Tooltip">
+            <i class="fa fa-reply-all" aria-hidden="true"></i>
+            <span class="tooltipText">{{ trans('auth.back') }}</span>
+        </a>
+        @foreach ($post->tags as $tag)
+            <a href="#">{{ $tag->tag }}</a>
+        @endforeach
+
         <div class="img-details-post">
-            <img src="{{ asset($post->image) }}" alt="">
+            @foreach ($images as $image)
+                <img src="{{ asset($image->image) }}" alt="">
+            @endforeach
         </div>
-        
+
         <div class="summary">
             <p>{{ $post->summary }}</p>
         </div>
-        
+
         <div class="content">
             <p>{{ $post->content }}</p>
         </div>

@@ -61,6 +61,12 @@ Route::group(['middleware' => 'locale'], function()
         Route::get('/remove/{id}', 'Admin\ProductController@remove')->name('product.remove')->middleware('isAuthor');
 
         Route::post('/save', 'Admin\ProductController@save')->name('product.save');
+
+        Route::get('/duplicate', 'Admin\ProductController@duplicate')->name('product.duplicate');
+
+        Route::post('/duplicate-save', 'Admin\ProductController@saveDuplicate')->name('product.save.duplicate');
+
+        Route::delete('/remove-all', 'Admin\ProductController@removeAll')->name('product.remove.all');
     });
 
 /*---------------------------------------------ORDER----------------------------------------------------------------*/

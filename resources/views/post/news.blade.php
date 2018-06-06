@@ -24,7 +24,7 @@
                         @if ($p->category_id != null)
                           <p>
                             <strong>
-                              <a class="cate_name" href="{{ route('cate.detail', $p->category_id->slug) }}">{{ str_limit($p->category_id->cate_name, 30, '...') }}</a>
+                              <a class="cate_name" href="{{ route('cate.detail', $p->category_id->slug) }}">{{ str_limit($p->category_id->category_name, 30, '...') }}</a>
                             </strong>
                           </p>
                         @endif
@@ -32,21 +32,18 @@
                     </ul>
                     <div class="post-img">
                         <a href="{{ url($p->slug) }}">
-                            <img src="{{ asset($p->image) }}" alt="">
+                            <img src="{{ asset($p->imgPost->image) }}" alt="">
                         </a>
                     </div>
                     <div class="post-title">
                         <h4>
-                            <a href="{{ url($p->slug)}}">{{ str_limit($p->title, 25, '...') }}</a>
+                            <a href="{{ url($p->slug)}}">{{ str_limit($p->title, 50, '...') }}</a>
                         </h4>
                     </div>
                     <div class="author">
                         <a href="{{ url($p->slug)}}">{{ $p->created_at }}</a>
                     </div>
                     <p>{{ $p->summary }}</p>
-                    <p>
-                        <a class="tags" href ="#">{{ $p->tags }}</a>
-                    </p>
                     <a  class="read-more" href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>

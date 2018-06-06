@@ -44,9 +44,6 @@
                         modelId: '{{$model->id}}'
                     }
                 },
-                category_id: {
-                    required: true
-                },
                 tags: {
                     required: true,
                     checkExitsted: {

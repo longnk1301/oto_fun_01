@@ -19,4 +19,10 @@ return [
 
 /*set file img category*/
 'GetImgCategory' => 'uploads/',
+
+/*save avatar*/
+'avatar' => 'public/avatar',
+
+/*set file img category*/
+'GetAvatar' => 'storage/avatar/',
 ];

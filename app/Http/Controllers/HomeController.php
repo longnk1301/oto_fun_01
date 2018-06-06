@@ -9,9 +9,18 @@ use App\Models\Post;
 use App\Models\Car;
 use App\Models\Category;
 use App\Models\Vehicle;
+use App\Models\CarType;
+use App\Models\Company;
+use App\Models\ImagePost;
+use App\Models\Operate;
+use App\Models\Color;
+use App\Models\Engine;
+use App\Models\Exterior;
+use App\Models\Size;
+use App\Models\ImageCar;
 use Cart;
 use App\User;
-use App\Order;
+use App\Models\Advisory;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Lang;
@@ -95,17 +104,15 @@ class HomeController extends Controller
 
     public function postCheckout(Request $request)
     {
-        $order = new Order;
-        $order->cus_name = $request->cus_name;
-        $order->identification = $request->identification;
-        $order->cus_zip = $request->cus_zip;
-        $order->cus_phone = $request->cus_phone;
-        $order->cus_add = $request->cus_add;
-        $order->cus_email = $request->cus_email;
-        $order->content = $request->content;
-        $order->car_id = $request->car_id;
-        $order->fill($request->all());
-        $order->save();
+        $advisory = new Advisory;
+        $advisory->cus_name = $request->cus_name;
+        $advisory->identification = $request->identification;
+        $advisory->cus_phone = $request->cus_phone;
+        $advisory->cus_add = $request->cus_add;
+        $advisory->cus_email = $request->cus_email;
+        $advisory->content = $request->content;
+        $advisory->car_id = $request->car_id;
+        $advisory->save();
 
         return redirect()->back()->with('msg', Lang::get('auth.thank'));
     }
@@ -118,41 +125,64 @@ class HomeController extends Controller
     //trang san pham mới, lấy loại xe để check từng loại
     public function newcar()
     {
-        $new_car = Car::distinct()->where('car_years', Carbon::now()->year)->get(['car_type']);
+        $companys = Company::all();
 
-        return view('car.new_car', compact('new_car'));
+        return view('car.new_car', compact('companys'));
     }
 
     //lấy dữ liệu new car chuyển sang json
     public function getNewCar(Request $request)
     {
-        $getcar = Car::where('car_type', $request->car_type)->where('car_years', Carbon::now()->year)->get();
-
+        $getcar = Car::where('comp_id', $request->id_company)->where('car_year', Carbon::now()->year)->get();
+        foreach ($getcar as $imgCar) {
+            $imgCar['img'] = $imgCar->getImageCar()->first();
+        }
         return response()->json($getcar);
     }
 
     //lấy dữ liệu used car chuyen sang dang json
     public function getUsedCar(Request $request)
     {
-        $getcar = Car::where('car_type', $request->car_type)->whereBetween('car_years', [2010, 2017])->get();
+        $getcar = Car::where('comp_id', $request->id_company)->whereBetween('car_year', [2000, 2017])->get();
+        foreach ($getcar as $imgCar) {
+            $imgCar['img'] = $imgCar->getImageCar()->first();
+        }
         return response()->json($getcar);
     }
 
     //trang san phẩm cũ
     public function usedcar()
     {
-        $used_car = Car::whereBetween('car_years', [2010, 2017])->distinct()->get(['car_type']);
+        $companys = Company::all();
 
-        return view('car.used_car', compact('used_car'));
+        return view('car.used_car', compact('companys'));
     }
 
     //details car
     public function detail_car(Request $request, $id)
     {
         $detail_car = Car::where('id', $id)->first();
-        $vehicle = Car::find($id)->vehicle()->get();
+        $id_vehicle = Vehicle::where('car_id', $id)->pluck('id')->first();
+        $operates = Operate::where('vehicle_id', $id_vehicle)->first();
+        $colors = Color::where('id', $detail_car->color_id)->first();
+        $engines = Engine::where('vehicle_id', $id_vehicle)->first();
+        $exteriors = Exterior::where('vehicle_id', $id_vehicle)->first();
+        $sizes = Size::where('vehicle_id', $id_vehicle)->first();
+        $car_type = CarType::where('id', $id)->first();
+        $companys = Company::where('id', $id)->first();
+        $images = ImageCar::where('car_id', $id)->get();
 
-        return view('car.detail_car', compact('detail_car', 'vehicle'));
+        return view('car.detail_car', compact(
+            'detail_car',
+            'operates',
+            'colors',
+            'engines',
+            'exteriors',
+            'sizes',
+            'car_type',
+            'company',
+            'images'
+        ));
     }
 
 
@@ -169,6 +199,7 @@ class HomeController extends Controller
         $posts = Post::paginate(config('app.paginate'));
         foreach ($posts as $p) {
             $p['category_id'] = $p->getCate();
+            $p['imgPost'] = $p->getImagePost()->first();
         }
 
         return view('post.news', compact('posts'));
@@ -247,7 +278,11 @@ class HomeController extends Controller
     public function categories($cateSlug)
     {
         $cate = Category::where('slug', $cateSlug)->first();
-        $posts = Post::where('cate_id', $cate->id)->paginate();
+        $posts = Post::where('category_id', $cate->id)->paginate();
+        foreach ($posts as $p) {
+            $p['category_id'] = $p->getCate();
+            $p['imgPost'] = $p->getImagePost()->first();
+        }
 
         return view('post.cate_detail', compact('posts', 'cate'));
     }
@@ -256,8 +291,10 @@ class HomeController extends Controller
     public function detail($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        $images = ImagePost::where('post_id', $post->id)->get();
+        $post['tags'] = $post->tags()->get();
 
-        return view('post.news_detail', compact('post'));
+        return view('post.news_detail', compact('post', 'images'));
     }
 
     //Thay doi ngon ngu
