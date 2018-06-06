@@ -6,16 +6,6 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset( Auth::user()->avatar ) }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>{!! trans('auth.ol') !!}</a>
-            </div>
-        </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">{!! trans('auth.main') !!}</li>
@@ -26,14 +16,10 @@
                 </a>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('cate.index') }}">
                     <i class="fa fa-edit"></i> <span>{{ trans('auth.categories') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_categories') }}</a></li>
-                    <li><a href="{{ route('cate.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_category') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
@@ -51,23 +37,17 @@
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_orders') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('user.index') }}">
                     <i class="fa fa-user-o"></i> <span>{{ trans('auth.users') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_users') }}</a></li>
-                </ul>
             </li>
         </ul>
     </section>

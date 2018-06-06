@@ -38,14 +38,14 @@
                         </div>
 
                         <div class="form-group row">
-                            {!! Html::decode(Form::label('tags', trans('auth.tags') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                            {!! Html::decode(Form::label('tags', trans('auth.tags'), ['class' => 'col-md-2 control-label'])) !!}
                             <div class="col-md-8">
-                                {!! Form::text('tags', $tags, ['class' => 'form-control', 'data-role' => 'tagsinput']) !!}
+                                {!! Form::text('tags', isset($tags) ? $tags : null, ['class' => 'form-control', 'data-role' => 'tagsinput']) !!}
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            {!! Html::decode(Form::label('', trans('auth.category_name') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                            {!! Html::decode(Form::label('', trans('auth.category_name'), ['class' => 'col-md-2 control-label'])) !!}
                             <div class="col-md-8">
                                 {!! Form::select(
                                     'category_id',
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group row">
-                            {!! Html::decode(Form::label('title', trans('auth.summary') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                            {!! Html::decode(Form::label('title', trans('auth.summary'), ['class' => 'col-md-2 control-label'])) !!}
                             <div class="col-md-8">
                                 {!! Form::text('summary', $model->summary , ['class' => 'form-control', 'id' => 'summary', 'placeholder' => trans('auth.summary')]) !!}
                             </div>

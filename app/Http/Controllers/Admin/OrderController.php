@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Order;
+use App\Models\Advisory;
 use App\Models\Car;
-use App\Models\Vehicle;
+use App\Models\Color;
+use App\Models\CarType;
+use App\Models\Company;
 
 class OrderController extends Controller
 {
@@ -14,40 +16,38 @@ class OrderController extends Controller
     {
         $keyword = $request->keyword;
         $fullUrl = $request->fullUrl();
-        $pageSize = $request->pagesize == null ? 10 : $request->pagesize;
+        $pageSize = $request->pagesize == null ? 5 : $request->pagesize;
         $addPath = "";
         if (!$keyword) {
-            $orders = Order::paginate($pageSize);
+            $advisorys = Advisory::paginate($pageSize);
             $addPath .= "?pagesize=$pageSize";
-            foreach ($orders as $order) {
-                $order['vehicle'] = $order->getVehicle();
-                $order['car_name'] = $order->getCar();
+            foreach ($advisorys as $advisory) {
+                $advisory['car_name'] = $advisory->getCar();
             }
         } else {
-            $orders = Order::where('cus_name', 'like', "%$keyword%")->orwhere('cus_add', 'like', "%$keyword%")->paginate();
+            $advisorys = Advisory::where('cus_name', 'like', "%$keyword%")->orwhere('cus_add', 'like', "%$keyword%")->paginate();
             $addPath .= "?keyword=$keyword&pagesize=$pageSize";
-            foreach ($orders as $order) {
-                $order['vehicle'] = $order->getVehicle();
-                $order['car_name'] = $order->getCar();
+            foreach ($advisory as $advisory) {
+                $advisory['car_name'] = $advisory->getCar();
             }
         }
-        $orders->withPath($addPath);
+        $advisorys->withPath($addPath);
 
-        return view('user.admin.order.index', compact('orders', 'keyword', 'fullUrl', 'pageSize'));
+        return view('user.admin.order.index', compact('advisorys', 'keyword', 'fullUrl', 'pageSize'));
     }
 
     public function save(Request $request)
     {
         if ($request->id) {
-           $model = Order::find($request->id);
+           $model = Advisory::find($request->id);
             if (!$model) {
                 return view('user.admin.404');
             }
         } else {
-            $model = new Order();
+            $model = new Advisory();
         }
         $model->fill($request->all());
-        $model->status = $request->order_status;
+        $model->status = $request->status;
         $model->save();
 
         return redirect()->route('order.index');
@@ -55,29 +55,31 @@ class OrderController extends Controller
 
     public function edit($id)
     {
-        $order = Order::find($id);
-        if (!$order) {
+        $advisory = Advisory::find($id);
+        if (!$advisory) {
             return view('user.admin.404');
         } else {
-            $checked = $order->status;
-            $vehicle = Vehicle::find($order->car_id);
-            $car = Car::find($order->car_id);
-        
-            return view('user.admin.order.form', compact('checked', 'car', 'vehicle', 'order'));
+            $checked = $advisory->status;
+            $car = Car::find($advisory->car_id);
+            $colors = Color::where('id', $car->color_id)->first();
+            $types = CarType::where('id', $car->type_id)->first();
+            $companys = Company::where('id', $car->comp_id)->first();
+
+
+            return view('user.admin.order.form', compact('checked', 'car', 'colors', 'advisory', 'types', 'companys'));
         }
-        $vehicle = Vehicle::all();
         $car = Car::all();
 
-        return view('user.admin.order.form', compact('model', 'order', 'vehicle', 'car'));
+        return view('user.admin.order.form', compact('model', 'advisory', 'vehicle', 'car'));
     }
 
     public function remove($id)
     {
-        $order = Order::find($id);
-        if (!$order) {
+        $advisory = Advisory::find($id);
+        if (!$advisory) {
             return view('user.admin.404');
         } else {
-            $order->delete();
+            $advisory->delete();
 
             return redirect(route('order.index'));
         }

@@ -217,7 +217,7 @@ class ProductController extends Controller
                 $images = new ImageCar();
                 $fileName = uniqid() . '-' . $file->getClientOriginalName();
                 $file->storeAs(config('mysetting.ImgProduct'), $fileName);
-                $images->image = config('mysetting.GetImgeProduct' . $fileName);
+                $images->image = config('mysetting.GetImgeProduct') . $fileName;
                 $images->car_id = $car->id;
                 $images->save();
             }
@@ -293,6 +293,132 @@ class ProductController extends Controller
         ));
     }
 
+    public function duplicate(Request $request)
+    {
+        $car = Car::find($request->id);
+        $car_types = CarType::all();
+        $types = [];
+        $car_companys = Company::all();
+        $car_company = [];
+        $car_colors = Color::all();
+        $car_color = [];
+        if (!$car) {
+            return view('user.admin.404');
+        } else {
+            $id_vehicle = Vehicle::where('car_id', $request->id)->pluck('id')->first();
+            $operates = Operate::where('vehicle_id', $id_vehicle)->first();
+            $engines = Engine::where('vehicle_id', $id_vehicle)->first();
+            $exteriors = Exterior::where('vehicle_id', $id_vehicle)->first();
+            $sizes = Size::where('vehicle_id', $id_vehicle)->first();
+            $images = ImageCar::where('car_id', $request->id)->get();
+            $status = $car->status;
+
+            $typed = $car->type_id;
+            foreach ($car_types as $type) {
+                $types[$type->id] = $type->type;
+            }
+
+
+            $companyed = $car->comp_id;
+            foreach ($car_companys as $company) {
+                $car_company[$company->id] = $company->com_name;
+            }
+
+            $colored = $car->color_id;
+            foreach ($car_colors as $color) {
+                $car_color[$color->id] = $color->color;
+            }
+            return view('user.admin.car.duplicate', compact(
+                'car',
+                'operates',
+                'colors',
+                'engines',
+                'exteriors',
+                'sizes',
+                'car_type',
+                'company',
+                'images',
+                'status',
+                'types', 'typed',
+                'car_company', 'companyed',
+                'car_color', 'colored',
+                'id_vehicle'
+            ));
+        }
+        return view('user.admin.car.duplicate', compact('car'));
+    }
+
+    public function saveDuplicate(Request $request)
+    {
+        $oldCar = Car::find($request->id);
+        $car = $oldCar->replicate();
+        $car->car_name = $request->car_name;
+        $car->car_cost = $request->car_cost;
+        $car->summary = $request->summary;
+        $car->car_number = $request->car_number;
+        $car->car_year = $request->car_year ;
+        $car->type_id = $request->type;
+        $car->comp_id = $request->com_name;
+        $car->color_id = $request->color;
+        $car->status = $request->status;
+        $car->save();
+
+        $oldVehicle = Vehicle::find($request->id_vehicle);
+        $vehicle = $oldVehicle->replicate();
+        $vehicle->car_id = $car->id;
+        $vehicle->save();
+
+        $oldOperates = Operate::where('vehicle_id', $request->id_vehicle)->first();
+        $operates = $oldOperates->replicate();
+        $operates->vehicle_id = $vehicle->id;
+        $operates->tissue_man = $request->tissue_man;
+        $operates->gear = $request->gear;
+        $operates->save();
+
+        $oldEngines = Engine::where('vehicle_id', $request->id_vehicle)->first();
+        $engines = $oldEngines->replicate();
+        $engines->vehicle_id = $vehicle->id;
+        $engines->engine_type = $request->engine_type;
+        $engines->cylinder_capacity = $request->cylinder_capacity;
+        $engines->max_capacity = $request->max_capacity;
+        $engines->drive_type = $request->drive_type;
+        $engines->drive_style = $request->drive_style;
+        $engines->save();
+
+        $oldExteriors = Exterior::where('vehicle_id', $request->id_vehicle)->first();
+        $exteriors = $oldExteriors->replicate();
+        $exteriors->vehicle_id = $vehicle->id;
+        $exteriors->locks_nearby = $request->locks_nearby;
+        $exteriors->locks_remote = $request->locks_remote;
+        $exteriors->turn_signal_light = $request->turn_signal_light;
+        $exteriors->save();
+
+        $oldSizes = Size::where('vehicle_id', $request->id_vehicle)->first();
+        $sizes = $oldSizes->replicate();
+        $sizes->vehicle_id = $vehicle->id;
+        $sizes->height = $request->height;
+        $sizes->weight = $request->weight;
+        $sizes->width = $request->width;
+        $sizes->colc = $request->colc;
+        $sizes->volume_fuel = $request->volume_fuel;
+        $sizes->save();
+
+        // upload file
+        if($request->hasFile('image')) {
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $images = new ImageCar();
+                $fileName = uniqid() . '-' . $file->getClientOriginalName();
+                $file->storeAs(config('mysetting.ImgProduct'), $fileName);
+                $images->image = config('mysetting.GetImgeProduct') . $fileName;
+                $images->car_id = $car->id;
+                $images->save();
+            }
+        }
+
+        return redirect()->route('product.index');
+    }
+
     public function remove($id)
     {
         $products = Car::find($id);
@@ -303,5 +429,12 @@ class ProductController extends Controller
 
             return redirect(route('product.index'));
         }
+    }
+
+    public function removeAll(Request $request)
+    {
+        $ids = $request->ids;
+        $products = Car::whereIn('id',explode(',', $ids))->delete();
+        return response()->json(['success'=>"Products Deleted successfully."]);
     }
 }

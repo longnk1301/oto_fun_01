@@ -477,7 +477,7 @@ a {
 
 /* ----------------------------------------details post--------------------------------------- */
 .detail-post .img-details-post img {
-    width: 500px;
+    width: 200px;
     margin: 30px;
 }
 .detail-post .created-at {
@@ -504,7 +504,7 @@ a {
     text-align: center;
 }
 .details_product img {
-    width: 500px;
+    width: 300px;
 }
 .details_product > p {
     font-size: 22px;

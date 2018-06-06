@@ -5,78 +5,49 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>{!! trans('auth.ol') !!}</a>
-            </div>
-        </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">{!! trans('auth.main') !!}</li>
             <li class="nav-item has-treeview menu-open">
                 <a href="{{ route('home') }}" class="nav-link active">
                     <i class="nav-icon fa fa-dashboard"></i>
-                        {{ trans('auth.dashboard') }}
-                </a>
+                    {{ trans('auth.dashboard') }}
+              </a>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('cate.index') }}">
                     <i class="fa fa-edit"></i> <span>{{ trans('auth.categories') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.list_categories') }}</a></li>
-                    <li><a href="{{ route('cate.add') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.add_category') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('post.index') }}">
                     <i class="fa fa-file-text-o"></i> <span>{{ trans('auth.posts') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('post.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_posts') }}</a></li>
-                    <li><a href="{{ route('post.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_post') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('product.index') }}">
                     <i class="fa fa-car"></i> <span>{{ trans('auth.products') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('product.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_products') }}</a></li>
-                    <li><a href="{{ route('product.add') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.add_product') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_orders') }}</a></li>
-                </ul>
             </li>
 
             <li class="treeview">
-                <a href="#">
+                <a href="{{ route('user.index') }}">
                     <i class="fa fa-user-o"></i> <span>{{ trans('auth.users') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_users') }}</a></li>
-                </ul>
             </li>
-        </ul>
+       </ul>
     </section>
 <!-- /.sidebar -->
 </aside>
@@ -121,34 +92,28 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>{!! trans('auth.id') !!}</th>
                                     <th>{!! trans('auth.car_name') !!}</th>
                                     <th>{!! trans('auth.cus_name') !!}</th>
                                     <th>{!! trans('auth.phone') !!}</th>
                                     <th>{!! trans('auth.add') !!}</th>
                                     <th>{!! trans('auth.email') !!}</th>
                                     <th>{!! trans('auth.status') !!}</th>
-                                    <th>{!! trans('index.in_color') !!}</th>
-                                    <th>{!! trans('index.ex_color') !!}</th>
                                </tr>
                             </thead>
                             <tbody>
-                                @foreach ($orders as $order)
+                                @foreach ($advisorys as $advisory)
                                         <tr>
-                                            <td>{{ $order->id }}</td>
-                                            <td>{{ $order->car_name->car_name }}</td>
-                                            <td>{{ $order->cus_name }}</td>
-                                            <td>{{ $order->cus_phone }}</td>
-                                            <td>{{ $order->cus_add }}</td>
-                                            <td>{{ $order->cus_email }}</td>
-                                            <td>{{ $order->status }}</td>
-                                            <td>{{ $order->vehicle->interior_color }}</td>
-                                            <td>{{ $order->vehicle->exterior_color }}</td>
+                                            <td>{{ $advisory->car_name->car_name }}</td>
+                                            <td>{{ $advisory->cus_name }}</td>
+                                            <td>{{ $advisory->cus_phone }}</td>
+                                            <td>{{ $advisory->cus_add }}</td>
+                                            <td>{{ $advisory->cus_email }}</td>
+                                            <td>{{ $advisory->status }}</td>
                                             <td>
-                                                <a href="{{ route('order.edit', ['id' => $order->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('order.edit', ['id' => $advisory->id]) }}" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $order->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $advisory->id]) }}')" class="btn btn-sm btn-danger">
                                                     <i class="fa fa-remove"></i>
                                                 </a>
                                             </td>
@@ -157,20 +122,17 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>{!! trans('auth.id') !!}</th>
                                     <th>{!! trans('auth.car_name') !!}</th>
                                     <th>{!! trans('auth.cus_name') !!}</th>
                                     <th>{!! trans('auth.phone') !!}</th>
                                     <th>{!! trans('auth.add') !!}</th>
                                     <th>{!! trans('auth.email') !!}</th>
                                     <th>{!! trans('auth.status') !!}</th>
-                                    <th>{!! trans('index.in_color') !!}</th>
-                                    <th>{!! trans('index.ex_color') !!}</th>
                                </tr>
                             </tfoot>
                         </table>
                         <div class="text-center">
-                            {{ $orders->links() }}
+                            {{ $advisorys->links() }}
                         </div>
                     </div>
                     <!-- /.box-body -->

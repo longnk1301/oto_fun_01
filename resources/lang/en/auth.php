@@ -150,6 +150,7 @@ return [
     'sizes' => 'Sizes',
     'back' => 'Back',
     'vehicles' => 'Vehicles',
+    'pending' => 'Pending',
 
     /*-----------------------------------------------------------------------------*/
     'wrong_acc' => 'Wrong account name or password!',

@@ -85,9 +85,9 @@ class Car extends Model
         return $sizes;
     }
 
-    public function order()
+    public function advisory()
     {
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Models\Advisory');
     }
 
     public function company()

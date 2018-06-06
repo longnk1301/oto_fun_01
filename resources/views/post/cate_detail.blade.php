@@ -17,40 +17,35 @@
         {!! Form::close() !!}
     </div>
     <h1>{{ $cate->name }}</h1>
+    <a href=" {{ route('news') }}" class="btn btn-light Tooltip">
+        <i class="fa fa-reply-all" aria-hidden="true"></i>
+        <span class="tooltipText">{{ trans('auth.back') }}</span>
+    </a>
     <div class="row">
         @foreach ($posts as $p)
             <div class="col-md-4">
                 <div class="post-single">
                     <ul>
-                        @php
-                            $cate = $p->getCate();
-                        @endphp
-                        @if ($cate != null)
-                          <p>
+                        <p>
                             <strong>
-                              <a class="cate_name" href="{{ route('cate.detail',$cate->slug) }}">{{ $cate->cate_name }}</a>
+                                <a class="cate_name" href="{{ route('cate.detail',$p->category_id->slug) }}">{{ $p->category_id->category_name }}</a>
                             </strong>
-                          </p>
-                        @endif
-                        <li></li>
+                        </p>
                     </ul>
                     <div class="post-img">
-                        <a href="{{ url($p->slug)}}">
-                            <img src="{{ asset($p->image) }}" alt="">
+                        <a href="{{ url($p->slug) }}">
+                            <img src="{{ asset($p->imgPost->image) }}" alt="">
                         </a>
                     </div>
                     <div class="post-title ">
                         <h4>
-                            <a href="{{ url($p->slug) }}">{{ str_limit($p->title, 20, '...') }}</a>
+                            <a href="{{ url($p->slug) }}">{{ str_limit($p->title, 50, '...') }}</a>
                         </h4>
                     </div>
                     <div class="date author">
                         <a href="{{ url($p->slug) }}">{{ $p->updated_at }}</a>
                     </div>
                     <p>{{ $p->summary }}</p>
-                    <p>
-                        <a class="tags" href ="#">{{ $p->tags }}</a>
-                    </p>
                     <a class="read-more" href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>

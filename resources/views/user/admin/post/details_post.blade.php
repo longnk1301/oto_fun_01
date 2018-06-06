@@ -3,11 +3,15 @@
     <section class="content-header bg-white">
         <div class="image modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            @foreach ($images as $allImage)
-                <div class="col-md-6 image-car">
-                    <img src="{{ asset($allImage->image) }}" alt="">
-                </div>
-            @endforeach
+            @if (!isset($images))
+                {{ null }}
+            @else
+                @foreach ($images as $allImage)
+                    <div class="col-md-6 image-car">
+                        <img src="{{ asset($allImage->image) }}" alt="">
+                    </div>
+                @endforeach
+            @endif
         </div>
         <div class="f-right modal-body">
             <a href=" {{ route('post.index') }}" class="btn btn-light Tooltip">

@@ -2,81 +2,9 @@
 
 @section('content')
 
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-        <!-- Sidebar user panel -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{ asset('images/user.jpg') }}" class="img-circle" alt="{!! trans('auth.used_image') !!}" />
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i>{!! trans('auth.ol') !!}</a>
-            </div>
-        </div>
-        <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu">
-            <li class="header">{!! trans('auth.main') !!}</li>
-            <li class="nav-item has-treeview menu-open">
-                <a href="{{ route('home') }}" class="nav-link active">
-                    <i class="nav-icon fa fa-dashboard"></i>
-                        {{ trans('auth.dashboard') }}
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-edit"></i> <span>{{ trans('auth.categories') }}</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.list_categories') }}</a></li>
-                    <li><a href="{{ route('cate.add') }}"><i class="fa fa-circle-o"></i>{{ trans('auth.add_category') }}</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="{{ route('post.index') }}">
-                    <i class="fa fa-file-text-o"></i> <span>{{ trans('auth.posts') }}</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-            </li>
-
-            <li class="treeview">
-                <a href="{{ route('product.index') }}">
-                    <i class="fa fa-car"></i> <span>{{ trans('auth.products') }}</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('order.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_orders') }}</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-user-o"></i> <span>{{ trans('auth.users') }}</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o nav-icon"></i>{{ trans('auth.list_users') }}</a></li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-<!-- /.sidebar -->
-</aside>
-
-<div class="content-wrapper bg-color">
+<div class="bg-color">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header bg-white">
         <h1 class="color-text">
             {{ trans('auth.add_category') }}
         </h1>
@@ -88,7 +16,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content bg-white">
         <div class="row">
             {!! Form::open(['method' => 'POST', 'route' => 'cate.save', 'class' => 'form-horizontal', 'id' => 'cate-form', 'enctype' => 'multipart/form-data']) !!}
                 {!! Form::hidden('id', $model->id) !!}
@@ -132,9 +60,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-offset-6">
+                        <div class="col-md-offset-5">
                             <img src="
-                                    @if($model->images == "")
+                                    @if($model->image == "")
                                         {{ asset('images/products/product-1.webp') }}
                                     @else
                                         {{ asset('/storage/' . $model->image) }}
