@@ -27,6 +27,6 @@ class CreateTableCarType extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('car_type');
     }
 }

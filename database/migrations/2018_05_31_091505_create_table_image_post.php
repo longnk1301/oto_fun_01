@@ -28,6 +28,6 @@ class CreateTableImagePost extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('image_post');
     }
 }

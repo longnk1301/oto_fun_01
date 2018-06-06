@@ -9,7 +9,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Post::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
     $title = $faker->realText(50, 1);
     $slug = str_slug($title . '-' . microtime(), '-');
 
@@ -25,7 +25,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Car::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Car::class, function (Faker\Generator $faker) {
     return [
          'car_name' => $faker->text(10),
          'summary' => $faker->realText(60, 1),
@@ -38,7 +38,7 @@ $factory->define(App\Car::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Category::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
     $cate_name = $faker->realText(40, 1);
     $slug = str_slug($cate_name . '-' . microtime(), '-');
     return [

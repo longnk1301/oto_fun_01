@@ -16,7 +16,6 @@ class CreateTableImageCar extends Migration
         Schema::create('image_car', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('car_id');
-            $table->integer('color_id');
             $table->string('image');
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateTableImageCar extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('image_car');
     }
 }

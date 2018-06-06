@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('summary')->nullable();
             $table->text('content')->nullable();
             $table->string('slug')->unique();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default('UnPublic');
             $table->timestamps();
         });
     }

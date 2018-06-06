@@ -17,6 +17,13 @@
                 </div>
             {!! Form::close() !!}
         </div>
+        <nav>
+            <ul>
+                @foreach ($parent_categories as $category)
+                    <li class="btn btn-primary"><a href="{{ route('cate.detail', $category->slug) }}">{{ $category->category_name }}</a></li>
+                @endforeach
+            </ul>
+        </nav>
         @foreach ($posts as $p)
             <div class="col-md-4">
                 <div class="post-single">

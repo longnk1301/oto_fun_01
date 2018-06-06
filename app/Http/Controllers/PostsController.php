@@ -19,7 +19,11 @@ class PostsController extends Controller
     {
         $data = $request->all();
         $posts = $this->searchRepository->searchPost($data);
-
+        foreach ($posts as $p) {
+            $p['category_id'] = $p->getCate()->first();
+            $p['imgPost'] = $p->getImagePost()->first();
+        }
+        // dd($posts);
         return view('search.search_posts', compact('posts', 'request'));
     }
 }

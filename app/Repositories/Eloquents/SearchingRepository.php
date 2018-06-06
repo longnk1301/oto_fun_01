@@ -16,7 +16,7 @@ class SearchingRepository
             return redirect(route('homepage'));
         }
         $keyword = $attributes['keyword'];
-        $posts = Post::where('title', 'like', "%$keyword%")->paginate(config('app.paginate'));
+        $posts = Post::where('status', 'Public')->where('title', 'like', "%$keyword%")->paginate(config('app.paginate'));
         $posts->withPath("?keyword=$keyword");
         foreach ($posts as $p) {
             $p['category_id'] = $p->getCate();
@@ -32,7 +32,7 @@ class SearchingRepository
             return redirect(route('homepage'));
         }
         $keyword = $attributes['keyword'];
-        $cars = Car::where('car_type', 'like', "%$keyword%")->orwhere('car_name', 'like', "%$keyword%")->paginate();
+        $cars = Car::where('status', 'Public')->where('car_name', 'like', "%$keyword%")->paginate();
         $cars->withPath("?keyword=$keyword");
 
         return $cars;
