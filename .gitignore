@@ -1,19 +1,19 @@
-/node_modules
-/public/hot
-/public/storage
-/public/js
-/public/images
-/public/dist
-/public/storage
-/storage/*.key
-/storage/debugbar/
-/vendor
-/.idea
-/.vagrant
-/resources/assets/bower
-/public/bower
-Homestead.json
-Homestead.yaml
-npm-debug.log
-yarn-error.log
-.env
+# /node_modules
+# /public/hot
+# /public/storage
+# /public/js
+# /public/images
+# /public/dist
+# /public/storage
+# /storage/*.key
+# /storage/debugbar/
+# /vendor
+# /.idea
+# /.vagrant
+# /resources/assets/bower
+# /public/bower
+# Homestead.json
+# Homestead.yaml
+# npm-debug.log
+# yarn-error.log
+# .env

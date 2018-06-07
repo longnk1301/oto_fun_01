@@ -32,6 +32,6 @@ class CreateTableSizes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sizes');
     }
 }

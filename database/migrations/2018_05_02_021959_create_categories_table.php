@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('summary')->nullable();
             $table->string('image')->nullable();
             $table->string('slug')->unique();
+            $table->string('status')->default('UnPublic');
             $table->timestamps();
         });
     }

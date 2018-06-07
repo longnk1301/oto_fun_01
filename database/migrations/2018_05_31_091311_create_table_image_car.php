@@ -29,6 +29,6 @@ class CreateTableImageCar extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('image_car');
     }
 }
