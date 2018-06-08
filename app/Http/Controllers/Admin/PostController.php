@@ -71,20 +71,7 @@ class PostController extends Controller
         if($post && $post->id == $request->id) {
             return response()->json(true);
         }
-        //chua ton tai: true, ton tai: false
         $result = $post == false ? true : false;
-
-        return response()->json($result);
-    }
-
-    public function checkTag(Request $request)
-    {
-        $tag = Tag::where('tag', $request->name)->first();
-        if($tag && $tag->id == $request->id) {
-            return response()->json(true);
-        }
-        //chua ton tai: true, ton tai: false
-        $result = $tag == false ? true : false;
 
         return response()->json($result);
     }

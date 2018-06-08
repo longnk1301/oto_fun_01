@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factory;
 
 class UserTableSeeder extends Seeder
 {
@@ -18,7 +19,7 @@ class UserTableSeeder extends Seeder
         	'password' => Hash::make('123456'),
         	'phone' => '01636199366',
         	'add' => 'Hai Bà Trưng, Hà Nội',
-        	'roles' => 1,
+        	'role' => 900,
         ]);
     }
 }

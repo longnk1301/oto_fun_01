@@ -26,62 +26,64 @@
                             {!! Form::text('car_name', $car->car_name , ['class' => 'form-control', 'id' => 'carName', 'placeholder' => trans('auth.ex_name')]) !!}
                         </div>
 
-                        {!! Html::decode(Form::label('', trans('index.car_color') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
+                        {!! Html::decode(Form::label('car_cost', trans('auth.cost') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
                         <div class="col-md-2">
-                                {!! Form::select(
-                                    'color',
-                                    $car_color,
-                                    $colored,
-                                    ['class' => 'form-control']) !!}
+                            {!! Form::text('car_cost', $car->car_cost, ['class' => 'form-control']) !!}
                         </div>
 
-                        {!! Html::decode(Form::label('gear', trans('auth.gear') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
+                        {!! Html::decode(Form::label('gear', trans('auth.gear'), ['class' => 'col-md-1 control-label'])) !!}
                             <div class="col-md-2">
                                 {!! Form::text('gear', $operates->gear , ['class' => 'form-control']) !!}
                             </div>
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('', trans('index.car_type') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('', trans('index.car_color'), ['class' => 'col-md-2 control-label'])) !!}
                         <div class="col-md-2">
-                                {!! Form::select(
-                                    'type',
-                                    $types,
-                                    $typed,
-                                    ['class' => 'form-control']) !!}
+                            {!! Form::select(
+                                'color',
+                                $car_color,
+                                $colored,
+                                ['class' => 'form-control']) !!}
                         </div>
 
-                        {!! Html::decode(Form::label('', trans('auth.company') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
-                       <div class="col-md-2">
-                                {!! Form::select(
-                                    'com_name',
-                                    $car_company,
-                                    $companyed,
-                                    ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        {!! Html::decode(Form::label('car_number', trans('auth.car_number') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
-                        <div class="col-md-1">
-                            {!! Form::text('car_number', $car->car_number, ['class' => 'form-control']) !!}
-                        </div>
-
-                        {!! Html::decode(Form::label('drive_type', trans('auth.drive_type') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
-                        <div class="col-md-2">
-                            {!! Form::text('drive_type', $engines->drive_type , ['class' => 'form-control']) !!}
-                        </div>
-
-                        {!! Html::decode(Form::label('drive_style', trans('auth.drive_style') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
-                        <div class="col-md-2">
+                        {!! Html::decode(Form::label('drive_style', trans('auth.drive_style'), ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-4">
                             {!! Form::text('drive_style', $engines->drive_style , ['class' => 'form-control']) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('car_cost', trans('auth.cost') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('', trans('auth.company'), ['class' => 'col-md-2 control-label'])) !!}
                         <div class="col-md-2">
-                            {!! Form::text('car_cost', $car->car_cost, ['class' => 'form-control']) !!}
+                            {!! Form::select(
+                                'com_name',
+                                $car_company,
+                                $companyed,
+                                ['class' => 'form-control']) !!}
+                        </div>
+
+                        {!! Html::decode(Form::label('drive_type', trans('auth.drive_type'), ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-4">
+                            {!! Form::text('drive_type', $engines->drive_type , ['class' => 'form-control']) !!}
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('', trans('index.car_type'), ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-2">
+                            {!! Form::select(
+                                'type',
+                                $types,
+                                $typed,
+                                ['class' => 'form-control']) !!}
+                        </div>
+
+                        {!! Html::decode(Form::label('car_number', trans('auth.car_number') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-2">
+                            {!! Form::text('car_number', $car->car_number, ['class' => 'form-control']) !!}
                         </div>
 
                         {!! Html::decode(Form::label('car_year', trans('index.year') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
@@ -125,48 +127,67 @@
                     </div>
 
                     <div class="form-group row">
-                            {!! Html::decode(Form::label('height', trans('auth.height') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
-                            <div class="col-md-2">
-                                {!! Form::text('height', $sizes->height , ['class' => 'form-control']) !!}
-                            </div>
-
-                            {!! Html::decode(Form::label('weight', trans('auth.weight') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
-                            <div class="col-md-2">
-                                {!! Form::text('weight', $sizes->weight , ['class' => 'form-control']) !!}
-                            </div>
-
-                            {!! Html::decode(Form::label('width', trans('auth.width') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
-                            <div class="col-md-2">
-                                {!! Form::text('width', $sizes->width , ['class' => 'form-control']) !!}
-                            </div>
+                        {!! Html::decode(Form::label('height', trans('auth.height'), ['class' => 'col-md-2 control-label col-md-offset-1'])) !!}
+                        <div class="col-md-2">
+                            {!! Form::text('height', $sizes->height , ['class' => 'form-control']) !!}
                         </div>
+                        <div class="col-md-1">
+                            <i class="text-warning">(cmm)</i>
+                        </div>
+
+                        {!! Html::decode(Form::label('weight', trans('auth.weight'), ['class' => 'col-md-1 control-label'])) !!}
+                        <div class="col-md-2">
+                            {!! Form::text('weight', $sizes->weight , ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-md-1">
+                            <i class="text-warning">(kg)</i>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('engine_type', trans('auth.engine_type') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('width', trans('auth.width'), ['class' => 'col-md-2 col-md-offset-1 control-label'])) !!}
                         <div class="col-md-2">
-                            {!! Form::text('engine_type', $engines->engine_type , ['class' => 'form-control']) !!}
+                            {!! Form::text('width', $sizes->width , ['class' => 'form-control']) !!}
                         </div>
-
-                        {!! Html::decode(Form::label('tissue_man', trans('auth.tissue_men') . '<span class="text-danger"> *</span>', ['class' => 'col-md-1 control-label'])) !!}
-                        <div class="col-md-2">
-                            {!! Form::text('tissue_man', $operates->tissue_man , ['class' => 'form-control']) !!}
+                        <div class="col-md-1">
+                            <i class="text-warning">(cmm)</i>
                         </div>
 
                         {!! Html::decode(Form::label('colc', trans('auth.colc'), ['class' => 'col-md-1 control-label'])) !!}
                         <div class="col-md-2">
                             {!! Form::text('colc', $sizes->colc , ['class' => 'form-control']) !!}
                         </div>
+                        <div class="col-md-1">
+                            <i class="text-warning">(round/m)</i>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        {!! Html::decode(Form::label('max_capacity', trans('auth.max_capacity'), ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-2">
+                            {!! Form::text('max_capacity', $engines->max_capacity , ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-md-1">
+                            <i class="text-warning">(round/m)</i>
+                        </div>
+
+                        {!! Html::decode(Form::label('tissue_man', trans('auth.tissue_men'), ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-3">
+                            {!! Form::text('tissue_man', $operates->tissue_man , ['class' => 'form-control']) !!}
+                        </div>
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('max_capacity', trans('auth.max_capacity') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
-                        <div class="col-md-3">
-                            {!! Form::text('max_capacity', $engines->max_capacity , ['class' => 'form-control']) !!}
+                        {!! Html::decode(Form::label('cylinder_capacity', trans('auth.cylinder_capacity'), ['class' => 'col-md-2 control-label'])) !!}
+                        <div class="col-md-2">
+                            {!! Form::text('cylinder_capacity', $engines->cylinder_capacity , ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-md-1">
+                            <i class="text-warning">(mll)</i>
                         </div>
 
-                        {!! Html::decode(Form::label('cylinder_capacity', trans('auth.cylinder_capacity') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('engine_type', trans('auth.engine_type'), ['class' => 'col-md-2 control-label'])) !!}
                         <div class="col-md-3">
-                            {!! Form::text('cylinder_capacity', $engines->cylinder_capacity , ['class' => 'form-control']) !!}
+                            {!! Form::text('engine_type', $engines->engine_type , ['class' => 'form-control']) !!}
                         </div>
                     </div>
 
@@ -175,19 +196,19 @@
                         <div class="col-md-3">
                             {!! Form::text('volume_fuel', $sizes->volume_fuel , ['class' => 'form-control']) !!}
                         </div>
-                        {!! Html::decode(Form::label('turn_signal_light', trans('auth.turn_light') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('turn_signal_light', trans('auth.turn_light'), ['class' => 'col-md-2 control-label'])) !!}
                         <div class="col-md-3">
                             {!! Form::text('turn_signal_light', $exteriors->turn_signal_light , ['class' => 'form-control']) !!}
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        {!! Html::decode(Form::label('locks_nearby', trans('auth.locksner') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('locks_nearby', trans('auth.locksner'), ['class' => 'col-md-2 control-label'])) !!}
                         <div class="col-md-3">
                             {!! Form::text('locks_nearby', $exteriors->locks_nearby, ['class' => 'form-control']) !!}
                         </div>
 
-                        {!! Html::decode(Form::label('locks_remote', trans('auth.locksremote') . '<span class="text-danger"> *</span>', ['class' => 'col-md-2 control-label'])) !!}
+                        {!! Html::decode(Form::label('locks_remote', trans('auth.locksremote'), ['class' => 'col-md-2 control-label'])) !!}
                         <div class="col-md-3">
                             {!! Form::text('locks_remote', $exteriors->locks_remote , ['class' => 'form-control']) !!}
                         </div>

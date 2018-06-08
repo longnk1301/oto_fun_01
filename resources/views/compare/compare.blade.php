@@ -23,8 +23,8 @@
             @foreach ($compare as $comp)
             <div class="row products">
                 <div class="col-xs-4">
-                        <img src="{{ asset($comp->img->image) }}" alt="">
-                    </div>
+                    <img src="{{ asset($comp->img->image) }}" alt="">
+                </div>
                 <div class="col-xs-5">
                     <p><b>{{ trans('index.car_name') }}</b>{{ $comp->car_name }}</p>
                     {{-- <p><b>{{ trans('index.car_type') }}</b>{{ $comp->car_type }}</p> --}}
@@ -61,7 +61,11 @@
                 <p>
                     <span>{{ trans('auth.selected') }} <strong class="numItems"></strong> {{ trans('auth.cars') }}</span>
                     <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-                    <a href="javascript:void(0)" data-id="{{ $comp->id }}" class="Delete-all" >{{ trans('auth.delete_all') }}</a>
+                    @if (!isset($comp))
+                        <a href="javascript:void(0)" data-id="" class="Delete-all" >{{ trans('auth.delete_all') }}</a>
+                    @else
+                        <a href="javascript:void(0)" data-id="{{ $comp->id }}" class="Delete-all" >{{ trans('auth.delete_all') }}</a>
+                    @endif
                     <button type="submit" class="btncompare">{{ trans('index.compare') }}</button>
                 </p>
                 <div class="itemselect">

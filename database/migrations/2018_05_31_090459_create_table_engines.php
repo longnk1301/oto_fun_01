@@ -17,8 +17,8 @@ class CreateTableEngines extends Migration
             $table->increments('id');
             $table->integer('vehicle_id');
             $table->string('engine_type')->nullable();
-            $table->string('cylinder_capacity')->nullable();
-            $table->string('max_capacity')->nullable();
+            $table->integer('cylinder_capacity')->nullable();
+            $table->integer('max_capacity')->nullable();
             $table->string('drive_style')->nullable();
             $table->string('drive_type')->nullable();
             $table->timestamps();

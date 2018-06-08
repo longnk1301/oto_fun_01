@@ -43,7 +43,7 @@
                                             'parent_id',
                                             $select,
                                             $selected,
-                                            ['class' => 'form-control']) !!}
+                                            ['class' => 'form-control', 'title' => 'Please select something!' ,'id' => 'parent_id']) !!}
                         </div>
                     </div>
 

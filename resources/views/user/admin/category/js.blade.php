@@ -10,6 +10,35 @@
             $('#Image').attr('src',tmppath);
         });
 
+        $('#cate-form').validate({
+            rules: {
+                category_name: {
+                    required: true,
+                    maxlength: 100,
+                    minlength: 10,
+                    checkExitsted: {
+                        requestUrl : "{{route('cate.checkName')}}",
+                        modelId: '{{$model->id}}'
+                     }
+                },
+                slug: {
+                    required: true,
+                    checkExitsted: {
+                        requestUrl: "{{route('cate.checkSlug')}}",
+                        modelId: '{{$model->id}}'
+                     }
+                },
+                parent_id: {
+                    required: true
+                },
+            },
+            errorPlacement: function(error, element)
+            {
+                $(error).addClass('text-danger');
+                error.insertAfter(element);
+            }
+        });
+
         //tao slug
         $('.btn-asl-form').on('click', function() {
             var cateName = $('#cateName').val();
@@ -30,51 +59,6 @@
                     $('#slug').val(rs.data);
                 }
             });
-        });
-
-
-        $('#cate-form').validate({
-            rules: {
-                category_name: {
-                    required: true,
-                    checkExitsted: {
-                        requestUrl : "{{route('cate.checkName')}}",
-                        modelId: '{{$model->id}}'
-                     }
-                },
-                slug: {
-                    required: true,
-                    checkExitsted: {
-                        requestUrl: "{{route('cate.checkSlug')}}",
-                        modelId: '{{$model->id}}'
-                     }
-                },
-                parent_id: {
-                    required: true
-                    },
-            },
-            messages: {
-                cate_name: {
-                    required: '{{ trans('auth.pl_enter_name_cate') }}',
-                    checkExitsted: '{{ trans('auth.the_cate_already_exixts') }}'
-                },
-                slug: {
-                    required: '{{ trans('auth.pl_enter_the_path') }}',
-                    checkExitsted: '{{ trans('auth.the_path_already_exixts') }}'
-                },
-                parent_id: {
-                    required: '{{ trans('auth.pl_enter_cate') }}'
-                },
-                tags: {
-                    required: '{{ trans('auth.pl_enter_tag') }}',
-                    checkExitsted: '{{ trans('auth.the_cate_already_exixts') }}'
-                }
-            },
-            errorPlacement: function(error, element)
-            {
-                $(error).addClass('text-danger');
-                error.insertAfter(element);
-            }
         });
     });
 </script>

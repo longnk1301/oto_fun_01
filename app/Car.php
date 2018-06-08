@@ -15,7 +15,6 @@ class Car extends Model
         'car_year',
         'summary',
         'status',
-        'id',
     ];
 
     public function getCar()

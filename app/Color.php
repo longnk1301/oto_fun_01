@@ -9,7 +9,6 @@ class Color extends Model
     protected $table = 'colors';
 
     public $fillable = [
-        'vehicle_id',
         'color',
     ];
 

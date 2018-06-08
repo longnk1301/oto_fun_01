@@ -192,4 +192,12 @@ return [
     'admin' => 'Admin',
     'author' => 'Author',
     'member' => 'Member',
+
+    /*------------------------------------------------company---------------------------------------*/
+    'add_company' => 'Add Company',
+
+     /*------------------------------------------------company---------------------------------------*/
+    'car_type' => 'Car Type',
+    'add_car_type' => 'Add Car Type',
+    'add_color' => 'Add Color',
 ];

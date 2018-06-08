@@ -216,9 +216,9 @@ class HomeController extends Controller
     public function compare()
     {
         $compare = Car::where('status', 'Public')->paginate(config('app.paginate'));
-        foreach ($compare as $imgCar) {
+            foreach ($compare as $imgCar) {
             $imgCar['img'] = $imgCar->getImageCar()->first();
-        }
+            }
         return view('compare.compare', compact('compare'));
     }
 
