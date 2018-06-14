@@ -72,7 +72,7 @@ class HomeController extends Controller
         $user->add = $request->add;
         $user->save();
 
-        return redirect('user.profile')->with('msg', Lang::get('auth.success_info'));
+        return redirect()->route('user.profile')->with('msg', Lang::get('auth.success_info'));
     }
 
     public function getRegister()
@@ -99,7 +99,7 @@ class HomeController extends Controller
         $user->add = $request->add;
         $user->save();
 
-        return redirect('user.register')->with('msg', Lang::get('auth.suc_register'));
+        return redirect()->route('user.register')->with('msg', Lang::get('auth.suc_register'));
     }
 
     public function postCheckout(Request $request)

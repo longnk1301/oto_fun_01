@@ -171,7 +171,7 @@ return [
     'cus_name' => 'Customer Name',
     'suc_register' => 'Register Successful!!',
     'confirm' => 'Confirm',
-    'item_ready' => 'Item Ready',
+    'item_ready' => 'Bought',
     'send' => 'Send',
     'delivered' => 'Delivered',
     'returned' => 'Returned',

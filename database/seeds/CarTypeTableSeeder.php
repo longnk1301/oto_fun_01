@@ -14,7 +14,7 @@ class CarTypeTableSeeder extends Seeder
     public function run()
     {
         // factory(CarType::class, 8)->create();
-        
+
     	$faker = Faker\Factory::create();
 
         for ($i = 0; $i < 8; $i++) {

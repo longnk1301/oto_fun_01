@@ -18,7 +18,7 @@ class CreateCarsTable extends Migration
             $table->integer('comp_id');
             $table->integer('type_id');
             $table->integer('color_id');
-            $table->string('car_name')->nullable();
+            $table->string('car_name')->unique();
             $table->integer('car_cost')->default(0);
             $table->text('summary')->nullable();
             $table->integer('car_number')->default(0);

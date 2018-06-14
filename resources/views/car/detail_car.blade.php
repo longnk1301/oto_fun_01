@@ -113,6 +113,16 @@
             </div>
         </div>
     </div>
+     <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell-o"></i>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
     <div class="row vehicle clearfix">
         <h3>{!! trans('index.vo') !!}</h3>
             <div class="col-md-4">

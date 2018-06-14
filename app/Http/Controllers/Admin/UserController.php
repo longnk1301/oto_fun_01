@@ -43,7 +43,7 @@ class UserController extends Controller
         } else {
             $model = new User();
         }
-        $model->roles = $request->role;
+        $model->role = $request->role;
         $model->save();
 
         return redirect()->route('user.index');

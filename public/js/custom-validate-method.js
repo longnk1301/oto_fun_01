@@ -1,4 +1,4 @@
-var checkExitstedResult = false;
+var checkExitstedResult = true;
 jQuery.validator.addMethod("checkExitsted", function(value, element, attr) {
     $.ajax({
         url: attr.requestUrl,
@@ -14,12 +14,6 @@ jQuery.validator.addMethod("checkExitsted", function(value, element, attr) {
         },
         success: function(rs) {
             checkExitstedResult = rs;
-        },
-        complete: function() {
-
-        },
-        error: function(err, xhr) {
-            console.log(err);
         }
     });
     return checkExitstedResult;

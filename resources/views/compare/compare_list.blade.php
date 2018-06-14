@@ -11,8 +11,6 @@
                                 <a href=" {{ route('compare') }}" class="btn btn-primary">
                                     <i class="fa fa-reply-all" aria-hidden="true"></i>
                                 </a>
-                                <br>
-                                <button type="button" class="btn btn-success">{{ trans('auth.add_product') }}</button>
                             </th>
                         </tr>
                         <tr>
@@ -37,7 +35,7 @@
                             <th scope="row" class="height-th-left">{{ trans('auth.car_number') }}</th>
                         </tr>
                         <tr>
-                            <th scope="row" class="height-th-left">{{ trans('auth.tissue_men') }}</th>
+                            <th scope="row" class="height-optional">{{ trans('auth.tissue_men') }}</th>
                         </tr>
                         <tr>
                             <th scope="row" class="height-th-left">{{ trans('auth.gear') }}</th>
@@ -52,10 +50,10 @@
                             <th scope="row" class="height-th-left">{{ trans('auth.max_capacity') }}</th>
                         </tr>
                         <tr>
-                            <th scope="row" class="height-th-left">{{ trans('auth.drive_type') }}</th>
+                            <th scope="row" class="height-optional">{{ trans('auth.drive_type') }}</th>
                         </tr>
                         <tr>
-                            <th scope="row" class="height-th-left">{{ trans('auth.drive_style') }}</th>
+                            <th scope="row" class="height-optional">{{ trans('auth.drive_style') }}</th>
                         </tr>
                         <tr>
                             <th scope="row" class="height-th-left">{{ trans('auth.locksner') }}</th>
@@ -134,7 +132,7 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="height-th">
+                                        <th scope="row" class="height-optional">
                                             {{ $car->options->tissue_men }}
                                         </th>
                                     </tr>
@@ -159,12 +157,12 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="height-th">
+                                        <th scope="row" class="height-optional">
                                             {{ $car->options->drive_type }}
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th scope="row" class="height-th">
+                                        <th scope="row" class=height-optional">
                                             {{ $car->options->drive_style }}
                                         </th>
                                     </tr>

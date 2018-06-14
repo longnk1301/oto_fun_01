@@ -19,7 +19,11 @@
 
         <div class="img-details-post">
             @foreach ($images as $image)
-                <img src="{{ asset($image->image) }}" alt="">
+                @if (!isset($image->image))
+                    {{ null }}
+                @else
+                    <img src="{{ asset($image->image) }}" alt="">
+                @endif
             @endforeach
         </div>
 
@@ -28,7 +32,7 @@
         </div>
 
         <div class="content">
-            <p>{{ $post->content }}</p>
+            <p>{!! $post->content !!}</p>
         </div>
     </div>
 </div>

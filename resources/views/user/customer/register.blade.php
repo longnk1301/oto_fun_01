@@ -11,7 +11,7 @@
                     {!! Form::open(['method' => 'POST', 'route' => 'user.register', 'class' => 'form-horizontal']) !!}
                         {{-- Name --}}
                         @if (session('msg'))
-                            <div class="alert alert-danger">
+                            <div class="alert alert-success">
                                 <span>{{ session('msg') }}</span>
                             </div>
                         @endif

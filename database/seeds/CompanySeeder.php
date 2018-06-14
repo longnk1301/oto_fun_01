@@ -17,9 +17,9 @@ class CompanySeeder extends Seeder
 
     	$faker = Faker\Factory::create();
 
-       for ($i = 0; $i < 9; $i++) {
+       for ($i = 1; $i < 10; $i++) {
             DB::table('company')->insert([
-                'com_name' => $faker->text(6),
+                'com_name' => $faker->text(7),
 		        'com_add' => $faker->text(20),
 		        'com_phone' => $faker->numberBetween(1, 99999999),
             ]);

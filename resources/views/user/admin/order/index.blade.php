@@ -125,7 +125,7 @@
                                 @foreach ($advisorys as $advisory)
                                         <tr>
                                             <td>
-                                                @if ($advisory->car_name > 0)
+                                                @if (isset($advisory->car_name))
                                                     {{ $advisory->car_name->car_name }}
                                                 @else
                                                     {{ null }}
