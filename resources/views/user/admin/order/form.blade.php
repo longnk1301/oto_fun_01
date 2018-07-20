@@ -149,7 +149,7 @@
                                         </label>
 
                                         <label class="radio-custom col-md-2 input-md">
-                                            {!! Form::radio('status', 'Ready', $checked == 'Ready') !!}
+                                            {!! Form::radio('status', 'Bought', $checked == 'Bought') !!}
                                             {{ trans('auth.item_ready') }}
                                         </label>
 

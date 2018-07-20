@@ -14,6 +14,8 @@
             rules: {
                 car_name: {
                     required: true,
+                    minlength: 2,
+                    maxlength: 20,
                     checkExitsted: {
                         requestUrl : "{{ route('product.checkName') }}",
                         modelId: '{{ $car->id }}'
@@ -21,38 +23,56 @@
                 },
                 car_number: {
                     required: true,
+                    min: 0,
+                    max: 999999999,
                     number: true
+                },
+                gear: {
+                    number: true,
+                    min: 0,
+                    max: 30
                 },
                 car_cost: {
                     required: true,
+                    min: 0,
+                    max: 99999999999,
                     number: true
                 },
                 car_year: {
                     required: true,
+                    minlength: 4,
+                    maxlength: 4,
                     number: true
                 },
-                image: {
-                    required: true
+                height: {
+                    number: true,
+                    min: 0,
+                    max:1000
                 },
-            },
-            messages: {
-                car_name: {
-                    required: '{{ trans('auth.pl_enter_name_cate') }}'
+                weight: {
+                    number: true,
+                    min: 0,
+                    max: 1000
                 },
-                car_number: {
-                    required: '{{ trans('auth.pl_enter_quantity') }}',
-                    number: '{{ trans('auth.pl_enter_number') }}'
+                width: {
+                    number: true,
+                    min: 0,
+                    max: 1000
                 },
-                car_cost: {
-                    required: '{{ trans('auth.pl_enter_cost') }}',
-                    number: '{{ trans('auth.pl_enter_number') }}'
+                colc: {
+                    number: true,
+                    min: 0,
+                    max: 1000
                 },
-                car_years: {
-                    required: '{{ trans('auth.pl_enter_year') }}',
-                    number: '{{ trans('auth.pl_enter_number') }}'
+                max_capacity: {
+                    number: true,
+                    min: 0,
+                    max: 5000,
                 },
-                tags: {
-                    required: '{{ trans('auth.pl_enter_tag') }}'
+                cylinder_capacity: {
+                    number: true,
+                    min: 0,
+                    max: 1000,
                 },
             },
             errorPlacement: function(error, element)

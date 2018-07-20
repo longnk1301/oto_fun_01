@@ -15,12 +15,12 @@ class CreateOrderTable extends Migration
     {
         Schema::create('advisory', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cus_name');
-            $table->integer('identification');
-            $table->integer('cus_phone');
+            $table->string('cus_name')->nullable();
+            $table->integer('identification')->nullable();
+            $table->integer('cus_phone')->nullable();
             $table->text('cus_add')->nullable();
-            $table->string('cus_email');
-            $table->integer('car_id');
+            $table->string('cus_email')->nullable();
+            $table->integer('car_id')->nullable();
             $table->text('content')->nullable();
             $table->string('status')->default('Pending');
             $table->timestamps();
@@ -34,6 +34,6 @@ class CreateOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('advisory');
     }
 }

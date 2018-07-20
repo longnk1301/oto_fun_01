@@ -43,12 +43,12 @@ class RegisterController extends Controller
         $user->password = bcrypt($request->password);
         $user->phone = $request->phone;
         $user->add = $request->add;
-        if($request->hasFile('avatar')) {
-            $file = $request->file('avatar');
-            $fileName = uniqid() . '-' . $file->getClientOriginalName();
-            $file->storeAs('public/avatar', $fileName);
-            $user->avatar = 'storage/avatar/'.$fileName;
-        }
+        // if($request->hasFile('avatar')) {
+        //     $file = $request->file('avatar');
+        //     $fileName = uniqid() . '-' . $file->getClientOriginalName();
+        //     $file->storeAs('public/avatar', $fileName);
+        //     $user->avatar = 'storage/avatar/'.$fileName;
+        // }
         $user->save();
 
         return redirect('register')->with('msg', Lang::get('auth.suc_register'));

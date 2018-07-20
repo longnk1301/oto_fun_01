@@ -74,7 +74,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 {!! Form::hidden('id', $user->id) !!}
-                                {!! Form::hidden('role_user', $user->roles) !!}
+                                {!! Form::hidden('role_user', $user->role) !!}
                                 {!! Form::label('name', trans('auth.fullname')) !!}
                                 {!! Form::text('name', $user->name, ['class'=>'form-control input-lg','required', 'disabled']) !!}
                             </div>

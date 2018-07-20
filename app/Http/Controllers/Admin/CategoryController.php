@@ -35,7 +35,7 @@ class CategoryController extends Controller
     public function add()
     {
         $model = new Category();
-        $status = $model->status;
+        $status = 'UnPublic';
         $cates = Category::all();
         $select = [];
         $select = ['-1' => '------------------------------------------'];
@@ -86,9 +86,11 @@ class CategoryController extends Controller
         // upload file
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $fileName = uniqid() . '-' . $file->getClientOriginalName();
-            $file->storeAs(config('mysetting.ImgCategory'), $fileName);
-            $model->image = config('mysetting.GetImgCategory') . $fileName;
+            // $fileName = uniqid() . '-' . $file->getClientOriginalName();
+            // $file->storeAs(config('mysetting.ImgCategory'), $fileName);
+            $imagePath = $file->store('uploads', 'uploads');
+            $url =  $imagePath;
+            $model->image = $url;
         }
         $model->save();
 

@@ -16,10 +16,10 @@ class CreateTableSizes extends Migration
         Schema::create('sizes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vehicle_id');
-            $table->string('height')->nullable();
-            $table->string('weight')->nullable();
-            $table->string('width')->nullable();
-            $table->string('colc')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('width')->nullable();
+            $table->integer('colc')->nullable();
             $table->string('volume_fuel')->nullable();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateTableSizes extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sizes');
     }
 }

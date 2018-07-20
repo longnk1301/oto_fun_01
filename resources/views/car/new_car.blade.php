@@ -10,13 +10,17 @@
                     <li>
                         <ul>
                             <li>
-                                @foreach ($companys as $company)
-                                <ul class="">
-                                    <li class="col-sm-4">
-                                        <a href="#" class="demo" id ="{{ $company->id }}" data-id="{{ $company->id }}">{{ $company->com_name }}</a>
-                                    </li>
-                                </ul>
+                                @if (isset($companys))
+                                    @foreach ($companys as $company)
+                                    <ul class="">
+                                        <li class="col-sm-4">
+                                            <a href="#" class="demo" id ="{{ $company->id }}" data-id="{{ $company->id }}">{{ $company->com_name }}</a>
+                                        </li>
+                                    </ul>
                                 @endforeach
+                                @else
+                                    {{ null }}
+                                @endif
                             </li>
                         </ul>
                     </li>

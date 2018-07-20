@@ -40,35 +40,9 @@
                 slug: {
                     required: true,
                     checkExitsted: {
-                        requestUrl: "{{route('post.checkSlug')}}",
-                        modelId: '{{$model->id}}'
+                        requestUrl: "{{ route('post.checkSlug') }}",
+                        modelId: '{{ $model->id }}'
                     }
-                },
-                tags: {
-                    required: true,
-                    checkExitsted: {
-                        requestUrl: "{{route('post.checkTag')}}",
-                        modelId: '{{$model->id}}'
-                    }
-                },
-                image: {
-                    required: true
-                },
-            },
-            messages: {
-                title: {
-                    required: '{{ trans('auth.pl_enter_name_post') }}'
-                },
-                slug: {
-                    required: '{{ trans('auth.pl_enter_the_path') }}',
-                    checkExitsted: '{{ trans('auth.the_path_already_exixts') }}'
-                },
-                cate_id: {
-                    required: '{{ trans('auth.pl_enter_name_cate') }}'
-                },
-                tags: {
-                    required: '{{ trans('auth.pl_enter_tag') }}',
-                    checkExitsted: '{{ trans('auth.the_cate_already_exixts') }}',
                 },
             },
             errorPlacement: function(error, element)

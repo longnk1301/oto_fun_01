@@ -32,7 +32,7 @@
                 <span>{{ $tag->tag }}</span>
             @endforeach
             <h3>{{ $detail_post->summary }}</h3>
-            <h3>{{ $detail_post->content}}</h3>
+            <h3>{!! $detail_post->content !!}</h3>
 	     </div>
     </section>
 </div>

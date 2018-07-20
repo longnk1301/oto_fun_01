@@ -71,20 +71,7 @@ class PostController extends Controller
         if($post && $post->id == $request->id) {
             return response()->json(true);
         }
-        //chua ton tai: true, ton tai: false
         $result = $post == false ? true : false;
-
-        return response()->json($result);
-    }
-
-    public function checkTag(Request $request)
-    {
-        $tag = Tag::where('tag', $request->name)->first();
-        if($tag && $tag->id == $request->id) {
-            return response()->json(true);
-        }
-        //chua ton tai: true, ton tai: false
-        $result = $tag == false ? true : false;
 
         return response()->json($result);
     }
@@ -107,15 +94,22 @@ class PostController extends Controller
             if (!$model) {
                 return view('user.admin.404');
             }
+            $model->title = $request->title;
+            $model->slug = $request->slug;
+            $model->category_id = $request->category_id;
+            $model->summary = $request->summary;
+            $model->content = $request->content;
+            $model->status = $request->status;
         } else {
             $model = new Post();
+            $model->title = $request->title;
+            $model->slug = $request->slug;
+            $model->category_id = $request->category_id;
+            $model->summary = $request->summary;
+            $model->content = $request->content;
+            $model->status = $request->status;
         }
-        $model->title = $request->title;
-        $model->slug = $request->slug;
-        $model->category_id = $request->category_id;
-        $model->summary = $request->summary;
-        $model->content = $request->content;
-        $model->status = $request->status;
+        $model->fill($request->all());
         $model->save();
 
         $tags = explode(',', $request->tags);

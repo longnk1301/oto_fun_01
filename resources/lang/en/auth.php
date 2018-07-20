@@ -151,6 +151,7 @@ return [
     'back' => 'Back',
     'vehicles' => 'Vehicles',
     'pending' => 'Pending',
+    'duplicate' => 'Duplicate',
 
     /*-----------------------------------------------------------------------------*/
     'wrong_acc' => 'Wrong account name or password!',
@@ -170,7 +171,7 @@ return [
     'cus_name' => 'Customer Name',
     'suc_register' => 'Register Successful!!',
     'confirm' => 'Confirm',
-    'item_ready' => 'Item Ready',
+    'item_ready' => 'Bought',
     'send' => 'Send',
     'delivered' => 'Delivered',
     'returned' => 'Returned',
@@ -191,4 +192,12 @@ return [
     'admin' => 'Admin',
     'author' => 'Author',
     'member' => 'Member',
+
+    /*------------------------------------------------company---------------------------------------*/
+    'add_company' => 'Add Company',
+
+     /*------------------------------------------------company---------------------------------------*/
+    'car_type' => 'Car Type',
+    'add_car_type' => 'Add Car Type',
+    'add_color' => 'Add Color',
 ];

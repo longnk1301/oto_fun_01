@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('kikiiuiu22396@gmail.com'),
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('Abc123456!'),
 
     /*
     |--------------------------------------------------------------------------
@@ -119,5 +119,4 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
 ];

@@ -25,18 +25,21 @@
             {!! Form::close() !!}
         </div>
     </div>
+    <h1>{!! trans('index.key') !!} {{ $request->keyword }}</h1>
+    <p><strong>{!! trans('index.has') !!} {{ count($cars) }} {!! trans('index.rs') !!}</strong></p>
     <div class="row">
     	@foreach ($cars as $car)
     	<div class="row">
             <div class="col-md-8 products">
                 <div class="col-xs-4">
-                    <img src="{{ asset($car->car_image) }}" alt="">
+                    <img src="{{ asset($car->img->image) }}" alt="">
                 </div>
                 <div class="col-xs-5">
                     <p><b>{{ trans('index.car_name') }}</b>{{ $car->car_name }}</p>
-                    <p><b>{{ trans('index.car_type') }}</b>{{ $car->car_type }}</p>
-                    <p><b>{{ trans('index.car_year') }}</b>{{ $car->car_years }}</p>
-                    <p><b>{{ trans('index.car_summary') }}</b>{{ str_limit($car->summary, 120, '...') }}</p>
+                    <p><b>{{ trans('index.car_type') }}</b>{{ $car->car_type->type }}</p>
+                    <p><b>{{ trans('auth.company') }} </b>{{ $car->company->com_name }}</p>
+                    <p><b>{{ trans('index.car_year') }}</b>{{ $car->car_year }}</p>
+                    <p><b>{{ trans('index.car_summary') }}</b>{!! str_limit($car->summary, 120, '...') !!}</p>
                 </div>
                 <div class="col-xs-3 view-details">
                     <p><b>${{ number_format($car->car_cost, 0, ", ", ".") }}</b></p>

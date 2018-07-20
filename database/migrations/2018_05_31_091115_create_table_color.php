@@ -15,7 +15,6 @@ class CreateTableColor extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('vehicle_id');
             $table->string('color')->nullable();
             $table->timestamps();
         });
@@ -28,6 +27,6 @@ class CreateTableColor extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('colors');
     }
 }

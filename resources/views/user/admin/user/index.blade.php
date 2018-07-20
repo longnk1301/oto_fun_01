@@ -36,6 +36,27 @@
             </li>
 
             <li class="treeview">
+                <a href="{{ route('company.index') }}">
+                    <i class="fa fa-snapchat"></i> <span>{{ trans('auth.company') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('car_type.index') }}">
+                    <i class="fa fa-themeisle"></i> <span>{{ trans('auth.car_type') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('color.index') }}">
+                    <i class="fa fa-paint-brush"></i> <span>{{ trans('index.car_color') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
                 <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -111,11 +132,13 @@
                                             <td>{{ $user->add }}</td>
                                             <td class="text-success"><b>{{ $user->role_name->role_name }}</b></td>
                                             <td>
-                                                <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-sm btn-primary Tooltip">
                                                     <i class="fa fa-pencil"></i>
+                                                    <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('user.remove', ['id' => $user->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('user.remove', ['id' => $user->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                     <i class="fa fa-remove"></i>
+                                                    <span class="tooltipText">{{ trans('auth.delete') }}</span>
                                                 </a>
                                             </td>
                                         </tr>

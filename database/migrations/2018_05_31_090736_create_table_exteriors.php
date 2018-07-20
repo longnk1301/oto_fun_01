@@ -16,9 +16,9 @@ class CreateTableExteriors extends Migration
         Schema::create('exteriors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vehicle_id');
-            $table->string('locks_nearby');
-            $table->string('locks_remote');
-            $table->string('turn_signal_light');
+            $table->string('locks_nearby')->nullable();
+            $table->string('locks_remote')->nullable();
+            $table->string('turn_signal_light')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateTableExteriors extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('exteriors');
     }
 }

@@ -34,7 +34,11 @@
                     </ul>
                     <div class="post-img">
                         <a href="{{ url($p->slug) }}">
-                            <img src="{{ asset($p->imgPost->image) }}" alt="">
+                            @if (!isset($p->imgPost->image))
+                                {{ null }}
+                            @else
+                                <img src="{{ asset($p->imgPost->image) }}" alt="">
+                            @endif
                         </a>
                     </div>
                     <div class="post-title ">
@@ -45,7 +49,7 @@
                     <div class="date author">
                         <a href="{{ url($p->slug) }}">{{ $p->updated_at }}</a>
                     </div>
-                    <p>{{ $p->summary }}</p>
+                    <p>{!! str_limit($p->summary, 80, '...') !!}</p>
                     <a class="read-more" href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>

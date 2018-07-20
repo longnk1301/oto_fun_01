@@ -35,6 +35,27 @@
             </li>
 
             <li class="treeview">
+                <a href="{{ route('company.index') }}">
+                    <i class="fa fa-snapchat"></i> <span>{{ trans('auth.company') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('car_type.index') }}">
+                    <i class="fa fa-themeisle"></i> <span>{{ trans('auth.car_type') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('color.index') }}">
+                    <i class="fa fa-paint-brush"></i> <span>{{ trans('index.car_color') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
                 <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -103,18 +124,26 @@
                             <tbody>
                                 @foreach ($advisorys as $advisory)
                                         <tr>
-                                            <td>{{ $advisory->car_name->car_name }}</td>
+                                            <td>
+                                                @if (isset($advisory->car_name))
+                                                    {{ $advisory->car_name->car_name }}
+                                                @else
+                                                    {{ null }}
+                                                @endif
+                                            </td>
                                             <td>{{ $advisory->cus_name }}</td>
                                             <td>{{ $advisory->cus_phone }}</td>
                                             <td>{{ $advisory->cus_add }}</td>
                                             <td>{{ $advisory->cus_email }}</td>
                                             <td>{{ $advisory->status }}</td>
                                             <td>
-                                                <a href="{{ route('order.edit', ['id' => $advisory->id]) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('order.edit', ['id' => $advisory->id]) }}" class="btn btn-sm btn-primary Tooltip">
                                                     <i class="fa fa-pencil"></i>
+                                                    <span class="tooltipText">{{ trans('auth.edit') }}</span>
                                                 </a>
-                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $advisory->id]) }}')" class="btn btn-sm btn-danger">
+                                                <a href="javascript:;" onclick="confirmRemove('{{ route('order.remove', ['id' => $advisory->id]) }}')" class="btn btn-sm btn-danger Tooltip">
                                                     <i class="fa fa-remove"></i>
+                                                    <span class="tooltipText">{{ trans('auth.delete') }}</span>
                                                 </a>
                                             </td>
                                         </tr>
