@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Car;
 use App\Models\Vehicle;
 use App\Models\Operate;
@@ -105,7 +106,7 @@ class ProductController extends Controller
 
     public function checkName(Request $request)
     {
-        $car = Car::where('car_name', $request->car_name)->first();
+        $car = Car::where('car_name', $request->name)->first();
         if($car && $car->id == $request->id) {
             return response()->json(true);
         }
@@ -116,23 +117,35 @@ class ProductController extends Controller
 
     public function save(Request $request)
     {
+    	// dd($request->all());
         if ($request->id) {
            $car = Car::find($request->id);
             if (!$car) {
                 return view('user.admin.404');
             }
+            $car->type_id = $request->type;
+            $car->comp_id = $request->com_name;
+            $car->color_id = $request->color;
+            $car->car_name = $request->car_name;
+            $car->car_cost = $request->car_cost;
+            $car->summary = $request->summary;
+            $car->car_year = $request->car_year;
+            $car->status = $request->status;
         } else {
             $car = new Car();
             $car->type_id = $request->type;
             $car->comp_id = $request->com_name;
             $car->color_id = $request->color;
+            $car->car_name = $request->car_name;
+            $car->car_cost = $request->car_cost;
+            $car->summary = $request->summary;
+            $car->car_year = $request->car_year;
             $car->status = $request->status;
         }
-        $car->fill($request->all());
         $car->save();
 
         if ($request->id) {
-           $vehicle = Vehicle::find($request->id);
+           $vehicle = Vehicle::where('car_id',$request->id)->first();
             if (!$vehicle) {
                 return view('user.admin.404');
             }
@@ -140,14 +153,16 @@ class ProductController extends Controller
             $vehicle = new Vehicle();
             $vehicle->car_id = $car->id;
         }
-        $vehicle->fill($request->all());
         $vehicle->save();
 
         if ($request->id) {
-            $id_vehicle = Vehicle::where('car_id', $request->id)->pluck('id')->first();
+            $id_vehicle = Vehicle::where('id', $vehicle->id)->pluck('id')->first();
             $operates = Operate::where('vehicle_id', $id_vehicle)->first();
             if (!$operates) {
                 return view('user.admin.404');
+                $operates->vehicle_id = $vehicle->id;
+                $operates->tissue_man = $request->tissue_man;
+                $operates->gear = $request->gear;
             }
         } else {
             $operates = new Operate();
@@ -155,14 +170,19 @@ class ProductController extends Controller
             $operates->tissue_man = $request->tissue_man;
             $operates->gear = $request->gear;
         }
-        $operates->fill($request->all());
         $operates->save();
 
         if ($request->id) {
-            $id_vehicle = Vehicle::where('car_id', $request->id)->pluck('id')->first();
+            $id_vehicle = Vehicle::where('id', $vehicle->id)->pluck('id')->first();
             $engines = Engine::where('vehicle_id', $id_vehicle)->first();
             if (!$engines) {
                 return view('user.admin.404');
+                $engines->vehicle_id = $vehicle->id;
+                $engines->engine_type = $request->engine_type;
+                $engines->cylinder_capacity = $request->cylinder_capacity;
+                $engines->max_capacity = $request->max_capacity;
+                $engines->drive_type = $request->drive_type;
+                $engines->drive_style = $request->drive_style;
             }
         } else {
             $engines = new Engine();
@@ -173,14 +193,17 @@ class ProductController extends Controller
             $engines->drive_type = $request->drive_type;
             $engines->drive_style = $request->drive_style;
         }
-        $engines->fill($request->all());
         $engines->save();
 
         if ($request->id) {
-            $id_vehicle = Vehicle::where('car_id', $request->id)->pluck('id')->first();
+            $id_vehicle = Vehicle::where('id', $vehicle->id)->pluck('id')->first();
             $exteriors = Exterior::where('vehicle_id', $id_vehicle)->first();
             if (!$exteriors) {
                 return view('user.admin.404');
+                $exteriors->vehicle_id = $vehicle->id;
+                $exteriors->locks_nearby = $request->locks_nearby;
+                $exteriors->locks_remote = $request->locks_remote;
+                $exteriors->turn_signal_light = $request->turn_signal_light;
             }
         } else {
             $exteriors = new Exterior();
@@ -189,14 +212,19 @@ class ProductController extends Controller
             $exteriors->locks_remote = $request->locks_remote;
             $exteriors->turn_signal_light = $request->turn_signal_light;
         }
-        $exteriors->fill($request->all());
         $exteriors->save();
 
         if ($request->id) {
-            $id_vehicle = Vehicle::where('car_id', $request->id)->pluck('id')->first();
+            $id_vehicle = Vehicle::where('id', $vehicle->id)->pluck('id')->first();
             $sizes = Size::where('vehicle_id', $id_vehicle)->first();
             if (!$sizes) {
                 return view('user.admin.404');
+                $sizes->vehicle_id = $vehicle->id;
+                $sizes->height = $request->height;
+                $sizes->weight = $request->weight;
+                $sizes->width = $request->width;
+                $sizes->colc = $request->colc;
+                $sizes->volume_fuel = $request->volume_fuel;
             }
         } else {
             $sizes = new Size();
@@ -207,7 +235,6 @@ class ProductController extends Controller
             $sizes->colc = $request->colc;
             $sizes->volume_fuel = $request->volume_fuel;
         }
-        $sizes->fill($request->all());
         $sizes->save();
 
         // upload file
@@ -222,7 +249,6 @@ class ProductController extends Controller
                 $images->save();
             }
         }
-
         return redirect()->route('product.index');
     }
 
@@ -264,6 +290,7 @@ class ProductController extends Controller
 
             return view('user.admin.car.form', compact(
                 'car',
+                // 'id_vehicle',
                 'operates',
                 'colors',
                 'engines',
@@ -350,9 +377,21 @@ class ProductController extends Controller
 
     public function saveDuplicate(Request $request)
     {
+        function phpAlert($msg) {
+            echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+        }
+        $allCar = DB::table('cars')->select('car_name')->get();
         $oldCar = Car::find($request->id);
         $car = $oldCar->replicate();
-        $car->car_name = $request->car_name;
+        foreach ($allCar as $carName) {
+            if ($carName->car_name == $request->car_name) {
+                phpAlert("Car name uniqued! please check agian!!!");
+
+                return redirect()->back()->with('msg', 'Car name is unique! Please enter another name!!!');
+            } else {
+                $car->car_name = $request->car_name;
+            }
+        }
         $car->car_cost = $request->car_cost;
         $car->summary = $request->summary;
         $car->car_number = $request->car_number;
@@ -367,13 +406,16 @@ class ProductController extends Controller
         $vehicle = $oldVehicle->replicate();
         $vehicle->car_id = $car->id;
         $vehicle->save();
+        // dd($vehicle);
 
         $oldOperates = Operate::where('vehicle_id', $request->id_vehicle)->first();
         $operates = $oldOperates->replicate();
         $operates->vehicle_id = $vehicle->id;
         $operates->tissue_man = $request->tissue_man;
         $operates->gear = $request->gear;
+        // dd($operates);
         $operates->save();
+
 
         $oldEngines = Engine::where('vehicle_id', $request->id_vehicle)->first();
         $engines = $oldEngines->replicate();

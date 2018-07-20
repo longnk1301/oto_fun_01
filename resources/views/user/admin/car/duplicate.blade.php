@@ -18,7 +18,7 @@
     <!-- Main content -->
     <section class="content bg-white">
         <div class="row">
-            {!! Form::open(['method' => 'POST', 'route' => 'product.save.duplicate', 'class' => 'form-horizontal', 'id' => 'product-form', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['method' => 'POST', 'route' => 'product.save.duplicate', 'class' => 'form-horizontal', 'id' => 'duplicate-form', 'enctype' => 'multipart/form-data']) !!}
                 {!! Form::hidden('id', $car->id) !!}
                 {!! Form::hidden('id_vehicle', $id_vehicle) !!}
                     <div class="form-group row">

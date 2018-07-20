@@ -7,19 +7,23 @@
             <p>{{ $post->title }}</p>
         </h1>
         <p class="created-at">
-            <b>{{ trans('auth.created_at') }} : {{ $post->created_at }}
+            <b><i class="fa fa-calendar-times-o" aria-hidden="true"></i> : {{ $post->created_at }}
         </p>
         <a href=" {{ route('news') }}" class="btn btn-light Tooltip">
             <i class="fa fa-reply-all" aria-hidden="true"></i>
             <span class="tooltipText">{{ trans('auth.back') }}</span>
         </a>
-        @foreach ($post->tags as $tag)
+{{--         @foreach ($post->tags as $tag)
             <a href="#">{{ $tag->tag }}</a>
-        @endforeach
+        @endforeach --}}
 
         <div class="img-details-post">
             @foreach ($images as $image)
-                <img src="{{ asset($image->image) }}" alt="">
+                @if (!isset($image->image))
+                    {{ null }}
+                @else
+                    <img src="{{ asset($image->image) }}" alt="">
+                @endif
             @endforeach
         </div>
 
@@ -28,7 +32,7 @@
         </div>
 
         <div class="content">
-            <p>{{ $post->content }}</p>
+            <p>{!! $post->content !!}</p>
         </div>
     </div>
 </div>

@@ -17,6 +17,13 @@
                 </div>
             {!! Form::close() !!}
         </div>
+        <nav>
+            <ul>
+                @foreach ($parent_categories as $category)
+                    <li class="btn btn-primary"><a href="{{ route('cate.detail', $category->slug) }}">{{ $category->category_name }}</a></li>
+                @endforeach
+            </ul>
+        </nav>
         @foreach ($posts as $p)
             <div class="col-md-4">
                 <div class="post-single">
@@ -32,7 +39,11 @@
                     </ul>
                     <div class="post-img">
                         <a href="{{ url($p->slug) }}">
-                            <img src="{{ asset($p->imgPost->image) }}" alt="">
+                            @if (!isset($p->imgPost->image))
+                                {{ null }}
+                            @else
+                                <img src="{{ asset($p->imgPost->image) }}" alt="">
+                            @endif
                         </a>
                     </div>
                     <div class="post-title">
@@ -43,7 +54,7 @@
                     <div class="author">
                         <a href="{{ url($p->slug)}}">{{ $p->created_at }}</a>
                     </div>
-                    <p>{{ $p->summary }}</p>
+                    <p>{{ str_limit($p->summary, 80, '...') }}</p>
                     <a  class="read-more" href="{{ url($p->slug) }}">
                         {!! trans('index.readmore') !!}
                     </a>

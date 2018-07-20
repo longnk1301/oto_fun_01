@@ -9,7 +9,7 @@
             {!! Form::open(['method' => 'POST', 'route' => 'admin.profile', 'class' => 'form-horizontal']) !!}
                 {!! Form::hidden('_token', csrf_token()) !!}
                 @if (session('msg'))
-                    <div class="alert alert-danger">
+                    <div class="alert alert-success">
                         <span>{{ session('msg') }}</span>
                     </div>
                 @endif

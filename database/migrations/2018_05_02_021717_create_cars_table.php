@@ -17,12 +17,13 @@ class CreateCarsTable extends Migration
             $table->increments('id');
             $table->integer('comp_id');
             $table->integer('type_id');
+            $table->integer('color_id');
             $table->string('car_name')->unique();
             $table->integer('car_cost')->default(0);
             $table->text('summary')->nullable();
             $table->integer('car_number')->default(0);
             $table->integer('car_year')->nullable();
-            $table->integer('status')->default(0);
+            $table->string('status')->default('UnPublic');
             $table->timestamps();
         });
     }

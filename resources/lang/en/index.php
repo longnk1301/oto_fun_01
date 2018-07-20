@@ -46,4 +46,5 @@ return [
     'good_choice' => 'Good choice. Which are cars are you thinking?',
     'check1' => 'Check',
     'views_details' => 'Views Details',
+    'price' => 'Price',
 ];

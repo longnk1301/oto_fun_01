@@ -36,6 +36,27 @@
             </li>
 
             <li class="treeview">
+                <a href="{{ route('company.index') }}">
+                    <i class="fa fa-snapchat"></i> <span>{{ trans('auth.company') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('car_type.index') }}">
+                    <i class="fa fa-themeisle"></i> <span>{{ trans('auth.car_type') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="{{ route('color.index') }}">
+                    <i class="fa fa-paint-brush"></i> <span>{{ trans('index.car_color') }}</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+            </li>
+
+            <li class="treeview">
                 <a href="{{ route('order.index') }}">
                     <i class="fa fa-cart-plus"></i> <span>{{ trans('auth.orders') }}</span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -118,14 +139,18 @@
                                  @foreach ($category as $cate)
                                     <tr>
                                         <td>
-                                            @if (count($cate->category_name) > 0)
+                                            @if (isset($cate->category_name))
                                                 {{ $cate->category_name }}
+                                            @else
+                                                {{ null }}
                                             @endif
                                         </td>
                                         <td>{{ $cate->parent_name }}</td>
                                         <td>
-                                            @if (count($cate->image) > 0)
+                                            @if (isset($cate->image))
                                                 <img src="{{ asset('/storage/' . $cate->image) }}" class="images-cate-admin">
+                                            @else
+                                                {{ null }}
                                             @endif
                                         </td>
                                         <td>{{ $cate->status }}</td>

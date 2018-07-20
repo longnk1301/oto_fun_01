@@ -29,6 +29,6 @@ class CreateTableOperates extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('operates');
     }
 }

@@ -29,8 +29,6 @@ Route::group(['middleware' => 'locale'], function()
 
         Route::post('/check-name', 'Admin\PostController@checkName')->name('post.checkName');
 
-        Route::post('/check-tag', 'Admin\PostController@checkTag')->name('post.checkTag');
-
         Route::post('/check-slug', 'Admin\PostController@checkSlug')->name('post.checkSlug');
 
         Route::get('/add', 'Admin\PostController@add')->name('post.add');
@@ -89,5 +87,47 @@ Route::group(['middleware' => 'locale'], function()
         Route::get('/remove/{id}', 'Admin\UserController@remove')->name('user.remove');
 
         Route::put('/edit', 'Admin\UserController@save')->name('user.save');
+    });
+
+    Route::prefix('companys')->group(function () {
+        Route::get('/', 'Admin\CompanyController@getCompany')->name('company.index');
+
+        Route::post('/check-name', 'Admin\CompanyController@checkName')->name('company.checkName');
+
+        Route::get('/add', 'Admin\CompanyController@add')->name('company.add');
+
+        Route::get('/update/{id}', 'Admin\CompanyController@edit')->name('company.edit')->middleware('isAuthor');
+
+        Route::get('/remove/{id}', 'Admin\CompanyController@remove')->name('company.remove')->middleware('isAuthor');
+
+        Route::post('/save', 'Admin\CompanyController@save')->name('company.save');
+    });
+
+    Route::prefix('types')->group(function () {
+        Route::get('/', 'Admin\CarTypeController@getCarType')->name('car_type.index');
+
+        Route::post('/check-name', 'Admin\CarTypeController@checkName')->name('car_type.checkName');
+
+        Route::get('/add', 'Admin\CarTypeController@add')->name('car_type.add');
+
+        Route::get('/update/{id}', 'Admin\CarTypeController@edit')->name('car_type.edit')->middleware('isAuthor');
+
+        Route::get('/remove/{id}', 'Admin\CarTypeController@remove')->name('car_type.remove')->middleware('isAuthor');
+
+        Route::post('/save', 'Admin\CarTypeController@save')->name('car_type.save');
+    });
+
+    Route::prefix('colors')->group(function () {
+        Route::get('/', 'Admin\ColorController@getColor')->name('color.index');
+
+        Route::post('/check-name', 'Admin\ColorController@checkName')->name('color.checkName');
+
+        Route::get('/add', 'Admin\ColorController@add')->name('color.add');
+
+        Route::get('/update/{id}', 'Admin\ColorController@edit')->name('color.edit')->middleware('isAuthor');
+
+        Route::get('/remove/{id}', 'Admin\ColorController@remove')->name('color.remove')->middleware('isAuthor');
+
+        Route::post('/save', 'Admin\ColorController@save')->name('color.save');
     });
 });

@@ -35,7 +35,7 @@ class CategoryController extends Controller
     public function add()
     {
         $model = new Category();
-        $status = $model->status;
+        $status = 'UnPublic';
         $cates = Category::all();
         $select = [];
         $select = ['-1' => '------------------------------------------'];

@@ -37,9 +37,9 @@
                         <div class="card-content">
                             <h4>{!! trans('index.check') !!}</h4>
                             <ul>
-                                <li><i class="fa fa-check" aria-hidden="true"></i>{{ trans('index.check1') }}</li>
-                                <li><i class="fa fa-check" aria-hidden="true"></i>{{ trans('index.check1') }}</li>
-                                <li><i class="fa fa-check" aria-hidden="true"></i>{{ trans('index.check1') }}</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Reputation</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Good brand</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i>Quality assured</li>
                             </ul>
                             <div class="card-button">
                                 {!! Form::open(['method' => 'post', 'route' => 'order', 'class' => 'sidebar-form']) !!}
@@ -53,6 +53,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         {!! Form::hidden('car_id', $detail_car->id) !!}
+                                                        {!! Form::hidden('_token', csrf_token()) !!}
                                                         <div class="text-left">
                                                             {!! Form::label('fullname', trans('auth.fullname')) !!}
                                                             @if (!isset(Auth::user()->name))
@@ -114,166 +115,185 @@
         </div>
     </div>
     <div class="row vehicle clearfix">
-        <h3>{!! trans('index.vo') !!}</h3>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-car fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.trim') }}
-                        <h5>{{ $detail_car->car_name }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-certificate fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.in_color') }}
-                        <h5>{{ $colors->color }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-money fa-3x" aria-hidden="true"></i>
-                        {{ trans('index.price') }}
-                        <h5>{{ $detail_car->car_cost }}</h5>
-                    </p>
-                </div>
-            </div>
-
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">{!! trans('index.vo') !!}</button>
+            <ul class="dropdown-menu drop-width">
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-car fa-3x" aria-hidden="true"></i>
+                            {{ trans('index.trim') }}
+                            <h5>{{ $detail_car->car_name }}</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-certificate fa-3x" aria-hidden="true"></i>
+                            {{ trans('index.in_color') }}
+                            <h5>{{ $colors->color }}</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-money fa-3x" aria-hidden="true"></i>
+                            {{ trans('index.price') }}
+                            <h5>${{ number_format($detail_car->car_cost, 0, ", ", ".") }}</h5>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
         {{-- engines --}}
-        <h3>{!! trans('auth.engines') !!}</h3>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.engine_type') }}
-                        <h5>{{ $engines->engine_type }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.cylinder_capacity') }}
-                        <h5>{{ $engines->cylinder_capacity }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-maxcdn fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.max_capacity') }}
-                        <h5>{{ $engines->max_capacity }}</h5>
-                    </p>
-                </div>
-            </div>
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">{!! trans('auth.engines') !!}</button>
+            <ul class="dropdown-menu drop-width">
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.engine_type') }}
+                            <h5>{{ $engines->engine_type }}</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.cylinder_capacity') }}
+                            <h5>{{ $engines->cylinder_capacity }} (mll)</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-maxcdn fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.max_capacity') }}
+                            <h5>{{ $engines->max_capacity }} (round/minute)</h5>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         {{-- exteriors --}}
-        <h3>{!! trans('auth.exteriors') !!}</h3>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.locksner') }}
-                        <h5>{{ $exteriors->locks_nearby }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.locksremote') }}
-                        <h5>{{ $exteriors->locks_remote }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-maxcdn fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.turn_light') }}
-                        <h5>{{ $exteriors->turn_signal_light }}</h5>
-                    </p>
-                </div>
-            </div>
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">{!! trans('auth.exteriors') !!}</button>
+            <ul class="dropdown-menu drop-width">
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.locksner') }}
+                            <h5>{{ $exteriors->locks_nearby }}</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.locksremote') }}
+                            <h5>{{ $exteriors->locks_remote }}</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-maxcdn fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.turn_light') }}
+                            <h5>{{ $exteriors->turn_signal_light }}</h5>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
         {{-- sizes --}}
-        <h3>{!! trans('auth.sizes') !!}</h3>
-        <div class="col-md-3">
-            <div class="vehicle-item">
-                <p>
-                    <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
-                    {{ trans('auth.height') }}
-                    <h5>{{ $sizes->height }}</h5>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="vehicle-item">
-                <p>
-                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                    {{ trans('auth.weight') }}
-                    <h5>{{ $sizes->weight }}</h5>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="vehicle-item">
-                <p>
-                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                    {{ trans('auth.width') }}
-                    <h5>{{ $sizes->width }}</h5>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <div class="vehicle-item">
-                <p>
-                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                    {{ trans('auth.colc') }}
-                    <h5>{{ $sizes->colc }}</h5>
-                </p>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="vehicle-item">
-                <p>
-                    <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                    {{ trans('auth.volume_fuel') }}
-                    <h5>{{ $sizes->volume_fuel }}</h5>
-                </p>
-            </div>
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">{!! trans('auth.sizes') !!}</button>
+            <ul class="dropdown-menu drop-width">
+                <li class="col-md-3">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.height') }}
+                            <h5>{{ $sizes->height }} (cmm)</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-2">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.weight') }}
+                            <h5>{{ $sizes->weight }} (kg)</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-2">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.width') }}
+                            <h5>{{ $sizes->width }} (cmm)</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-2">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.colc') }}
+                            <h5>{{ $sizes->colc }} (round/minute)</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-3">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.volume_fuel') }}
+                            <h5>{{ $sizes->volume_fuel }}</h5>
+                        </p>
+                    </div>
+                </li>
+            </ul>
         </div>
 
         {{-- operates --}}
-        <div class="row">
-            <h3>{!! trans('auth.operates') !!}</h3>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.tissue_men') }}
-                        <h5>{{ $operates->tissue_man }}</h5>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="vehicle-item">
-                    <p>
-                        <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
-                        {{ trans('auth.gear') }}
-                        <h5>{{ $operates->gear }}</h5>
-                    </p>
-                </div>
-            </div>
+        <div class="dropdown">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">{!! trans('auth.operates') !!}</button>
+            <ul class="dropdown-menu drop-width">
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-wrench fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.tissue_men') }}
+                            <h5>{{ $operates->tissue_man }}</h5>
+                        </p>
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="vehicle-item">
+                        <p>
+                            <i class="fa fa-plus-square fa-3x" aria-hidden="true"></i>
+                            {{ trans('auth.gear') }}
+                            <h5>{{ $operates->gear }} (chair)</h5>
+                        </p>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
+
     <div class="col-md-12 feature">
                 <h3>{{ trans('index.feature') }}</h3>
                 <p>Traction Control, Rear Wheel Drive, Locking/Limited Slip Differential, Tires - Front Performance, Tires - Rear Performance, Aluminum Wheels, 4-Wheel Disc Brakes, Power Steering, Convertible Soft Top, Heated Mirrors, Power Mirror(s), Privacy Glass, Intermittent Wipers, Variable Speed Intermittent Wipers, Leather Seats, Adjustable Steering Wheel, Leather Steering Wheel, Power Windows, Keyless Entry, Power Door Locks, Remote Trunk Release, Rear Defrost, AM/FM Stereo, CD Player, Passenger Vanity Mirror, Driver Air Bag, Passenger Air Bag</p>
